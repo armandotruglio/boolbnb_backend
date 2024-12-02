@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+
 use App\Http\Controllers\Controller;
 use App\Models\Property;
 use Illuminate\Http\Request;
@@ -59,8 +60,11 @@ class PropertyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Property $property)
-    {
-        //
-    }
+    public function destroy($id)
+{
+    $property = Property::findOrFail($id);
+    $property->delete();
+    return redirect()->route('properties.index')->with('success', 'Appartamento eliminato con successo!');
+}
+
 }
