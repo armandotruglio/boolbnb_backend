@@ -27,16 +27,16 @@ class StorePropertyRequest extends FormRequest
     {
         return [
             "user_id" => ["required", "numeric", "integer", "exists:users,id"],
-            "title" => ["required", "string", "min:3", "max:255", "unique:property,title"],
+            "title" => ["required", "string", "min:3", "max:255", "unique:properties,title"],
             "description" => ["required", "string", "min:20"],
-            "latitude" => ["required", "numeric", "double"],
-            "longitude" => ["required", "numeric", "double"],
+            "latitude" => ["required", "numeric"],
+            "longitude" => ["required", "numeric"],
             "rooms" => ["required", "numeric", "integer", "min:0"],
             "beds" => ["required", "numeric", "integer", "min:0"],
             "bathrooms" => ["required", "numeric", "integer", "min:0"],
             "square_meters" => ["required", "numeric", "integer", "min:0"],
             "is_visible" => ["required", "boolean"],
-            "thumb_url" => ["required", "image"],
+            "thumb_url" => ["required", "string"],
         ];
     }
 
