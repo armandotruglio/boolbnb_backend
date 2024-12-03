@@ -13,6 +13,17 @@ return new class extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger("user_id")->nullable("true");
+            $table->string("title");
+            $table->text("description");
+            $table->double("latitude");
+            $table->double("longitude");
+            $table->integer("rooms");
+            $table->integer("beds");
+            $table->integer("bathrooms");
+            $table->integer("square_meters");
+            $table->boolean("is_visible");
+            $table->text("thumb_url");
             $table->timestamps();
         });
     }
