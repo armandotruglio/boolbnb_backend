@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePropertyRequest;
 use App\Models\Property;
 use Illuminate\Http\Request;
 
@@ -28,9 +29,13 @@ class PropertyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePropertyRequest $request)
     {
-        //
+        $formData = $request->validated();
+
+        $property = Property::create($formData);
+
+        return redirect()->route("admin.properties.show", ["id" => $property->id]);
     }
 
     /**
