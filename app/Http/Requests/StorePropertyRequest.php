@@ -26,7 +26,7 @@ class StorePropertyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "user_id" => ["required", "numeric", "integer", "exists:users,id"],
+            "user_id" => ["numeric", "integer", "exists:users,id"],
             "title" => ["required", "string", "min:3", "max:255", "unique:properties,title"],
             "description" => ["required", "string", "min:20"],
             "latitude" => ["required", "numeric"],

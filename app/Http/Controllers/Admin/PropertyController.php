@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\StorePropertyRequest;
 use App\Models\Property;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StorePropertyRequest;
 use App\Http\Requests\UpdatePropertyRequest;
 
 class PropertyController extends Controller
@@ -36,7 +37,10 @@ class PropertyController extends Controller
     {
         $formData = $request->validated();
 
+        $formData["user_id"] = Auth::user()->id;
+
         $property = Property::create($formData);
+
 
         return redirect()->route("admin.properties.index")
         ->with('message', "Project $property->title has been created successfully!")
