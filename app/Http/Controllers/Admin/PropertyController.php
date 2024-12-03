@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePropertyRequest;
 use App\Models\Property;
 use Illuminate\Http\Request;
 
@@ -21,16 +22,20 @@ class PropertyController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-{
-    return view('properties.create');
-}
+    {
+        return view("admin.properties.create");
+    }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePropertyRequest $request)
     {
-        //
+        $formData = $request->validated();
+
+        $property = Property::create($formData);
+
+        return redirect()->route("admin.properties.show", ["id" => $property->id]);
     }
 
     /**
@@ -61,10 +66,9 @@ class PropertyController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy($id)
-{
-    $property = Property::findOrFail($id);
-    $property->delete();
-    return redirect()->route('properties.index')->with('success', 'Appartamento eliminato con successo!');
-}
-
+    {
+        $property = Property::findOrFail($id);
+        $property->delete();
+        return redirect()->route('properties.index')->with('success', 'Appartamento eliminato con successo!');
+    }
 }
