@@ -1,0 +1,110 @@
+@extends("layouts.app")
+
+@section("content")
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <form action="@yield("form-action")" method="POST" enctype="multipart/form-data">
+                @yield("form-method")
+                @csrf
+
+                <div class="mb-3">
+                    <h1 class="text-center fw-bold">
+                        @yield("form-title")
+                    </h1>
+                </div>
+
+                <div class="mb-3">
+                    <label for="property-title" class="form-label">Property Title:</label>
+                    <input type="text" name="title" id="property-title" class="form-control" value="{{ old("title", $property->title) }}">
+                    @error("title")
+                        @include("partials.single-name-error-message")
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="property-description" class="form-label">Property Description:</label>
+                    <input type="text" name="description" id="property-description" class="form-control" value="{{ old("description", $property->description) }}">
+                    @error("description")
+                        @include("partials.single-name-error-message")
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="property-latitude" class="form-label">Property Latitude:</label>
+                    <input type="text" name="latitude" id="property-latitude" class="form-control" value="{{ old("latitude", $property->latitude) }}">
+                    @error("latitude")
+                        @include("partials.single-name-error-message")
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="property-longitude" class="form-label">Property Longitude:</label>
+                    <input type="text" name="longitude" id="property-longitude" class="form-control" value="{{ old("longitude", $property->longitude) }}">
+                    @error("longitude")
+                        @include("partials.single-name-error-message")
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="property-rooms" class="form-label">Property rooms:</label>
+                    <input type="text" name="rooms" id="property-rooms" class="form-control" value="{{ old("rooms", $property->rooms) }}">
+                    @error("rooms")
+                        @include("partials.single-name-error-message")
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="property-rooms" class="form-label">Property rooms:</label>
+                    <input type="text" name="rooms" id="property-rooms" class="form-control" value="{{ old("rooms", $property->rooms) }}">
+                    @error("rooms")
+                        @include("partials.single-name-error-message")
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="property-beds" class="form-label">Property beds:</label>
+                    <input type="text" name="beds" id="property-beds" class="form-control" value="{{ old("beds", $property->beds) }}">
+                    @error("beds")
+                        @include("partials.single-name-error-message")
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="property-bathrooms" class="form-label">Property bathrooms:</label>
+                    <input type="text" name="bathrooms" id="property-bathrooms" class="form-control" value="{{ old("bathrooms", $property->bathrooms) }}">
+                    @error("bathrooms")
+                        @include("partials.single-name-error-message")
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="property-square_meter" class="form-label">Property square_meter:</label>
+                    <input type="text" name="square_meter" id="property-square_meter" class="form-control" value="{{ old("square_meter", $property->square_meter) }}">
+                    @error("square_meter")
+                        @include("partials.single-name-error-message")
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="property-is_visible" class="form-label">Property is_visible:</label>
+                    <input type="text" name="is_visible" id="property-is_visible" class="form-control" value="{{ old("is_visible", $property->is_visible) }}">
+                    @error("is_visible")
+                        @include("partials.single-name-error-message")
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="property-thumb_url" class="form-label">Property thumb_url:</label>
+                    <input type="text" name="thumb_url" id="property-thumb_url" class="form-control" value="{{ old("thumb_url", $property->thumb_url) }}">
+                    @error("thumb_url")
+                        @include("partials.single-name-error-message")
+                    @enderror
+                </div>
+
+                {{-- <div class="mb-3">
+                    <input type="file" name="image" id="post-image" class="form-control">
+
+                    @error("image")
+                        @include("partials.single-name-error-message")
+                    @enderror
+                </div> --}}
+
+
+                <button type="submit" class="btn btn-lg btn-primary">@yield("form-title")</button>
+                <button type="reset" class="btn btn-lg btn-warning">Reset fields</button>
+            </form>
+        </div>
+    </div>
+</div>
+@endsection
