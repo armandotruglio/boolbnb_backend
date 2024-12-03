@@ -13,8 +13,16 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        //
+        $properties = Property::all();
+        return response()->json(
+            [
+                'success' => true,
+                'result' => $properties
+            ]
+        );
     }
+
+    //http://127.0.0.1:8000/api/admin/properties File json
 
     /**
      * Store a newly created resource in storage.
