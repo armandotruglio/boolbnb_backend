@@ -38,7 +38,9 @@ class PropertyController extends Controller
 
         $property = Property::create($formData);
 
-        return redirect()->route("admin.properties.index");
+        return redirect()->route("admin.properties.index")
+        ->with('message', "Project $property->title has been created successfully!")
+        ->with('alert-class', "success");;
     }
 
     /**
@@ -54,7 +56,6 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
-        $property = Property::all();
         return view("admin.properties.edit", compact("property"));
     }
 
@@ -65,16 +66,19 @@ class PropertyController extends Controller
     {
         $data = $request->validated();
         $property->update($data);
-        return redirect()->route("admin.properties.index");
+        return redirect()->route("admin.properties.index")
+        ->with('message', "Project $property->title has been updated successfully!")
+        ->with('alert-class', "primary");;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Property $property)
     {
-        $property = Property::findOrFail($id);
         $property->delete();
-        return redirect()->route('properties.index')->with('success', 'Appartamento eliminato con successo!');
+        return redirect()->route('admin.properties.index')
+        ->with('success', 'Property deleted succesfully')
+        ->with('alert-class', "danger");;
     }
 }

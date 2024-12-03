@@ -64,9 +64,9 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="property-square_meter" class="form-label">Property square_meter:</label>
-                    <input type="text" name="square_meter" id="property-square_meter" class="form-control" value="{{ old("square_meter", $property->square_meter) }}">
-                    @error("square_meter")
+                    <label for="property-square_meters" class="form-label">Property square_meters:</label>
+                    <input type="text" name="square_meters" id="property-square_meters" class="form-control" value="{{ old("square_meters", $property->square_meters) }}">
+                    @error("square_meters")
                         @include("partials.single-name-error-message")
                     @enderror
                 </div>

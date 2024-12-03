@@ -1,4 +1,4 @@
-@extends("admin.properties.layouts.create-edit.blade.php")
+@extends("admin.properties.layouts.create-edit")
 
 @section("form-action")
     {{ route("admin.properties.update", $property)}}
