@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("user_id")->nullable("true");
+            $table->unsignedBigInteger("user_id");
             $table->string("title");
             $table->text("description");
             $table->double("latitude");

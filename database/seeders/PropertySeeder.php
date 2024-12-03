@@ -54,7 +54,7 @@ class PropertySeeder extends Seeder
                 'thumb_url' => 'https://example.com/images/property3.jpg',
             ],
             [
-                'user_id' => null,
+                'user_id' => 6,
                 'title' => 'Monolocale economico',
                 'description' => 'Perfetto per studenti o lavoratori, situato in una zona tranquilla.',
                 'latitude' => 44.494887,
