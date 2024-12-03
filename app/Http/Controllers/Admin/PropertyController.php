@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Property;
 use Illuminate\Http\Request;
+use App\Http\Requests\UpdatePropertyRequest;
 
 class PropertyController extends Controller
 {
@@ -13,7 +14,8 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        //
+        $properties = Property::all();
+        return view('admin.properties.index', compact('properties'));
     }
 
     /**
@@ -37,7 +39,8 @@ class PropertyController extends Controller
      */
     public function show(Property $property)
     {
-        //
+        $property = Property::findOrFail($property);
+        return view('admin.properties.show', compact('property'));
     }
 
     /**
@@ -45,15 +48,18 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
-        //
+        $property = Property::all();
+        return view("admin.property.edit", compact("property"));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Property $property)
+    public function update(UpdatePropertyRequest $request, Property $property)
     {
-        //
+        $data = $request->validated();
+        $property->update($data);
+        return redirect()->route("admin.property.index");
     }
 
     /**
