@@ -37,7 +37,12 @@ class PropertyController extends Controller
      */
     public function show(Property $property)
     {
-        //
+        $property = Property::with("user")->findOrFail($property->id);
+
+        return response()->json([
+            "success" => true,
+            "results" => $property,
+        ]);
     }
 
     /**
