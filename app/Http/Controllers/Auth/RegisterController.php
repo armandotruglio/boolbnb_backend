@@ -49,9 +49,37 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['string','min:3', 'max:255'],
+            'last_name' => ['string', 'min:3', 'max:255'],
+            'date_of_birth' => ['date', 'date_format:Y-m-d|before:now', 'before:'. now()->subYears(18)->toDateString()],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ],
+        //Custom messages
+        [
+            'name.string' => 'The name must be a valid string.',
+            'name.min' => 'The name must be at least 3 characters long.',
+            'name.max' => 'The name cannot exceed 255 characters.',
+
+            'last_name.string' => 'The last name must be a valid string.',
+            'last_name.min' => 'The last name must be at least 3 characters long.',
+            'last_name.max' => 'The last name cannot exceed 255 characters.',
+
+            'date_of_birth.date' => 'The date of birth must be a valid date.',
+            'date_of_birth.date_format' => 'The date of birth must be in the format Y-m-d.',
+            'date_of_birth.before:now' => 'The date of birth must be a date before today.',
+            'date_of_birth.before' => 'You must be at least 18 years old.',
+
+            'email.required' => 'The email address is required.',
+            'email.string' => 'The email address must be a valid string.',
+            'email.email' => 'The email address must be a valid email.',
+            'email.max' => 'The email address cannot exceed 255 characters.',
+            'email.unique' => 'The email address is already in use.',
+
+            'password.required' => 'The password is required.',
+            'password.string' => 'The password must be a valid string.',
+            'password.min' => 'The password must be at least 8 characters long.',
+            'password.confirmed' => 'The password confirmation does not match.',
         ]);
     }
 
