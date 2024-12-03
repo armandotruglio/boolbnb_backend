@@ -22,7 +22,7 @@ class PropertyController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.properties.create");
     }
 
     /**
@@ -61,10 +61,9 @@ class PropertyController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy($id)
-{
-    $property = Property::findOrFail($id);
-    $property->delete();
-    return redirect()->route('properties.index')->with('success', 'Appartamento eliminato con successo!');
-}
-
+    {
+        $property = Property::findOrFail($id);
+        $property->delete();
+        return redirect()->route('properties.index')->with('success', 'Appartamento eliminato con successo!');
+    }
 }
