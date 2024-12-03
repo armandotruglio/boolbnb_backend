@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -27,7 +28,7 @@ class UpdatePropertyRequest extends FormRequest
     {
         return [
             "user_id" => ["numeric", "integer", "exists:users,id"],
-            "title" => ["required", "string", "min:3", "max:255", "unique:properties,title"],
+            "title" => ["required", "string", "min:3", "max:255", Rule::unique("properties")->ignore($this->property)],
             "description" => ["required", "string", "min:20"],
             "latitude" => ["required", "numeric"],
             "longitude" => ["required", "numeric"],
@@ -43,7 +44,6 @@ class UpdatePropertyRequest extends FormRequest
     public function messages()
     {
         return [
-            'user_id.required' => 'The user ID is required.',
             'user_id.numeric' => 'The user ID must be a number.',
             'user_id.integer' => 'The user ID must be an integer.',
             'user_id.exists' => 'The selected user does not exist.',

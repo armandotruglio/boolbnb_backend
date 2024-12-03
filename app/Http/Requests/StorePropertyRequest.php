@@ -43,7 +43,6 @@ class StorePropertyRequest extends FormRequest
     public function messages()
     {
         return [
-            'user_id.required' => 'The user ID is required.',
             'user_id.numeric' => 'The user ID must be a number.',
             'user_id.integer' => 'The user ID must be an integer.',
             'user_id.exists' => 'The selected user does not exist.',
