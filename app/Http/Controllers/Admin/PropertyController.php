@@ -40,7 +40,7 @@ class PropertyController extends Controller
 
         return redirect()->route("admin.properties.index")
         ->with('message', "Project $property->title has been created successfully!")
-        ->with('alert-class', "success");;
+        ->with('alert-class', "success");
     }
 
     /**
