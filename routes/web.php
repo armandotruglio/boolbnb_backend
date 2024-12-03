@@ -1,10 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
-=======
-use App\Http\Controllers\PropertyController;
->>>>>>> property_crud
 use Illuminate\Support\Facades\Auth;
 
 /*
