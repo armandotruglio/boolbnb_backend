@@ -11,4 +11,7 @@ class Property extends Model
 
     protected $fillable = ["user_id", "title", "description", "latitude", "longitude", "rooms", "beds", "bathrooms", "square_meters", "is_visible", "thumb_url"];
 
+    public function user(){
+        $this->belongsTo(User::class);
+    }
 }
