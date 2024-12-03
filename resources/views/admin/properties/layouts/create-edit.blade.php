@@ -72,7 +72,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="property-is_visible" class="form-label">Property visiblility:</label>
-                    <input type="number" min="0" max="1" name="is_visible" id="property-is_visible" class="form-check-input" value="{{ old("is_visible", $property->is_visible) }}">
+                    <input type="number" min="0" max="1" name="is_visible" id="property-is_visible" class="form-control" value="{{ old("is_visible", $property->is_visible) }}">
                     @error("is_visible")
                         @include("partials.single-name-error-message")
                     @enderror
