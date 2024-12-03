@@ -24,7 +24,7 @@ class UpdatePropertyRequest extends FormRequest
         return [
             "user_id" => ["required", "numeric", "integer", "exists:users,id"],
             "title" => ["required", "string", "min:3", "max:255", "unique:property,title"],
-            "description" => ["required", "text", "min:20"],
+            "description" => ["required", "string", "min:20"],
             "latitude" => ["required", "numeric", "double"],
             "longitude" => ["required", "numeric", "double"],
             "rooms" => ["required", "numeric", "integer", "min:0"],

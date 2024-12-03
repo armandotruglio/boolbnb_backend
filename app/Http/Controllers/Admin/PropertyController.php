@@ -25,7 +25,8 @@ class PropertyController extends Controller
      */
     public function create()
     {
-        return view("admin.properties.create");
+        $property = new Property();
+        return view("admin.properties.create", compact("property"));
     }
 
     /**
@@ -37,7 +38,7 @@ class PropertyController extends Controller
 
         $property = Property::create($formData);
 
-        return redirect()->route("admin.properties.show", ["id" => $property->id]);
+        return redirect()->route("admin.properties.index");
     }
 
     /**
@@ -64,7 +65,7 @@ class PropertyController extends Controller
     {
         $data = $request->validated();
         $property->update($data);
-        return redirect()->route("admin.property.index");
+        return redirect()->route("admin.properties.index");
     }
 
     /**

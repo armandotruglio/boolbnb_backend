@@ -50,13 +50,6 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="property-rooms" class="form-label">Property rooms:</label>
-                    <input type="text" name="rooms" id="property-rooms" class="form-control" value="{{ old("rooms", $property->rooms) }}">
-                    @error("rooms")
-                        @include("partials.single-name-error-message")
-                    @enderror
-                </div>
-                <div class="mb-3">
                     <label for="property-beds" class="form-label">Property beds:</label>
                     <input type="text" name="beds" id="property-beds" class="form-control" value="{{ old("beds", $property->beds) }}">
                     @error("beds")

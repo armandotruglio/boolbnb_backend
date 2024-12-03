@@ -1,7 +1,7 @@
-@extends("admin.properties.layouts.create-edit.blade.php")
+@extends("admin.properties.layouts.create-edit")
 
 @section("form-action")
-    {{ route("admin.properties.store", $property)}}
+    {{ route("admin.properties.store")}}
 @endsection
 
 @section("form-method")
@@ -9,5 +9,5 @@
 @endsection
 
 @section("form-title")
-    Creating {{ $property->title }}
+    Creating Property
 @endsection
