@@ -39,7 +39,6 @@ class PropertyController extends Controller
      */
     public function show(Property $property)
     {
-        $property = Property::findOrFail($property);
         return view('admin.properties.show', compact('property'));
     }
 
@@ -49,7 +48,7 @@ class PropertyController extends Controller
     public function edit(Property $property)
     {
         $property = Property::all();
-        return view("admin.property.edit", compact("property"));
+        return view("admin.properties.edit", compact("property"));
     }
 
     /**
