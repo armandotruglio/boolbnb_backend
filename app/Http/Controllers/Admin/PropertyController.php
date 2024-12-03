@@ -14,7 +14,8 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        //
+        $properties = Property::all();
+        return view('admin.properties.index', compact('properties'));
     }
 
     /**
@@ -38,7 +39,8 @@ class PropertyController extends Controller
      */
     public function show(Property $property)
     {
-        //
+        $property = Property::findOrFail($property);
+        return view('admin.properties.show', compact('property'));
     }
 
     /**
