@@ -35,7 +35,7 @@ class StorePropertyRequest extends FormRequest
             "bathrooms" => ["required", "numeric", "integer", "min:0"],
             "square_meters" => ["required", "numeric", "integer", "min:0"],
             "is_visible" => ["required", "boolean"],
-            "thumb_url" => ["required", "string"],
+            "thumb_url" => ["required", "image"],
         ];
     }
 
