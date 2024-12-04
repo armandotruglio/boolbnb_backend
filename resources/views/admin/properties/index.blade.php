@@ -46,12 +46,11 @@
                                     href="{{ route('admin.properties.show', $property->id) }}">Show</a>
                                 <a href="{{ route('admin.properties.edit', $property) }}"
                                     class="btn btn-warning btn-sm">Edit</a>
-                                <form action="{{ route('admin.properties.destroy', $property) }}" method="POST"
-                                    style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                </form>
+                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal"
+                                    data-id="{{ $property->id }}">
+                                    Delete
+                                </button>
                             </td>
                         </tr>
                     @empty
@@ -63,4 +62,38 @@
             </table>
         </div>
     </div>
+
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this property?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <form id="deleteForm" method="POST" action="">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Confirm Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const deleteModal = document.getElementById('deleteModal');
+        const deleteForm = document.getElementById('deleteForm');
+
+        deleteModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+            const propertyId = button.getAttribute('data-id');
+            deleteForm.action = `/admin/properties/${propertyId}`;
+        });
+    </script>
 @endsection
