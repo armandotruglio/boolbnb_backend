@@ -9,5 +9,5 @@
 @endsection
 
 @section("form-title")
-    Updating {{ $property->title }}
+    Update {{ $property->title }}
 @endsection
