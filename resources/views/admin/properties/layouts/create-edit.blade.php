@@ -30,53 +30,60 @@
                             @include('partials.single-name-error-message')
                         @enderror
                     </div>
-
                     <div class="mb-3">
                         <div class="address-property">
                             <label for="address" class=form-label>Property Address:</label>
                         </div>
                     </div>
-
+                    @error('address')
+                        @include('partials.single-name-error-message')
+                    @enderror
                     <div class="mb-3">
                         <label for="property-rooms" class="form-label">Property rooms:</label>
-                        <input type="number" name="rooms" id="property-rooms" class="form-control" value="{{ old("rooms", $property->rooms) }}">
-                        @error("rooms")
-                            @include("partials.single-name-error-message")
+                        <input type="number" name="rooms" id="property-rooms" class="form-control"
+                            value="{{ old('rooms', $property->rooms) }}">
+                        @error('rooms')
+                            @include('partials.single-name-error-message')
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="property-beds" class="form-label">Property beds:</label>
-                        <input type="number" name="beds" id="property-beds" class="form-control" value="{{ old("beds", $property->beds) }}">
-                        @error("beds")
-                            @include("partials.single-name-error-message")
+                        <input type="number" name="beds" id="property-beds" class="form-control"
+                            value="{{ old('beds', $property->beds) }}">
+                        @error('beds')
+                            @include('partials.single-name-error-message')
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="property-bathrooms" class="form-label">Property bathrooms:</label>
-                        <input type="number" name="bathrooms" id="property-bathrooms" class="form-control" value="{{ old("bathrooms", $property->bathrooms) }}">
-                        @error("bathrooms")
-                            @include("partials.single-name-error-message")
+                        <input type="number" name="bathrooms" id="property-bathrooms" class="form-control"
+                            value="{{ old('bathrooms', $property->bathrooms) }}">
+                        @error('bathrooms')
+                            @include('partials.single-name-error-message')
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="property-square_meters" class="form-label">Property square_meters:</label>
-                        <input type="number" name="square_meters" id="property-square_meters" class="form-control" value="{{ old("square_meters", $property->square_meters) }}">
-                        @error("square_meters")
-                            @include("partials.single-name-error-message")
+                        <input type="number" name="square_meters" id="property-square_meters" class="form-control"
+                            value="{{ old('square_meters', $property->square_meters) }}">
+                        @error('square_meters')
+                            @include('partials.single-name-error-message')
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="property-is_visible" class="form-label">Property visiblility:</label>
-                        <input type="number" min="0" max="1" name="is_visible" id="property-is_visible" class="form-control" value="{{ old("is_visible", $property->is_visible) }}">
-                        @error("is_visible")
-                            @include("partials.single-name-error-message")
+                        <input type="number" min="0" max="1" name="is_visible" id="property-is_visible"
+                            class="form-control" value="{{ old('is_visible', $property->is_visible) }}">
+                        @error('is_visible')
+                            @include('partials.single-name-error-message')
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="property-thumb_url" class="form-label">Property thumb:</label>
-                        <input type="file" name="thumb_url" id="property-thumb_url" class="form-control" value="{{ old("thumb_url", $property->thumb_url) }}">
-                        @error("thumb_url")
-                            @include("partials.single-name-error-message")
+                        <input type="file" name="thumb_url" id="property-thumb_url" class="form-control"
+                            value="{{ old('thumb_url', $property->thumb_url) }}">
+                        @error('thumb_url')
+                            @include('partials.single-name-error-message')
                         @enderror
                     </div>
 
@@ -121,11 +128,15 @@
         //set the all the necessary value
         searchInput.type = "text";
         searchInput.name = "address";
-        searchInput.id = "address";
+        searchInput.id = "search-address";
         searchInput.value = "{{ old('address', $property->address) }}";
 
-        ttSearchBox.on("tomtom.searchbox.resultsfound", function (data) {
-  console.log(data)
-})
+        //get search container
+        const searchContainer = document.querySelector(".tt-search-box-input-container");
+
+        //style search container
+        searchContainer.style.border = "var(--bs-border-width) solid var(--bs-border-color)";
+        searchContainer.style.borderRadius = "var(--bs-border-radius)";
+        searchContainer.style.backgroundColor = "var(--bs-body-bg)";
     </script>
 @endsection

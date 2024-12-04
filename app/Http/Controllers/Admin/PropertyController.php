@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-
+use App\Functions\Address;
 use App\Models\Property;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -40,11 +40,17 @@ class PropertyController extends Controller
 
         $formData["user_id"] = Auth::user()->id;
 
-        if ($request->hasFile("thumb_url")){
+        $query = Address::encodeQueryAddress($formData["address"]);
+
+        $result = json_decode(Address::buildApi($query));
+
+        $formData["latitude"] = $result->results['0']->position->lat;
+        $formData["longitude"] = $result->results['0']->position->lon;
+
+        if ($request->hasFile("thumb_url")) {
             $filePath = Storage::disk("public")->put("img/projects/", $request->thumb_url);
             $data["thumb_url"] = $filePath;
-        }
-        else{
+        } else {
             $data["thumb_url"] = NULL;
         }
 
@@ -53,8 +59,8 @@ class PropertyController extends Controller
 
 
         return redirect()->route("admin.properties.index")
-        ->with('message', "Project $property->title has been created successfully!")
-        ->with('alert-class', "success");
+            ->with('message', "Project $property->title has been created successfully!")
+            ->with('alert-class', "success");
     }
 
     /**
@@ -80,8 +86,16 @@ class PropertyController extends Controller
     {
         $data = $request->validated();
 
-        if ($request->hasFile("thumb_url")){
-            if ($property->thumb_url){
+        $query = Address::encodeQueryAddress($data["address"]);
+
+        $result = json_decode(Address::buildApi($query));
+
+        $data["latitude"] = $result->results['0']->position->lat;
+        $data["longitude"] = $result->results['0']->position->lon;
+
+
+        if ($request->hasFile("thumb_url")) {
+            if ($property->thumb_url) {
                 Storage::disk("public")->delete($property->thumb_url);
             }
 
@@ -93,8 +107,8 @@ class PropertyController extends Controller
 
 
         return redirect()->route("admin.properties.index")
-        ->with('message', "Project $property->title has been updated successfully!")
-        ->with('alert-class', "primary");;
+            ->with('message', "Project $property->title has been updated successfully!")
+            ->with('alert-class', "primary");;
     }
 
     /**
@@ -104,7 +118,7 @@ class PropertyController extends Controller
     {
         $property->delete();
         return redirect()->route('admin.properties.index')
-        ->with('success', 'Property deleted succesfully')
-        ->with('alert-class', "danger");;
+            ->with('success', 'Property deleted succesfully')
+            ->with('alert-class', "danger");;
     }
 }
