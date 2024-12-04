@@ -33,10 +33,9 @@
 
                     <div class="mb-3">
                         <div class="address-property">
-                            <label for="address" class=form-label>Property Address:</label>
+                            <label for="search-address" class=form-label>Property Address:</label>
                         </div>
                     </div>
-
 
                     <div class="mb-3">
                         <label for="property-rooms" class="form-label">Property rooms:</label>
@@ -115,9 +114,19 @@
                 language: "it-IT",
             },
         }
-        var ttSearchBox = new tt.plugins.SearchBox(tt.services, options)
-        var searchBoxHTML = ttSearchBox.getSearchBoxHTML()
-        const addressInput = document.querySelector(".address-property")
-        addressInput.appendChild(searchBoxHTML)
+        var ttSearchBox = new tt.plugins.SearchBox(tt.services, options);
+        var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
+
+        // Get the div where to locate the input
+        const addressInput = document.querySelector(".address-property");
+        addressInput.appendChild(searchBoxHTML);
+
+        //get the input
+        const searchInput = document.querySelector("input.tt-search-box-input");
+
+        //set the all the necessary value
+        searchInput.name = "address";
+        searchInput.id = "search-address";
+        searchInput.value = "{{ old('address', $property->address) }}"
     </script>
 @endsection
