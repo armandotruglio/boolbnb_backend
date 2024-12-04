@@ -18,7 +18,7 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $properties = Property::all();
+        $properties = Property::where('user_id', Auth::user()->id)->get();
         return view('admin.properties.index', compact('properties'));
     }
 
