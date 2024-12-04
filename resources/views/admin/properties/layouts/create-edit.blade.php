@@ -35,6 +35,9 @@
                             <label for="search-address" class=form-label>Property Address:</label>
                         </div>
                     </div>
+                    @error('address')
+                        @include('partials.single-name-error-message')
+                    @enderror
                     <div class="mb-3">
                         <label for="property-rooms" class="form-label">Property rooms:</label>
                         <input type="number" name="rooms" id="property-rooms" class="form-control"
