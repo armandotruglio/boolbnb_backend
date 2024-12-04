@@ -50,8 +50,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['string','min:3', 'max:255'],
-            'last_name' => ['string', 'min:3', 'max:255'],
-            'date_of_birth' => ['date', 'date_format:Y-m-d|before:now', 'before:'. now()->subYears(18)->toDateString()],
+            'last_name' => ['nullable', 'string', 'min:3', 'max:255'],
+            'date_of_birth' => ['nullable', 'date', 'before:'. now()->subYears(18)->toDateString()],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ],
@@ -66,7 +66,7 @@ class RegisterController extends Controller
             'last_name.max' => 'The last name cannot exceed 255 characters.',
 
             'date_of_birth.date' => 'The date of birth must be a valid date.',
-            'date_of_birth.date_format' => 'The date of birth must be in the format Y-m-d.',
+            'date_of_birth.date_format' => 'The date of birth must be in the format yyyy-mm-dd.',
             'date_of_birth.before:now' => 'The date of birth must be a date before today.',
             'date_of_birth.before' => 'You must be at least 18 years old.',
 
@@ -93,6 +93,8 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'last_name' => $data['last_name'],
+            'date_of_birth' => $data['date_of_birth'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);

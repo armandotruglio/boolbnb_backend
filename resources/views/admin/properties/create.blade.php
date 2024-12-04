@@ -9,5 +9,5 @@
 @endsection
 
 @section("form-title")
-    Creating Property
+    Create Property
 @endsection

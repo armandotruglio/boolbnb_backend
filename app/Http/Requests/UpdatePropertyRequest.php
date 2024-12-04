@@ -30,14 +30,13 @@ class UpdatePropertyRequest extends FormRequest
             "user_id" => ["numeric", "integer", "exists:users,id"],
             "title" => ["required", "string", "min:3", "max:255", Rule::unique("properties")->ignore($this->property)],
             "description" => ["required", "string", "min:20"],
-            "latitude" => ["required", "numeric"],
-            "longitude" => ["required", "numeric"],
+            "address" => ["required", "string", "min:5", "max:255"],
             "rooms" => ["required", "numeric", "integer", "min:0"],
             "beds" => ["required", "numeric", "integer", "min:0"],
             "bathrooms" => ["required", "numeric", "integer", "min:0"],
             "square_meters" => ["required", "numeric", "integer", "min:0"],
             "is_visible" => ["required", "boolean"],
-            "thumb_url" => ["required", "string"],
+            "thumb_url" => ["required", "image"],
         ];
     }
 
@@ -58,11 +57,10 @@ class UpdatePropertyRequest extends FormRequest
             'description.string' => 'The description must be a string.',
             'description.min' => 'The description must be at least 20 characters.',
 
-            'latitude.required' => 'The latitude is required.',
-            'latitude.numeric' => 'The latitude must be a numeric value.',
-
-            'longitude.required' => 'The longitude is required.',
-            'longitude.numeric' => 'The longitude must be a numeric value.',
+            'address.required' => 'The address is required.',
+            'address.string' => 'The address must be a string.',
+            'address.min' => 'The address must be at least 3 characters.',
+            'address.max' => 'The address cannot exceed 255 characters.',
 
             'rooms.required' => 'The number of rooms is required.',
             'rooms.numeric' => 'The number of rooms must be a numeric value.',

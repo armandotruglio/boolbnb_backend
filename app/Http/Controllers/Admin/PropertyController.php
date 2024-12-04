@@ -7,6 +7,7 @@ use App\Models\Property;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StorePropertyRequest;
 use App\Http\Requests\UpdatePropertyRequest;
 
@@ -39,6 +40,15 @@ class PropertyController extends Controller
 
         $formData["user_id"] = Auth::user()->id;
 
+        if ($request->hasFile("thumb_url")){
+            $filePath = Storage::disk("public")->put("img/projects/", $request->thumb_url);
+            $data["thumb_url"] = $filePath;
+        }
+        else{
+            $data["thumb_url"] = NULL;
+        }
+
+
         $property = Property::create($formData);
 
 
@@ -69,7 +79,19 @@ class PropertyController extends Controller
     public function update(UpdatePropertyRequest $request, Property $property)
     {
         $data = $request->validated();
+
+        if ($request->hasFile("thumb_url")){
+            if ($property->thumb_url){
+                Storage::disk("public")->delete($property->thumb_url);
+            }
+
+            $filePath = Storage::disk("public")->put("img/properties/", $request->thumb_url);
+            $data["thumb_url"] = $filePath;
+        }
+
         $property->update($data);
+
+
         return redirect()->route("admin.properties.index")
         ->with('message', "Project $property->title has been updated successfully!")
         ->with('alert-class', "primary");;
