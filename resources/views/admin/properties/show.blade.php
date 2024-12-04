@@ -23,7 +23,10 @@
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item">
                         Latitude: {{ $property->latitude }} | Longitude: {{ $property->longitude }}
-                    </li>
+                      </li>
+                      <li class="list-group-item">
+                        Address: {{ $property->address }}
+                      </li>
                       <li class="list-group-item">
                         Rooms: {{ $property->rooms }} | Beds: {{ $property->beds }} | Bathrooms: {{ $property->bathrooms }}
                       </li>
