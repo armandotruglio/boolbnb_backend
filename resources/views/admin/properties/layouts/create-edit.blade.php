@@ -33,7 +33,7 @@
 
                     <div class="mb-3">
                         <div class="address-property">
-                            <label for="search-address" class=form-label>Property Address:</label>
+                            <label for="address" class=form-label>Property Address:</label>
                         </div>
                     </div>
 
@@ -119,8 +119,13 @@
         const searchInput = document.querySelector("input.tt-search-box-input");
 
         //set the all the necessary value
+        searchInput.type = "text";
         searchInput.name = "address";
-        searchInput.id = "search-address";
-        searchInput.value = "{{ old('address', $property->address) }}"
+        searchInput.id = "address";
+        searchInput.value = "{{ old('address', $property->address) }}";
+
+        ttSearchBox.on("tomtom.searchbox.resultsfound", function (data) {
+  console.log(data)
+})
     </script>
 @endsection
