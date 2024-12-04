@@ -78,7 +78,7 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="property-thumb_url" class="form-label">Property images:</label>
+                    <label for="property-thumb_url" class="form-label">Property thumb:</label>
                     <input type="file" name="thumb_url" id="property-thumb_url" class="form-control" value="{{ old("thumb_url", $property->thumb_url) }}">
                     @error("thumb_url")
                         @include("partials.single-name-error-message")

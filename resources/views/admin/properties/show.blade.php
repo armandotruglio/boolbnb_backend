@@ -8,62 +8,33 @@
                     Property Show
                 </h1>
             </div>
-            <div class="col-12">
-                <table class="table table-hover border">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Latitude</th>
-                            <th>Longitude</th>
-                            <th>Rooms</th>
-                            <th>Beds</th>
-                            <th>Bathrooms</th>
-                            <th>Square Meters</th>
-                            <th>Is visible</th>
-                            <th>Thumb url</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                ID: {{ $property->id }}
-                            </td>
-                            <td>
-                                Title: {{ $property->title }}
-                            </td>
-                            <td>
-                                Description:
-                                {{ $property->description }}
-                            </td>
-                            <td>
-                                Latitude: {{ $property->latitude }}
-                            </td>
-                            <td>
-                                Longitude: {{ $property->longitude }}
-                            </td>
-                            <td>
-                                Rooms: {{ $property->rooms }}
-                            </td>
-                            <td>
-                                Beds: {{ $property->beds }}
-                            </td>
-                            <td>
-                                Bathrooms: {{ $property->bathrooms }}
-                            </td>
-                            <td>
-                                Square Meters: {{ $property->square_meters }}
-                            </td>
-                            <td>
-                                Is Visible: {{ $property->is_visible }}
-                            </td>
-                            <td>
-                                Thumb: {{ $property->thumb_url }}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="col-8 m-auto">
+
+                <div class="card text-center">
+                    <img src="{{ asset("/storage/" . $property->thumb_url) }}" class="card-img-top" alt=" {{ $property->title }} ">
+                    <div class="card-body">
+                      <h2 class="card-title fw-bold">
+                        #{{ $property->id }} Title: {{ $property->title }}
+                      </h2>
+                      <p class="card-text">
+                        {{ $property->description }}
+                      </p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">
+                        Latitude: {{ $property->latitude }} | Longitude: {{ $property->longitude }}
+                    </li>
+                      <li class="list-group-item">
+                        Rooms: {{ $property->rooms }} | Beds: {{ $property->beds }} | Bathrooms: {{ $property->bathrooms }}
+                      </li>
+                      <li class="list-group-item">
+                        Square Meters: {{ $property->square_meters }}
+                      </li>
+                      <li class="list-group-item">
+                        Is Visible: {{ $property->is_visible ? 'true' : 'false' }}
+                      </li>
+                    </ul>
+                  </div>
             </div>
         </div>
     @endsection
