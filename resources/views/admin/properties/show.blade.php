@@ -11,7 +11,7 @@
             <div class="col-8 m-auto">
 
                 <div class="card text-center">
-                    <img src="{{ asset("/storage/" . $property->thumb_url) }}" class="card-img-top" alt=" {{ $property->title }} ">
+                    <img src="{{ asset("/storage/" . $property->thumb_url) }}" class="card-img-top img-fluid" alt=" {{ $property->title }} ">
                     <div class="card-body">
                       <h2 class="card-title fw-bold">
                         #{{ $property->id }} Title: {{ $property->title }}
@@ -34,7 +34,7 @@
                         Square Meters: {{ $property->square_meters }}
                       </li>
                       <li class="list-group-item">
-                        Is Visible: {{ $property->is_visible ? 'true' : 'false' }}
+                        Is Visible: {{ $property->is_visible ? 'yes' : 'no' }}
                       </li>
                     </ul>
                   </div>

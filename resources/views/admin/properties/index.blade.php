@@ -12,28 +12,23 @@
                 </div>
             </div>
             <div class="col-12">
-                <table class="table table-hover">
+                <table class="table table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Title</th>
-                            <th>Address</th>
-                            <th>Rooms</th>
-                            <th>Beds</th>
-                            <th>Bathrooms</th>
-                            <th>Square Meters</th>
+                            <th scope="col">#</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Visible</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($properties as $property)
                             <tr>
-                                <td> {{ $property->id }} </td>
+                                <th scope="row"> {{ $property->id }} </td>
                                 <td id="apartment {{$property->id}}"> {{ $property->title }} </td>
                                 <td> {{ $property->address }} </td>
-                                <td> {{ $property->rooms }} </td>
-                                <td> {{ $property->beds }} </td>
-                                <td> {{ $property->bathrooms }} </td>
-                                <td> {{ $property->square_meters }}</td>
+                                <td> {{ $property->is_visible ? "yes" : "no" }} </td>
                                 <td class="d-flex">
                                     <a class="btn btn-sm btn-info me-2"
                                         href="{{ route('admin.properties.show', $property->id) }}">Show</a>
