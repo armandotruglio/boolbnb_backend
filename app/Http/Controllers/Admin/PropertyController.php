@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StorePropertyRequest;
 use App\Http\Requests\UpdatePropertyRequest;
 
+use function Laravel\Prompts\error;
+
 class PropertyController extends Controller
 {
     /**
@@ -47,12 +49,8 @@ class PropertyController extends Controller
         $formData["latitude"] = $result->results['0']->position->lat;
         $formData["longitude"] = $result->results['0']->position->lon;
 
-        if ($request->hasFile("thumb_url")) {
-            $filePath = Storage::disk("public")->put("img/projects/", $request->thumb_url);
-            $data["thumb_url"] = $filePath;
-        } else {
-            $data["thumb_url"] = NULL;
-        }
+        $filePath = Storage::disk("public")->put("img/properties/", $request->thumb_url);
+        $formData["thumb_url"] = $filePath;
 
 
         $property = Property::create($formData);
@@ -68,7 +66,10 @@ class PropertyController extends Controller
      */
     public function show(Property $property)
     {
-        return view('admin.properties.show', compact('property'));
+        if(Auth::user()->id == $property->user_id){
+            return view('admin.properties.show', compact('property'));
+        }
+        return abort('403');
     }
 
     /**
@@ -76,7 +77,10 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
-        return view("admin.properties.edit", compact("property"));
+        if(Auth::user()->id == $property->user_id){
+            return view("admin.properties.edit", compact("property"));
+        }
+        return abort('401');
     }
 
     /**

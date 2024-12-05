@@ -3,37 +3,42 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 text-center">
                 <h1 class="fw-bold text-center fst-italic text-decoration-underline"> Properties list</h1>
             </div>
-            <div class="col-12">
-                <div class="my-3">
-                    <a href="{{ route('admin.properties.create') }}" class="btn btn-primary">Insert a new Property !</a>
+            @if (count($properties) === 0)
+            <div class="col-12 pt-5 text-center">
+                <h4>Sorry {{ Auth::user()->name }} you don't have any properties at the moment!</h1>
+            </div>
+            <div class="col-12 text-center">
+                <div class="py-3">
+                    <a href="{{ route('admin.properties.create') }}" class="btn btn-lg btn-success">Insert a new Property !</a>
                 </div>
             </div>
+            @else
             <div class="col-12">
-                <table class="table table-hover">
+                <div class="col-12">
+                    <div class="my-3">
+                        <a href="{{ route('admin.properties.create') }}" class="btn btn-primary">Insert a new Property !</a>
+                    </div>
+                </div>
+                <table class="table table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Title</th>
-                            <th>Address</th>
-                            <th>Rooms</th>
-                            <th>Beds</th>
-                            <th>Bathrooms</th>
-                            <th>Square Meters</th>
+                            <th scope="col">#</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Visible</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($properties as $property)
+                        @foreach ($properties as $property)
                             <tr>
-                                <td> {{ $property->id }} </td>
-                                <td> {{ $property->title }} </td>
+                                <th scope="row"> {{ $property->id }} </td>
+                                <td id="apartment {{$property->id}}"> {{ $property->title }} </td>
                                 <td> {{ $property->address }} </td>
-                                <td> {{ $property->rooms }} </td>
-                                <td> {{ $property->beds }} </td>
-                                <td> {{ $property->bathrooms }} </td>
-                                <td> {{ $property->square_meters }}</td>
+                                <td> {{ $property->is_visible ? "yes" : "no" }} </td>
                                 <td class="d-flex">
                                     <a class="btn btn-sm btn-info me-2"
                                         href="{{ route('admin.properties.show', $property->id) }}">Show</a>
@@ -46,14 +51,11 @@
                                     </button>
                                 </td>
                             </tr>
-                        @empty
-                            <tr>
-                                <td>No properties available</td>
-                            </tr>
-                        @endforelse
+                        @endforeach
                     </tbody>
                 </table>
             </div>
+            @endif
         </div>
     </div>
 
@@ -65,8 +67,8 @@
                     <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    Are you sure you want to delete this property?
+                <div class="modal-body" id="modal-message">
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -83,11 +85,15 @@
     <script>
         const deleteModal = document.getElementById('deleteModal');
         const deleteForm = document.getElementById('deleteForm');
+        const modalMessage = document.getElementById('modal-message');
 
         deleteModal.addEventListener('show.bs.modal', function (event) {
+            modalMessage.textContent = '';
             const button = event.relatedTarget;
             const propertyId = button.getAttribute('data-id');
+            const propertyName = document.getElementById('apartment ' + propertyId).innerText;
+            modalMessage.append("Are you sure you want to delete the " + propertyName + "?");
             deleteForm.action = `/admin/properties/${propertyId}`;
         });
-    </script>
+        </script>
 @endsection
