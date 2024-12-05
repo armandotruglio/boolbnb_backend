@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer("beds");
             $table->integer("bathrooms");
             $table->integer("square_meters");
-            $table->boolean("is_visible");
+            $table->boolean("is_visible")->default(false);
             $table->text("thumb_url");
             $table->timestamps();
         });
