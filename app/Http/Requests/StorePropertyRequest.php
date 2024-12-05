@@ -28,13 +28,13 @@ class StorePropertyRequest extends FormRequest
         return [
             "user_id" => ["numeric", "integer", "exists:users,id"],
             "title" => ["required", "string", "min:3", "max:255", "unique:properties,title"],
-            "description" => ["required", "string", "min:20"],
+            "description" => ["required", "string", "min:20", "max:250"],
             "address" => ["required", "string", "min:5", "max:255"],
-            "rooms" => ["required", "numeric", "integer", "min:0"],
-            "beds" => ["required", "numeric", "integer", "min:0"],
-            "bathrooms" => ["required", "numeric", "integer", "min:0"],
-            "square_meters" => ["required", "numeric", "integer", "min:0"],
-            "is_visible" => ["required", "boolean"],
+            "rooms" => ["required", "numeric", "integer", "min:1", "max:10"],
+            "beds" => ["required", "numeric", "integer", "min:1", "max:5"],
+            "bathrooms" => ["required", "numeric", "integer", "min:1", "max:3"],
+            "square_meters" => ["required", "numeric", "integer", "min:16", "max:100"],
+            "is_visible" => ["boolean"],
             "thumb_url" => ["required", "image"],
         ];
     }
@@ -55,6 +55,7 @@ class StorePropertyRequest extends FormRequest
             'description.required' => 'The description is required.',
             'description.string' => 'The description must be a string.',
             'description.min' => 'The description must be at least 20 characters.',
+            'description.max' => 'The description cannot be more then 250 characters.',
 
             'address.required' => 'The address is required.',
             'address.string' => 'The address must be a string.',
@@ -64,22 +65,26 @@ class StorePropertyRequest extends FormRequest
             'rooms.required' => 'The number of rooms is required.',
             'rooms.numeric' => 'The number of rooms must be a numeric value.',
             'rooms.integer' => 'The number of rooms must be an integer.',
-            'rooms.min' => 'The number of rooms cannot be negative.',
+            'rooms.min' => 'The number of rooms cannot be less then 1.',
+            'rooms.max' => 'The number of rooms cannot be more then 10.',
 
             'beds.required' => 'The number of beds is required.',
             'beds.numeric' => 'The number of beds must be a numeric value.',
             'beds.integer' => 'The number of beds must be an integer.',
-            'beds.min' => 'The number of beds cannot be negative.',
+            'beds.min' => 'The number of beds cannot be less then 1.',
+            'beds.max' => 'The number of beds cannot be more then 5.',
 
             'bathrooms.required' => 'The number of bathrooms is required.',
             'bathrooms.numeric' => 'The number of bathrooms must be a numeric value.',
             'bathrooms.integer' => 'The number of bathrooms must be an integer.',
-            'bathrooms.min' => 'The number of bathrooms cannot be negative.',
+            'bathrooms.min' => 'The number of bathrooms cannot be less then 1.',
+            'bathrooms.max' => 'The number of bathrooms cannot be more then 3.',
 
             'square_meters.required' => 'The square meters field is required.',
             'square_meters.numeric' => 'The square meters must be a numeric value.',
             'square_meters.integer' => 'The square meters must be an integer.',
-            'square_meters.min' => 'The square meters cannot be negative.',
+            'square_meters.min' => 'The square meters cannot be less then 16mq.',
+            'square_meters.max' => 'The square meters cannot be more then 100mq.',
 
             'is_visible.required' => 'The visibility status is required.',
             'is_visible.boolean' => 'The visibility status must be true or false.',
@@ -87,6 +92,5 @@ class StorePropertyRequest extends FormRequest
             'thumb_url.required' => 'A thumbnail image is required.',
             'thumb_url.image' => 'The thumbnail must be an image file.',
         ];
-
     }
 }
