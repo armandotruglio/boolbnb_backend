@@ -129,6 +129,7 @@
         searchInput.name = "address";
         searchInput.id = "search-address";
         searchInput.value = "{{ old('address', $property->address) }}";
+        searchInput.autocomplete = "off";
 
         //get search container
         const searchContainer = document.querySelector(".tt-search-box-input-container");
