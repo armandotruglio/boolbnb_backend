@@ -28,7 +28,7 @@
                         @forelse ($properties as $property)
                             <tr>
                                 <td> {{ $property->id }} </td>
-                                <td> {{ $property->title }} </td>
+                                <td id="apartment {{$property->id}}"> {{ $property->title }} </td>
                                 <td> {{ $property->address }} </td>
                                 <td> {{ $property->rooms }} </td>
                                 <td> {{ $property->beds }} </td>
@@ -65,8 +65,8 @@
                     <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    Are you sure you want to delete this property?
+                <div class="modal-body" id="modal-message">
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -83,11 +83,15 @@
     <script>
         const deleteModal = document.getElementById('deleteModal');
         const deleteForm = document.getElementById('deleteForm');
+        const modalMessage = document.getElementById('modal-message');
 
         deleteModal.addEventListener('show.bs.modal', function (event) {
+            modalMessage.textContent = '';
             const button = event.relatedTarget;
             const propertyId = button.getAttribute('data-id');
+            const propertyName = document.getElementById('apartment ' + propertyId).innerText;
+            modalMessage.append("Are you sure you want to delete the " + propertyName + "?");
             deleteForm.action = `/admin/properties/${propertyId}`;
         });
-    </script>
+        </script>
 @endsection
