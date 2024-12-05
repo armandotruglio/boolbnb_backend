@@ -88,7 +88,19 @@ class PropertyController extends Controller
      */
     public function update(UpdatePropertyRequest $request, Property $property)
     {
+
+        if(!isset($request->request->all()["is_visible"])){
+            $is_visible = false;
+        }
+        else{
+            $is_visible = true;
+        }
+
         $data = $request->validated();
+
+        if(!$is_visible){
+            $data["is_visible"] = 0;
+        }
 
         $query = Address::encodeQueryAddress($data["address"]);
 
