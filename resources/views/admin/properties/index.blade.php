@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="col-12">
                 <h1 class="fw-bold text-center fst-italic text-decoration-underline"> Properties list</h1>
@@ -11,55 +11,49 @@
                     <a href="{{ route('admin.properties.create') }}" class="btn btn-primary">Insert a new Property !</a>
                 </div>
             </div>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Latitude</th>
-                        <th>Longitude</th>
-                        <th>Rooms</th>
-                        <th>Beds</th>
-                        <th>Bathrooms</th>
-                        <th>Square Meters</th>
-                        <th>Is visible</th>
-                        <th>Thumb url</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($properties as $property)
+            <div class="col-12">
+                <table class="table table-hover">
+                    <thead>
                         <tr>
-                            <td> {{ $property->id }} </td>
-                            <td> {{ $property->title }} </td>
-                            <td> {{ $property->description }} </td>
-                            <td> {{ $property->latitude }} </td>
-                            <td> {{ $property->longitude }} </td>
-                            <td> {{ $property->rooms }} </td>
-                            <td> {{ $property->beds }} </td>
-                            <td> {{ $property->bathrooms }} </td>
-                            <td> {{ $property->square_meters }}</td>
-                            <td> {{ $property->is_visible }} </td>
-                            <td> {{ $property->thumb_url }} </td>
-                            <td>
-                                <a class="btn btn-sm btn-info"
-                                    href="{{ route('admin.properties.show', $property->id) }}">Show</a>
-                                <a href="{{ route('admin.properties.edit', $property) }}"
-                                    class="btn btn-warning btn-sm">Edit</a>
-                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal"
-                                    data-id="{{ $property->id }}">
-                                    Delete
-                                </button>
-                            </td>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Address</th>
+                            <th>Rooms</th>
+                            <th>Beds</th>
+                            <th>Bathrooms</th>
+                            <th>Square Meters</th>
                         </tr>
-                    @empty
-                        <tr>
-                            <td>No properties available</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @forelse ($properties as $property)
+                            <tr>
+                                <td> {{ $property->id }} </td>
+                                <td> {{ $property->title }} </td>
+                                <td> {{ $property->address }} </td>
+                                <td> {{ $property->rooms }} </td>
+                                <td> {{ $property->beds }} </td>
+                                <td> {{ $property->bathrooms }} </td>
+                                <td> {{ $property->square_meters }}</td>
+                                <td class="d-flex">
+                                    <a class="btn btn-sm btn-info me-2"
+                                        href="{{ route('admin.properties.show', $property->id) }}">Show</a>
+                                    <a href="{{ route('admin.properties.edit', $property) }}"
+                                        class="btn btn-warning btn-sm me-2">Edit</a>
+                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal"
+                                        data-id="{{ $property->id }}">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td>No properties available</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
