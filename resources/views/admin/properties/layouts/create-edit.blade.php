@@ -105,12 +105,12 @@
     <script>
         var options = {
             searchOptions: {
-                key: "fOXBjSOM6sAbKnzA75jOHRdjNXpvPB8D",
+                key: "{{ env('TOMTOM_KEY') }}",
                 language: "it-IT",
                 limit: 5
             },
             autocompleteOptions: {
-                key: "fOXBjSOM6sAbKnzA75jOHRdjNXpvPB8D",
+                key: "{{ env('TOMTOM_KEY') }}",
                 language: "it-IT",
             },
         }
