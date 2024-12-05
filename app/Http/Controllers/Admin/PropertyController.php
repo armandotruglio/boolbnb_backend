@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StorePropertyRequest;
 use App\Http\Requests\UpdatePropertyRequest;
 
+use function Laravel\Prompts\error;
+
 class PropertyController extends Controller
 {
     /**
@@ -68,7 +70,10 @@ class PropertyController extends Controller
      */
     public function show(Property $property)
     {
-        return view('admin.properties.show', compact('property'));
+        if(Auth::user()->id == $property->user_id){
+            return view('admin.properties.show', compact('property'));
+        }
+        return abort('403');
     }
 
     /**
@@ -76,7 +81,10 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
-        return view("admin.properties.edit", compact("property"));
+        if(Auth::user()->id == $property->user_id){
+            return view("admin.properties.edit", compact("property"));
+        }
+        return abort('401');
     }
 
     /**
