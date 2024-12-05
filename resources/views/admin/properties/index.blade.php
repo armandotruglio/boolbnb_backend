@@ -3,15 +3,25 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 text-center">
                 <h1 class="fw-bold text-center fst-italic text-decoration-underline"> Properties list</h1>
             </div>
-            <div class="col-12">
-                <div class="my-3">
-                    <a href="{{ route('admin.properties.create') }}" class="btn btn-primary">Insert a new Property !</a>
+            @if (count($properties) === 0)
+            <div class="col-12 pt-5 text-center">
+                <h4>Sorry {{ Auth::user()->name }} you don't have any properties at the moment!</h1>
+            </div>
+            <div class="col-12 text-center">
+                <div class="py-3">
+                    <a href="{{ route('admin.properties.create') }}" class="btn btn-lg btn-success">Insert a new Property !</a>
                 </div>
             </div>
+            @else
             <div class="col-12">
+                <div class="col-12">
+                    <div class="my-3">
+                        <a href="{{ route('admin.properties.create') }}" class="btn btn-primary">Insert a new Property !</a>
+                    </div>
+                </div>
                 <table class="table table-hover table-striped">
                     <thead>
                         <tr>
@@ -23,7 +33,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($properties as $property)
+                        @foreach ($properties as $property)
                             <tr>
                                 <th scope="row"> {{ $property->id }} </td>
                                 <td id="apartment {{$property->id}}"> {{ $property->title }} </td>
@@ -41,14 +51,11 @@
                                     </button>
                                 </td>
                             </tr>
-                        @empty
-                            <tr>
-                                <td>No properties available</td>
-                            </tr>
-                        @endforelse
+                        @endforeach
                     </tbody>
                 </table>
             </div>
+            @endif
         </div>
     </div>
 
