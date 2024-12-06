@@ -67,8 +67,8 @@ class PropertyController extends Controller
 
         // Validate de received data
         $validator = Validator::make($request->all(), [
-            "lat" => "required|numeric",
-            "lon" => "required|numeric",
+            "latitude" => "required|numeric",
+            "longitude" => "required|numeric",
             "radius" => "required|numeric|integer"
         ]);
 
@@ -80,12 +80,21 @@ class PropertyController extends Controller
             ]);
         }
 
+        $latitude = $request["latitude"];
+        $longitude = $request["longitude"];
+        $radius = $request["radius"];
+
         // Filter the properties that are in the radius distance
-        $filteredProperties = Property::all()->selectRaw("lat, lon,
-        (6371 * acos( cos( radians(?))cos( radians(latitude) )
-        cos( radians( longitude ) - radians(?))+ sin( radians(?) )
-        sin( radians(latitude)))) AS distance", [$request["lat"], $request["lon"], $request["radius"]])->having("distance", "<=", $request['radius'])
-        ->orderBy("distance",'asc');
+        $filteredProperties = Property::selectRaw("*,
+            ( 6371 * acos( cos( radians(" . $latitude . ") ) *
+            cos( radians(properties.latitude) ) *
+            cos( radians(properties.longitude) - radians(" . $longitude . ") ) +
+            sin( radians(" . $latitude . ") ) *
+            sin( radians(properties.latitude) ) ) )
+            AS distance")
+            ->having("distance", "<", $radius)
+            ->orderBy("distance")
+            ->get();
 
         // Return filtered properties
         return response()->json([
