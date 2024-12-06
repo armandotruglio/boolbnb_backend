@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Api\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Property;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class PropertyController extends Controller
 {
@@ -60,5 +61,36 @@ class PropertyController extends Controller
     {
         $property->delete();
         return response()->noContent();
+    }
+
+    public function filter(Request $request){
+
+        // Validate de received data
+        $validator = Validator::make($request->all(), [
+            "lat" => "required|numeric",
+            "lon" => "required|numeric",
+            "radius" => "required|numeric|integer"
+        ]);
+
+        // If the validation fails return failure
+        if ($validator->fails()) {
+            return response()->json([
+                "success" => false,
+                "errors" => $validator->errors(),
+            ]);
+        }
+
+        // Filter the properties that are in the radius distance
+        $filteredProperties = Property::all()->selectRaw("lat, lon,
+        (6371 * acos( cos( radians(?))cos( radians(latitude) )
+        cos( radians( longitude ) - radians(?))+ sin( radians(?) )
+        sin( radians(latitude)))) AS distance", [$request["lat"], $request["lon"], $request["radius"]])->having("distance", "<=", $request['radius'])
+        ->orderBy("distance",'asc');
+
+        // Return filtered properties
+        return response()->json([
+            "success" => true,
+            "result" => $filteredProperties
+        ]);
     }
 }
