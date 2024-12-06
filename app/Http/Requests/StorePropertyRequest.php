@@ -33,7 +33,7 @@ class StorePropertyRequest extends FormRequest
             "rooms" => ["required", "numeric", "integer", "min:1", "max:10"],
             "beds" => ["required", "numeric", "integer", "min:1", "max:5"],
             "bathrooms" => ["required", "numeric", "integer", "min:1", "max:3"],
-            "square_meters" => ["required", "numeric", "integer", "min:16", "max:100"],
+            "square_meters" => ["required", "numeric", "integer", "min:16", "max:1000"],
             "is_visible" => ["boolean"],
             "thumb_url" => ["required", "image"],
         ];

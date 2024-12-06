@@ -48,7 +48,7 @@
                         <div class="mb-3 col-3">
                             <label for="property-rooms" class="form-label">Property rooms*:</label>
                             <input type="number" name="rooms" id="property-rooms" class="form-control"
-                                value="{{ old('rooms', $property->rooms) }}" min="2" max="10" required>
+                                value="{{ old('rooms', $property->rooms) }}" min="1" max="10" required>
                             @error('rooms')
                                 @include('partials.single-name-error-message')
                             @enderror
@@ -72,7 +72,7 @@
                         <div class="mb-3 col-3">
                             <label for="property-square_meters" class="form-label">Property square_meters*:</label>
                             <input type="number" name="square_meters" id="property-square_meters" class="form-control"
-                                value="{{ old('square_meters', $property->square_meters) }}" min="16" max="100"
+                                value="{{ old('square_meters', $property->square_meters) }}" min="16" max="1000"
                                 required>
                             @error('square_meters')
                                 @include('partials.single-name-error-message')
