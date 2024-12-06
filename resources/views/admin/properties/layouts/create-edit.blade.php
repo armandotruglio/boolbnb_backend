@@ -89,7 +89,7 @@
                         <div class="mb-3">
                             <label for="property-thumb_url" class="form-label">Property thumb*:</label>
                             <span>{{ old('thumb_url', $property->thumb_url) }}</span>
-                            <input type="file" name="thumb_url" id="property-thumb_url" class="form-control" accept="image/p*"
+                            <input type="file" name="thumb_url" id="property-thumb_url" class="form-control" accept="image/*"
                                 @required(!isset($property->thumb_url))>
                             @error('thumb_url')
                                 @include('partials.single-name-error-message')
