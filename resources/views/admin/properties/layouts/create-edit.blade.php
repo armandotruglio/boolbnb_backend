@@ -87,10 +87,18 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="property-thumb_url" class="form-label">Property thumb*:</label>
-                            <span>{{ old('thumb_url', $property->thumb_url) }}</span>
-                            <input type="file" name="thumb_url" id="property-thumb_url" class="form-control" accept="image/*"
+                            <div class="input-image mb-3">
+                                <label for="property-thumb_url" class="form-label">Property thumb*:</label>
+                                <input type="file" name="thumb_url" id="property-thumb_url" class="form-control" accept="image/*"
                                 @required(!isset($property->thumb_url))>
+                            </div>
+                            @if(isset($property->thumb_url))
+                            <div class="image mb-3">
+                                <img src="{{ asset("/storage/" . $property->thumb_url) }}" alt="{{ $property->title }}" class="img-fluid rounded"
+                                style="height:100px; width:100px">
+                            </div>
+                            <span>Current image</span>
+                            @endif
                             @error('thumb_url')
                                 @include('partials.single-name-error-message')
                             @enderror
