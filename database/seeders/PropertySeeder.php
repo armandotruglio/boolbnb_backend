@@ -26,7 +26,7 @@ class PropertySeeder extends Seeder
                 'bathrooms' => 1,
                 'square_meters' => 75,
                 'is_visible' => true,
-                'thumb_url' => 'https://example.com/images/property1.jpg',
+                'thumb_url' => 'casa-storica.jpg',
             ],
             [
                 'user_id' => 1,
@@ -40,7 +40,7 @@ class PropertySeeder extends Seeder
                 'bathrooms' => 1,
                 'square_meters' => 60,
                 'is_visible' => true,
-                'thumb_url' => 'https://example.com/images/property2.jpg',
+                'thumb_url' => 'loft-terrazza.jpg',
             ],
             [
                 'user_id' => 1,
@@ -54,7 +54,7 @@ class PropertySeeder extends Seeder
                 'bathrooms' => 1,
                 'square_meters' => 50,
                 'is_visible' => true,
-                'thumb_url' => 'https://example.com/images/property3.jpg',
+                'thumb_url' => 'casa-spiaggia.jpg',
             ],
             [
                 'user_id' => 2,
@@ -68,7 +68,7 @@ class PropertySeeder extends Seeder
                 'bathrooms' => 3,
                 'square_meters' => 220,
                 'is_visible' => true,
-                'thumb_url' => 'https://example.com/images/property4.jpg',
+                'thumb_url' => 'villa-piscina.jpg',
             ],
             [
                 'user_id' => 2,
@@ -82,7 +82,7 @@ class PropertySeeder extends Seeder
                 'bathrooms' => 2,
                 'square_meters' => 180,
                 'is_visible' => true,
-                'thumb_url' => 'https://example.com/images/property5.jpg',
+                'thumb_url' => 'casale-rustico.jpg',
             ],
             [
                 'user_id' => 2,
@@ -96,7 +96,7 @@ class PropertySeeder extends Seeder
                 'bathrooms' => 1,
                 'square_meters' => 35,
                 'is_visible' => true,
-                'thumb_url' => 'https://example.com/images/property6.jpg',
+                'thumb_url' => 'monolocale.jpg',
             ],
             [
                 'user_id' => 1,
@@ -110,7 +110,7 @@ class PropertySeeder extends Seeder
                 'bathrooms' => 3,
                 'square_meters' => 150,
                 'is_visible' => true,
-                'thumb_url' => 'https://example.com/images/property7.jpg',
+                'thumb_url' => 'attico-mare.jpg',
             ],
             [
                 'user_id' => 2,
@@ -124,7 +124,7 @@ class PropertySeeder extends Seeder
                 'bathrooms' => 1,
                 'square_meters' => 65,
                 'is_visible' => true,
-                'thumb_url' => 'https://example.com/images/property8.jpg',
+                'thumb_url' => 'appartamento-metro.jpg',
             ],
             [
                 'user_id' => 1,
@@ -138,7 +138,7 @@ class PropertySeeder extends Seeder
                 'bathrooms' => 2,
                 'square_meters' => 100,
                 'is_visible' => true,
-                'thumb_url' => 'https://example.com/images/property9.jpg',
+                'thumb_url' => 'casa-campagna.jpg',
             ],
             [
                 'user_id' => 2,
@@ -152,12 +152,12 @@ class PropertySeeder extends Seeder
                 'bathrooms' => 2,
                 'square_meters' => 200,
                 'is_visible' => true,
-                'thumb_url' => 'https://example.com/images/property10.jpg',
+                'thumb_url' => 'casa-periferia.jpg',
             ],
         ];
 
 
-        foreach($properties as $property){
+        foreach ($properties as $property) {
             Property::create($property);
         }
     }
