@@ -84,7 +84,7 @@ class PropertyController extends Controller
         $longitude = $request["longitude"];
         $radius = $request["radius"];
 
-        // Filter the properties that are in the radius distance
+        // Filter the properties that are in the radius distance with haversine formula
         $filteredProperties = Property::selectRaw("*,
             ( 6371 * acos( cos( radians(" . $latitude . ") ) *
             cos( radians(properties.latitude) ) *
