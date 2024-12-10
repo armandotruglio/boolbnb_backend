@@ -102,15 +102,18 @@ class PropertyController extends Controller
         ->orderBy("distance")
         ->get();
 
+
+        //Filter on number of rooms
         if ($request->has('rooms')){
             $query->where('rooms','>=', $request->rooms);
         }
 
+        //Filter on number of beds
         if ($request->has('beds')){
             $query->where('beds', '>=', $request->beds);
         }
 
-
+        //Filter on property services
         if($request->has('services')){
             $services = explode('-',$request->services);
 
