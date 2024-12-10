@@ -69,7 +69,10 @@ class PropertyController extends Controller
         $validator = Validator::make($request->all(), [
             "latitude" => "required|numeric",
             "longitude" => "required|numeric",
-            "radius" => "required|numeric|integer"
+            "radius" => "required|numeric|integer",
+            "rooms" => "numeric|integer",
+            "beds" => "numeric|integer",
+            "services" => "string",
         ]);
 
         // If the validation fails return failure
@@ -84,22 +87,58 @@ class PropertyController extends Controller
         $longitude = $request["longitude"];
         $radius = $request["radius"];
 
+        $query = (new Property)->newQuery();
+
         // Filter the properties that are in the radius distance with haversine formula
-        $filteredProperties = Property::selectRaw("*,
+        $query->selectRaw("*,
             ( 6371 * acos( cos( radians(" . $latitude . ") ) *
             cos( radians(properties.latitude) ) *
             cos( radians(properties.longitude) - radians(" . $longitude . ") ) +
             sin( radians(" . $latitude . ") ) *
             sin( radians(properties.latitude) ) ) )
             AS distance")
-            ->having("distance", "<", $radius)
-            ->orderBy("distance")
-            ->get();
+        ->having("distance", "<", $radius)
+        ->orderBy("distance")
+        ->get();
+
+        if ($request->has('rooms')){
+            $query->where('rooms','>=', $request->rooms);
+        }
+
+        if ($request->has('beds')){
+            $query->where('beds', '>=', $request->beds);
+        }
+
+        $properties = $query->get();
+
+
+        if($request->has('services')){
+            $services = explode('-',$request->services);
+
+            foreach($properties as $property){
+
+
+                $hasAllServices = true;
+                foreach($services as $service){
+                    if(!in_array($service,$property->services)){
+                        $hasAllServices = false;
+                    }
+                }
+
+                if($hasAllServices){
+                    $result[] = $property;
+                }
+            }
+            return response()->json([
+                "success" => true,
+                "result" => $result
+            ]);
+        }
 
         // Return filtered properties
         return response()->json([
             "success" => true,
-            "result" => $filteredProperties
+            "result" => $properties
         ]);
     }
 }
