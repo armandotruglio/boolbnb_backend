@@ -14,7 +14,7 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $properties = Property::all();
+        $properties = Property::with('services')->get();
         return response()->json(
             [
                 'success' => true,
@@ -63,7 +63,8 @@ class PropertyController extends Controller
         return response()->noContent();
     }
 
-    public function filter(Request $request){
+    public function filter(Request $request)
+    {
 
         // Validate de received data
         $validator = Validator::make($request->all(), [
