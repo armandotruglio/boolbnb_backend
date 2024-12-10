@@ -13,7 +13,13 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        $services = Service::all();
+        return response()->json(
+            [
+                'success' => true,
+                'result' => $services
+            ]
+        );
     }
 
     /**
