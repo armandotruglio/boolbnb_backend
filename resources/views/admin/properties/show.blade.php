@@ -42,7 +42,6 @@
                             @forelse ($property->services as $service)
                                 <span>
                                     {{ strtolower($service->name) }}
-                                    {{ $service->icon_url }}
                                 </span>
                             @empty
                                 <span>No Services available</span>

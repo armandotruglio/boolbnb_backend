@@ -45,7 +45,7 @@
                                     <td>
                                         @forelse ($property->services as $service)
                                             <span>
-                                                {{ strtolower($service->name) }} {{ $service->icon_url }}-
+                                                {{ strtolower($service->name) }}-
                                             </span>
                                         @empty
                                             <span>No services available</span>
