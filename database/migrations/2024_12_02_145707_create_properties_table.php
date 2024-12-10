@@ -25,7 +25,7 @@ return new class extends Migration
             $table->integer("square_meters");
             $table->boolean("is_visible")->default(false);
             $table->text("thumb_url");
-            $table->foreign("user_id")->references("id")->on("users")->cascadeOnUpdate()->nullOnDelete();
+            $table->foreign("user_id")->references("id")->on("users");
             $table->timestamps();
         });
     }

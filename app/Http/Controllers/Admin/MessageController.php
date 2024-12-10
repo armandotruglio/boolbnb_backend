@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Message;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Property;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
@@ -13,7 +15,16 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
+        $messages = [];
+        $user_id = Auth::user()->id;
+
+        foreach(Message::all() as $message){
+            if($message->property->user_id === $user_id){
+                $messages[] = $message;
+            }
+        }
+
+        return view('admin.messages.index', compact('messages'));
     }
 
     /**
