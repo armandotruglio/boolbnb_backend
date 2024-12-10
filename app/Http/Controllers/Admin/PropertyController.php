@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Functions\Address;
 use App\Models\Property;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +31,8 @@ class PropertyController extends Controller
     public function create()
     {
         $property = new Property();
-        return view("admin.properties.create", compact("property"));
+        $services = Service::all();
+        return view("admin.properties.create", compact("property", "services"));
     }
 
     /**
@@ -55,6 +57,12 @@ class PropertyController extends Controller
 
         $property = Property::create($formData);
 
+        if (isset($formData["services"])) {
+            $property->tags()->sync($formData["services"]);
+        } else {
+            $property->tags()->detach();
+        }
+
 
         return redirect()->route("admin.properties.index")
             ->with('message', "Project $property->title has been created successfully!")
@@ -66,7 +74,7 @@ class PropertyController extends Controller
      */
     public function show(Property $property)
     {
-        if(Auth::user()->id == $property->user_id){
+        if (Auth::user()->id == $property->user_id) {
             return view('admin.properties.show', compact('property'));
         }
         return abort('403');
@@ -77,8 +85,9 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
-        if(Auth::user()->id == $property->user_id){
-            return view("admin.properties.edit", compact("property"));
+        if (Auth::user()->id == $property->user_id) {
+            $services = Service::all();
+            return view("admin.properties.edit", compact("property", "services"));
         }
         return abort('401');
     }
@@ -89,16 +98,15 @@ class PropertyController extends Controller
     public function update(UpdatePropertyRequest $request, Property $property)
     {
 
-        if(!isset($request->request->all()["is_visible"])){
+        if (!isset($request->request->all()["is_visible"])) {
             $is_visible = false;
-        }
-        else{
+        } else {
             $is_visible = true;
         }
 
         $data = $request->validated();
 
-        if(!$is_visible){
+        if (!$is_visible) {
             $data["is_visible"] = 0;
         }
 
@@ -121,10 +129,18 @@ class PropertyController extends Controller
 
         $property->update($data);
 
+        if (isset($data["services"])) {
+            $property->services()->sync($data["services"]);
+        } else {
+            $property->services()->detach();
+        }
+
+
 
         return redirect()->route("admin.properties.index")
             ->with('message', "Project $property->title has been updated successfully!")
-            ->with('alert-class', "primary");;
+            ->with('alert-class', "primary");
+        ;
     }
 
     /**
@@ -135,6 +151,7 @@ class PropertyController extends Controller
         $property->delete();
         return redirect()->route('admin.properties.index')
             ->with('success', 'Property deleted succesfully')
-            ->with('alert-class', "danger");;
+            ->with('alert-class', "danger");
+        ;
     }
 }

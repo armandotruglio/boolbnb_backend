@@ -22,4 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('admin/properties', PropertyController::class);
 
 Route::post("/filter", [PropertyController::class, "filter"])->name("api.filter");
+Route::apiResource('admin/services', App\Http\Controllers\Api\Admin\ServiceController::class);
 Route::apiResource('admin/messages', App\Http\Controllers\Api\Admin\MessageController::class);
