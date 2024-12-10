@@ -137,7 +137,7 @@
 
             const mex = document.querySelectorAll("mex");
             mex.forEach(element => {
-                mez.innerHTML = "";
+                mex.innerHTML = "";
             });
 
             //verify name
