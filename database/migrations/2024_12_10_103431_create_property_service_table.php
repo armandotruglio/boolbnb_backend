@@ -13,6 +13,8 @@ return new class extends Migration {
         Schema::create('property_service', function (Blueprint $table) {
             $table->foreignId('property_id')->constrained();
             $table->foreignId('service_id')->constrained();
+
+            $table->primary(['property_id', 'service_id']);
         });
     }
 

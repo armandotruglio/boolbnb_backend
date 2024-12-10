@@ -38,6 +38,17 @@
                         <li class="list-group-item">
                             Is Visible: {{ $property->is_visible ? 'yes' : 'no' }}
                         </li>
+                        <li>
+                            @forelse ($property->services as $service)
+                                <span class="badge text-bg-dark">
+                                    {{ strtolower($service->name) }}
+                                    {{ strtolower($service->icon_url) }}
+
+                                </span>
+                            @empty
+                                <span>No Services available</span>
+                            @endforelse
+                        </li>
                     </ul>
                 </div>
             </div>
