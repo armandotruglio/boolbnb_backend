@@ -9,6 +9,8 @@ class Service extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'icon_url'];
+
     public function properties()
     {
         return $this->belongsToMany(Property::class, 'property_service');
