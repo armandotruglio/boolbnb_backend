@@ -119,6 +119,7 @@
                                 <label for="property-thumb_url" class="form-label">Property thumb*:</label>
                                 <input type="file" name="thumb_url" id="property-thumb_url" class="form-control"
                                     accept="image/*" @required(!isset($property->thumb_url))>
+                                <div id="thumb-error" class="mex invalid-feedback"></div>
                             </div>
                             @if (isset($property->thumb_url))
                                 <div class="image mb-3">
@@ -128,7 +129,6 @@
                                 </div>
                                 <span>Current image</span>
                             @endif
-                            <div id="thumb-error" class="mex invalid-feedback"></div>
                             @error('thumb_url')
                                 @include('partials.single-name-error-message')
                             @enderror
@@ -315,7 +315,7 @@
             const thumbValue = thumb.value.trim();
             const thumbError = document.getElementById("thumb-error");
             let thumbErrorMessage = "";
-            if (/\.(jpg|jpeg|gif|png)$/.test(thumbValue)) {
+            if (!/\.(jpg|jpeg|gif|png)$/.test(thumbValue)) {
                 success = false;
                 thumbErrorMessage = "immagine è di un tipo di file non supportato";
                 thumb.classList.add("is-invalid");
