@@ -38,7 +38,7 @@ class PropertyController extends Controller
      */
     public function show(Property $property)
     {
-        $property = Property::with("user")->findOrFail($property->id);
+        $property = Property::with("user", "services")->findOrFail($property->id);
 
         return response()->json([
             "success" => true,
