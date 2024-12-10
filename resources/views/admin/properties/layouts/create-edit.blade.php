@@ -79,7 +79,7 @@
                             @enderror
                         </div>
                         <div class="mb-3 col-3">
-                            <label for="property-is_visible" class="form-label">Property visiblility*:</label>
+                            <label for="property-is_visible" class="form-label">Property visiblility:</label>
                             <input type="checkbox" name="is_visible" id="property-is_visible" class="form-check-input"
                                 value="1" @checked(old('is_visible', $property->is_visible))>
                             @error('is_visible')
