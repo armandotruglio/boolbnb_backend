@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <form action="@yield('form-action')" method="POST" enctype="multipart/form-data">
+                <form action="@yield('form-action')" method="POST" enctype="multipart/form-data" id="form">
                     @yield('form-method')
                     @csrf
                     <div class="row">
@@ -97,7 +97,7 @@
                             <label for="property-thumb_url" class="form-label">Property thumb*:</label>
                             <input type="file" name="thumb_url" id="property-thumb_url" class="form-control"
                                 value="{{ old('thumb_url', $property->thumb_url) }}" required>
-                            <div id="password-error" class="mex invalid-feedback"></div>
+                            <div id="thumb-error" class="mex invalid-feedback"></div>
                             @error('thumb_url')
                                 @include('partials.single-name-error-message')
                             @enderror
@@ -154,7 +154,7 @@
         searchContainer.style.backgroundColor = "var(--bs-body-bg)";
 
         //validation form
-        const propertyForm = document.querySelector("form");
+        const propertyForm = document.getElementById("form");
 
         propertyForm.addEventListener("submit", function(e) {
 
@@ -164,6 +164,135 @@
             mex.forEach(element => {
                 mex.innerHTML = "";
             });
+
+            //verify title
+            const title = document.getElementById("property-title");
+            const titleValue = title.value.trim();
+            const titleError = document.getElementById("title-error");
+            let titleErrorMessage = "";
+            if (titleValue.length < 3 || titleValue.length > 255) {
+                success = false;
+                titleErrorMessage = "il titolo deve essere compreso tra 3 e 255 caratteri";
+                title.classList.add("is-invalid");
+            } else if (!/^[a-zA-Z0-9$_]+$/.test(titleValue)) {
+                success = false;
+                titleErrorMessage = "il titolo non può contenere caratteri speciali";
+                title.classList.add("is-invalid");
+            } else {
+                title.classList.remove("is-invalid");
+                title.classList.add("is-valid");
+            }
+            titleError.innerHTML = titleErrorMessage;
+
+            //verify description
+            const description = document.getElementById("property-description");
+            const descriptionRule = document.getElementById("description-rule");
+            const descriptionValue = title.value.trim();
+            const descriptionError = document.getElementById("description-error");
+            let descriptionErrorMessage = "";
+            if (titleValue.length < 20 || titleValue.length > 250) {
+                descriptionRule.hidden = true;
+                success = false;
+                descriptionErrorMessage = "la descrizione deve essere compresa tra 20 e 250 caratteri";
+                description.classList.add("is-invalid");
+            } else {
+                descriptionRule.hidden = false;
+                description.classList.remove("is-invalid");
+                description.classList.add("is-valid");
+            }
+            descriptionError.innerHTML = descriptionErrorMessage;
+
+            /*
+                        //verify address
+                        const address = document.getElementById("search-address");
+                        const addressValue = address.value.trim();
+                        const addressError = document.getElementById("address-error");
+                        let addressErrorMessage = "";
+                        if (addressValue.length < 5 || addressValue.length > 255) {
+                            success = false;
+                            addressErrorMessage = "l'indirizzo deve essere compreso tra 5 e 255 caratteri";
+                            address.classList.add("is-invalid");
+                        } else {
+                            address.classList.remove("is-invalid");
+                            address.classList.add("is-valid");
+                        }
+                        addressError.innerHTML = addressErrorMessage;
+            */
+
+            //verify rooms
+            const rooms = document.getElementById("property-rooms");
+            const roomsValue = rooms.value.trim();
+            const roomsError = document.getElementById("room-error");
+            let roomsErrorMessage = "";
+            if (roomsValue < 1 || roomsValue > 15) {
+                success = false;
+                roomsErrorMessage = "non ci possono essere meno di 1 stanza o più di 15 stanze";
+                rooms.classList.add("is-invalid");
+            } else {
+                rooms.classList.remove("is-invalid");
+                rooms.classList.add("is-valid");
+            }
+            roomsError.innerHTML = roomsErrorMessage;
+
+            //verify beds
+            const beds = document.getElementById("property-beds");
+            const bedsValue = beds.value.trim();
+            const bedsError = document.getElementById("bed-error");
+            let bedsErrorMessage = "";
+            if (bedsValue < 1 || bedsValue > 15) {
+                success = false;
+                bedsErrorMessage = "non ci possono essere meno di 1 letto o più di 15 letti";
+                beds.classList.add("is-invalid");
+            } else {
+                beds.classList.remove("is-invalid");
+                beds.classList.add("is-valid");
+            }
+            bedsError.innerHTML = bedsErrorMessage;
+
+            //verify bathrooms
+            const bathrooms = document.getElementById("property-bathrooms");
+            const bathroomsValue = bathrooms.value.trim();
+            const bathroomsError = document.getElementById("bathroom-error");
+            let bathroomsErrorMessage = "";
+            if (bathroomsValue < 1 || bathroomsValue > 15) {
+                success = false;
+                bathroomsErrorMessage = "non ci possono essere meno di 1 bagno o più di 15 bagni";
+                bathrooms.classList.add("is-invalid");
+            } else {
+                bathrooms.classList.remove("is-invalid");
+                bathrooms.classList.add("is-valid");
+            }
+            bathroomsError.innerHTML = bathroomsErrorMessage;
+
+            //verify square metres
+            const squareMeters = document.getElementById("property-square_meters");
+            const squareMetersValue = squareMeters.value.trim();
+            const squareMetersError = document.getElementById("metres-error");
+            let squareMetersErrorMessage = "";
+            if (squareMetersValue < 16 || squareMetersValue > 400) {
+                success = false;
+                squareMetersErrorMessage = "non ci possono essere meno di 1 stanza o più di 15 stanze";
+                squareMeters.classList.add("is-invalid");
+            } else {
+                squareMeters.classList.remove("is-invalid");
+                squareMeters.classList.add("is-valid");
+            }
+            squareMetersError.innerHTML = squareMetersErrorMessage;
+
+            //verify image
+            const thumb = document.getElementById("property-thumb_url");
+            const thumbValue = thumb.value.trim();
+            const thumbError = document.getElementById("thumb-error");
+            let thumbErrorMessage = "";
+            if (/\.(jpg|jpeg|gif|png)$/.test(thumbValue)) {
+                success = false;
+                thumbErrorMessage = "immagine è di un tipo di file non supportato";
+                thumb.classList.add("is-invalid");
+            } else {
+                thumb.classList.remove("is-invalid");
+                thumb.classList.add("is-valid");
+            }
+            thumbError.innerHTML = thumbErrorMessage;
 
 
 
