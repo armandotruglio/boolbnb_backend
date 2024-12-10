@@ -86,17 +86,25 @@
                                 @include('partials.single-name-error-message')
                             @enderror
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Services</label>
+                        <div class="mb-3 ">
+                            <label for="property-servicves" class="form-label">Services:</label>
                             @foreach ($services as $service)
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="services[]"
-                                        value="{{ $service->id }}" id="service-{{ $service->id }}"
-                                        {{ in_array($service->id, old('technologies', [])) ? 'checked' : '' }}>
-                                    <label class="form-check-label"
-                                        for="service-{{ $service->id }}">{{ $service->name }}</label>
+                                    <input type="checkbox" name="services[]" id="property-servicves"
+                                        class="form-check-input" value="{{ $service->id }}" @checked(in_array($service->id, old('services', $property->services->pluck('id')->toArray())))>
+                                    <label type="checkbox" name="services[]" id="property-servicves"
+                                        class="form-check-label">
+                                        {{ $service->name }}
+                                    </label>
                                 </div>
                             @endforeach
+                            @error('services')
+                                @include('partials.single-name-error-message')
+                            @enderror
+
+                            @error('services.*')
+                                @include('partials.single-name-error-message')
+                            @enderror
                         </div>
 
                         <div class="mb-3">

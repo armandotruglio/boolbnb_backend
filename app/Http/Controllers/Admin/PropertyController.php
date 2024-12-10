@@ -86,7 +86,8 @@ class PropertyController extends Controller
     public function edit(Property $property)
     {
         if (Auth::user()->id == $property->user_id) {
-            return view("admin.properties.edit", compact("property"));
+            $services = Service::all();
+            return view("admin.properties.edit", compact("property", "services"));
         }
         return abort('401');
     }
