@@ -37,6 +37,7 @@ class UpdatePropertyRequest extends FormRequest
             "square_meters" => ["required", "numeric", "integer", "min:16", "max:1000"],
             "is_visible" => ["boolean"],
             "thumb_url" => ["image"],
+            "services" => ["array", "exists:services,id"],
         ];
     }
 
