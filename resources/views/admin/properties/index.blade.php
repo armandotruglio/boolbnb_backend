@@ -31,6 +31,7 @@
                                 <th scope="col">Title</th>
                                 <th scope="col">Address</th>
                                 <th scope="col">Visible</th>
+                                <th scope="col">Services</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -41,6 +42,15 @@
                                     <td id="apartment {{ $property->id }}"> {{ $property->title }} </td>
                                     <td> {{ $property->address }} </td>
                                     <td> {{ $property->is_visible ? 'yes' : 'no' }} </td>
+                                    <td>
+                                        @forelse ($property->services as $service)
+                                            <span>
+                                                {{ strtolower($service->name) }}-
+                                            </span>
+                                        @empty
+                                            <span>No services available</span>
+                                        @endforelse
+                                    </td>
                                     <td class="d-flex">
                                         <a class="btn btn-sm btn-info me-2"
                                             href="{{ route('admin.properties.show', $property->id) }}">Show</a>

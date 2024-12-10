@@ -36,6 +36,9 @@ class StorePropertyRequest extends FormRequest
             "square_meters" => ["required", "numeric", "integer", "min:16", "max:400"],
             "is_visible" => ["boolean"],
             "thumb_url" => ["required", "image"],
+            "services" => ["array"],
+            "services.*" => ["string", "exists:services,id", "min:3", "max:255"],
+            "icon_url" => ["nullable", "string", "min:2", "max:255"],
         ];
     }
 
@@ -91,6 +94,8 @@ class StorePropertyRequest extends FormRequest
 
             'thumb_url.required' => 'A thumbnail image is required.',
             'thumb_url.image' => 'The thumbnail must be an image file.',
+
+
         ];
     }
 }
