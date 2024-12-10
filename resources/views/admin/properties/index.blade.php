@@ -44,8 +44,8 @@
                                     <td> {{ $property->is_visible ? 'yes' : 'no' }} </td>
                                     <td>
                                         @forelse ($property->services as $service)
-                                            <span class="badge text-bg-dark">
-                                                #{{ strtolower($service->name) }}
+                                            <span>
+                                                {{ strtolower($service->name) }} {{ $service->icon_url }}-
                                             </span>
                                         @empty
                                             <span>No services available</span>
