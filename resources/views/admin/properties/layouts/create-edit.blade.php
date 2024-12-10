@@ -19,6 +19,7 @@
                             <label for="property-title" class="form-label">Property Title*:</label>
                             <input type="text" name="title" id="property-title" class="form-control"
                                 value="{{ old('title', $property->title) }}" required>
+                            <div id="title-error" class="mex invalid-feedback"></div>
                             @error('title')
                                 @include('partials.single-name-error-message')
                             @enderror
@@ -30,6 +31,7 @@
                             <div id="description-rule" class="form-text">The description must be between 20 and 250
                                 characthers
                             </div>
+                            <div id="description-error" class="mex invalid-feedback"></div>
                             @error('description')
                                 @include('partials.single-name-error-message')
                             @enderror
@@ -38,6 +40,7 @@
                         <div class="mb-3 col-12">
                             <div class="address-property">
                                 <label for="address" class=form-label>Property Address*:</label>
+                                <div id="address-error" class="mex invalid-feedback"></div>
                             </div>
                         </div>
 
@@ -49,6 +52,7 @@
                             <label for="property-rooms" class="form-label">Property rooms*:</label>
                             <input type="number" name="rooms" id="property-rooms" class="form-control"
                                 value="{{ old('rooms', $property->rooms) }}" min="1" max="15" required>
+                            <div id="room-error" class="mex invalid-feedback"></div>
                             @error('rooms')
                                 @include('partials.single-name-error-message')
                             @enderror
@@ -57,6 +61,7 @@
                             <label for="property-beds" class="form-label">Property beds*:</label>
                             <input type="number" name="beds" id="property-beds" class="form-control"
                                 value="{{ old('beds', $property->beds) }}" min="1" max="15" required>
+                            <div id="bed-error" class="mex invalid-feedback"></div>
                             @error('beds')
                                 @include('partials.single-name-error-message')
                             @enderror
@@ -65,6 +70,7 @@
                             <label for="property-bathrooms" class="form-label">Property bathrooms*:</label>
                             <input type="number" name="bathrooms" id="property-bathrooms" class="form-control"
                                 value="{{ old('bathrooms', $property->bathrooms) }}" min="1" max="15" required>
+                            <div id="bathroom-error" class="mex invalid-feedback"></div>
                             @error('bathrooms')
                                 @include('partials.single-name-error-message')
                             @enderror
@@ -74,6 +80,7 @@
                             <input type="number" name="square_meters" id="property-square_meters" class="form-control"
                                 value="{{ old('square_meters', $property->square_meters) }}" min="16" max="400"
                                 required>
+                            <div id="metres-error" class="mex invalid-feedback"></div>
                             @error('square_meters')
                                 @include('partials.single-name-error-message')
                             @enderror
@@ -90,6 +97,7 @@
                             <label for="property-thumb_url" class="form-label">Property thumb*:</label>
                             <input type="file" name="thumb_url" id="property-thumb_url" class="form-control"
                                 value="{{ old('thumb_url', $property->thumb_url) }}" required>
+                            <div id="password-error" class="mex invalid-feedback"></div>
                             @error('thumb_url')
                                 @include('partials.single-name-error-message')
                             @enderror
@@ -144,5 +152,26 @@
         searchContainer.style.border = "var(--bs-border-width) solid var(--bs-border-color)";
         searchContainer.style.borderRadius = "var(--bs-border-radius)";
         searchContainer.style.backgroundColor = "var(--bs-body-bg)";
+
+        //validation form
+        const propertyForm = document.querySelector("form");
+
+        propertyForm.addEventListener("submit", function(e) {
+
+            let success = true;
+
+            const mex = document.querySelectorAll("mex");
+            mex.forEach(element => {
+                mex.innerHTML = "";
+            });
+
+
+
+
+            //prevent sending form
+            if (!success) {
+                e.preventDefault();
+            }
+        })
     </script>
 @endsection
