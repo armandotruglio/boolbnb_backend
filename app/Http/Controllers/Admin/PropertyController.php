@@ -129,6 +129,13 @@ class PropertyController extends Controller
 
         $property->update($data);
 
+        if (isset($data["services"])) {
+            $property->services()->sync($data["services"]);
+        } else {
+            $property->services()->detach();
+        }
+
+
 
         return redirect()->route("admin.properties.index")
             ->with('message', "Project $property->title has been updated successfully!")
