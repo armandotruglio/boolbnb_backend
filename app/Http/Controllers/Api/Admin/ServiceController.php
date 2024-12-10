@@ -19,7 +19,7 @@ class ServiceController extends Controller
                 'success' => true,
                 'result' => $services
             ]
-        );
+        );   // http://127.0.0.1:8000/api/admin/services
     }
 
     /**
