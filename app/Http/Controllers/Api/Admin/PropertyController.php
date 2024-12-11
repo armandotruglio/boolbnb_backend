@@ -88,19 +88,18 @@ class PropertyController extends Controller
         $longitude = $request["longitude"];
         $radius = $request["radius"];
 
-        $query = Property::with('services')->newQuery();
+        /*$query = Property::with('services')->newQuery();*/
 
         // Filter the properties that are in the radius distance with haversine formula
-        $query->selectRaw("*,
-            ( 6371 * acos( cos( radians(" . $latitude . ") ) *
+        $query = Property::with('services')->selectRaw("*,
+            ( 6371 * acos( cos( radians(?) ) *
             cos( radians(properties.latitude) ) *
-            cos( radians(properties.longitude) - radians(" . $longitude . ") ) +
-            sin( radians(" . $latitude . ") ) *
+            cos( radians(properties.longitude) - radians(?) ) +
+            sin( radians(?) ) *
             sin( radians(properties.latitude) ) ) )
-            AS distance")
+            AS distance", [$latitude, $longitude, $latitude])
         ->having("distance", "<", $radius)
-        ->orderBy("distance")
-        ->get();
+        ->orderBy("distance");
 
 
         //Filter on number of rooms
@@ -123,10 +122,12 @@ class PropertyController extends Controller
 
         }
 
+        $properties = $query->get();
+
         // Return filtered properties
         return response()->json([
             "success" => true,
-            "result" => $query->get()
+            "result" => $properties
         ]);
     }
 }
