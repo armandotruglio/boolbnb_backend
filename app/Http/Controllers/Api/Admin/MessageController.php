@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Api\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Message;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class MessageController extends Controller
 {
@@ -21,9 +22,35 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate();
+        $validator = Validator::make($request->all(), [
+            'sender_name' => 'required|string|max:50',
+            'sender_last_name' => 'required|string|max:50',
+            'sender_email' => 'required|email|max:255',
+            'message' => 'required|string',
+            'property_id' => 'required|numeric'
+        ]);
 
-        Message::create($request);
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation error',
+                'errors' => $validator->errors()
+            ]);
+        }
+
+        $message = new Message();
+        $message->sender_name = $request->input('sender_name');
+        $message->sender_last_name = $request->input('sender_last_name');
+        $message->sender_email = $request->input('sender_email');
+        $message->message = $request->input('message');
+        $message->property_id = $request->input('property_id');
+        $message->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Message saved successfully',
+            'result' => $message
+        ]);
     }
 
     /**

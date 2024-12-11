@@ -13,7 +13,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $services = Service::all();
+        $services = Service::with('properties')->get();
         return response()->json(
             [
                 'success' => true,
@@ -35,7 +35,12 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        //
+        $service = Service::with("properties", "properties.user")->findOrFail($service->id);
+
+        return response()->json([
+            "success" => true,
+            "results" => $service,
+        ]);
     }
 
     /**
