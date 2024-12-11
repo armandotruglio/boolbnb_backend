@@ -20,6 +20,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.properties.create') }}">{{ __('Add New Property') }}</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.messages.index') }}">{{ __('Received Messages') }}</a>
+                    </li>
                 @endguest
             </ul>
 

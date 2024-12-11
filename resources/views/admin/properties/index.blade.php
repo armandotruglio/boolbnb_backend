@@ -99,11 +99,10 @@
         const modalMessage = document.getElementById('modal-message');
 
         deleteModal.addEventListener('show.bs.modal', function(event) {
-            modalMessage.textContent = '';
             const button = event.relatedTarget;
             const propertyId = button.getAttribute('data-id');
             const propertyName = document.getElementById('apartment ' + propertyId).innerText;
-            modalMessage.append("Are you sure you want to delete the " + propertyName + "?");
+            modalMessage.innerHTML = `<span>Are you sure you want to delete the <b>${propertyName}</b> ?</span>`;
             deleteForm.action = `/admin/properties/${propertyId}`;
         });
     </script>
