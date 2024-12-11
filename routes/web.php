@@ -27,5 +27,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+//Routes for properties
 Route::resource('admin/properties', App\Http\Controllers\Admin\PropertyController::class, ['as' => 'admin']);
+
+//Routes for messages
 Route::resource('admin/messages', App\Http\Controllers\Admin\MessageController::class, ['as' => 'admin']);
