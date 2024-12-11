@@ -21,7 +21,7 @@ class PropertySeeder extends Seeder
                                   The interior is thoughtfully designed, featuring spacious rooms filled with natural light, high ceilings, and premium finishes. The living area provides a cozy yet sophisticated ambiance, perfect for both relaxation and entertaining. The kitchen is fully equipped with state-of-the-art appliances, ideal for culinary enthusiasts.
                                    The bedroom(s) offer a peaceful retreat, with ample storage and serene decor that ensures restful nights. The bathroom(s) are impeccably finished, combining functionality with a touch of luxury.
                                    This apartment is a rare find, ideal for those seeking a stylish and convenient urban lifestyle.',
-                'address' => 'Via Roma, 34, Torino',
+                'address' => 'Via Roma, 34, 10123 Torino, Italia.',
                 'latitude' => 45.069598,
                 'longitude' => 7.683801,
                 'rooms' => 3,
@@ -39,7 +39,7 @@ class PropertySeeder extends Seeder
                                     The crown jewel of this loft is the private terrace, an expansive space ideal for hosting gatherings, enjoying morning coffee, or simply relaxing while taking in the city skyline. This outdoor haven is designed for year-round enjoyment, with options for al fresco dining, gardening, or creating a cozy lounge area.
                                     The bedroom area offers comfort and privacy, with thoughtfully designed details that make it a serene retreat. The bathroom is equally impressive, with luxurious fixtures and a spa-like ambiance.
                                     Perfect for those who value modern living with a touch of outdoor bliss, this loft is a rare find in the heart of the city.',
-                'address' => 'Via Po, 21, Torino',
+                'address' => 'Via Po, 21, 10124 Torino, Italia.',
                 'latitude' => 45.068984,
                 'longitude' => 7.689173,
                 'rooms' => 2,
@@ -57,7 +57,7 @@ class PropertySeeder extends Seeder
                                     The kitchen is a chef’s dream, equipped with modern appliances, ample counter space, and a layout perfect for both casual meals and entertaining. The dining area opens onto a spacious patio, ideal for savoring meals while enjoying the sea breeze.
                                     The bedrooms provide peaceful retreats, each designed with relaxation in mind. Wake up to the sound of waves and ocean views from the master suite, which features a private balcony. The bathrooms are equally luxurious, with spa-like finishes and a calming ambiance.
                                     Outside, the property boasts direct access to the beach or a lush garden that blends harmoniously with its surroundings. Whether you’re soaking up the sun, enjoying water sports, or simply unwinding with a book, this home offers the ultimate seaside lifestyle.',
-                'address' => 'Via Pietro Micca, 22, Torino',
+                'address' => 'Via Pietro Micca, 22, 10122 Torino, Italia.',
                 'latitude' => 45.070496,
                 'longitude' => 7.678457,
                 'rooms' => 3,
@@ -74,7 +74,7 @@ class PropertySeeder extends Seeder
                                     The villa’s architecture is breathtaking, with grand spaces and a seamless blend of indoor and outdoor living. The interior features an open floor plan with high ceilings, expansive windows, and premium finishes that create a bright and inviting ambiance. The living area is both spacious and stylish, ideal for entertaining or quiet evenings by the fireplace.
                                     The kitchen is a gourmet masterpiece, fully equipped with state-of-the-art appliances, a sleek island, and plenty of storage, making it perfect for culinary adventures. Adjacent, the dining area opens to a sprawling terrace that overlooks the pool, providing a perfect setting for al fresco dining or sunset cocktails.
                                     The bedrooms are serene and generously proportioned, offering the ultimate in privacy and comfort. The master suite stands out with its luxurious ensuite bathroom and direct access to a private balcony or patio.',
-                'address' => 'Via Corte d\'Appello, 10, Torino',
+                'address' => 'Via Corte d\'Appello, 10, 10122 Torino, Italia.',
                 'latitude' => 45.074020,
                 'longitude' => 7.680396,
                 'rooms' => 6,
@@ -94,7 +94,7 @@ class PropertySeeder extends Seeder
                                     The bedrooms are warm and inviting, with comfortable furnishings and large windows that let in plenty of natural light. The master suite offers a private retreat with serene views of the countryside.
                                     Outside, the farmhouse is surrounded by sprawling gardens, olive trees, or vineyards, and often includes outdoor spaces like a shaded pergola or a courtyard for dining al fresco. There may also be room for a small vegetable garden, ideal for embracing a farm-to-table lifestyle.
                                     This rustic farmhouse is a true gem, offering a harmonious blend of history, charm, and comfort in a tranquil rural setting. Perfect for those who dream of escaping the hustle and bustle to enjoy the simple pleasures of life in the countryside.',
-                'address' => 'Piazzale della Torre, 11, Padova',
+                'address' => 'Piazzale della Torre, 11, 35020 Padova, Italia.',
                 'latitude' => 45.340506,
                 'longitude' => 11.902828,
                 'rooms' => 5,
@@ -112,7 +112,7 @@ class PropertySeeder extends Seeder
                                     The kitchenette is compact yet fully equipped, featuring sleek cabinetry, a built-in cooktop, and efficient storage solutions to ensure everything is within easy reach. The dining area, whether a small table or a breakfast bar, provides a cozy spot for meals or working from home.
                                     Large windows or clever lighting create a bright and inviting ambiance, while modern finishes and neutral tones give the apartment a clean and stylish aesthetic. A compact yet well-appointed bathroom adds to the convenience, offering contemporary fixtures and efficient use of space.
                                     Perfect for singles, students, or those seeking a low-maintenance lifestyle, this compact studio apartment proves that great design can make even the smallest spaces feel like home.',
-                'address' => 'Via G. Verdi, 21A, Padova',
+                'address' => 'Via G. Verdi, 21A, 35020 Padova, Italia.',
                 'latitude' => 45.336411,
                 'longitude' => 11.903404,
                 'rooms' => 1,
@@ -130,7 +130,7 @@ class PropertySeeder extends Seeder
                                     Retreat to the master suite, a sanctuary of tranquility, featuring a private balcony, a lavish en-suite bathroom with a soaking tub, and a walk-in closet. Each additional bedroom boasts its own unique charm, with large windows offering stunning sea views.
                                     The building itself offers exclusive amenities including a rooftop infinity pool, a state-of-the-art fitness center, and 24-hour concierge service, ensuring every need is met with the utmost care.
                                     This seaside penthouse is not just a residence, but a lifestyle of unparalleled luxury and comfort, where every detail is designed to enhance your coastal living experience.',
-                'address' => 'Via Moncenisio, 7, Padova',
+                'address' => 'Via Moncenisio, 7, 35020 Padova, Italia.',
                 'latitude' => 45.341568,
                 'longitude' => 11.904222,
                 'rooms' => 4,
@@ -146,7 +146,7 @@ class PropertySeeder extends Seeder
                 'description' => 'Discover the ultimate in city living with this chic urban apartment, perfectly located just steps away from the metro station. This modern residence offers unmatched convenience and connectivity, making your daily commute a breeze.
                                     Step inside to find a spacious, light-filled living area with contemporary finishes and sleek design elements. The open-plan layout seamlessly integrates the living, dining, and kitchen areas, creating an inviting space for relaxation and entertaining.
                                     The gourmet kitchen features high-end stainless steel appliances, quartz countertops, and ample storage, catering to both casual meals and gourmet cooking. The bedroom provides a serene retreat with large windows that allow for plenty of natural light, and a spacious closet for all your storage needs.',
-                'address' => 'Via Tiberio Solis, 108, San Severo',
+                'address' => 'Via Tiberio Solis, 108, 71016 San Severo, Italia.',
                 'latitude' => 41.686876,
                 'longitude' => 15.383615,
                 'rooms' => 2,
@@ -163,7 +163,7 @@ class PropertySeeder extends Seeder
                                     As you step through the front door, you’re welcomed by a cozy living room with a warm, inviting atmosphere. The space is adorned with hardwood floors, a stone fireplace, and large windows that fill the room with natural light and offer enchanting views of the garden.
                                     The country-style kitchen is both functional and charming, featuring custom cabinetry, high-end appliances, and a quaint breakfast nook where you can enjoy your morning coffee while basking in the garden\'s beauty. The adjacent dining area is perfect for hosting intimate gatherings with family and friends.
                                     The master bedroom is a peaceful retreat, complete with a spacious wardrobe and a private en-suite bathroom that boasts luxurious fixtures. Additional bedrooms are equally inviting, offering comfort and charm for family or guests.',
-                'address' => 'Via Soccorso, 88, San Severo',
+                'address' => 'Via Soccorso, 88, 71016 San Severo, Italia.',
                 'latitude' => 41.685144,
                 'longitude' => 15.381868,
                 'rooms' => 4,
@@ -180,7 +180,7 @@ class PropertySeeder extends Seeder
                                     As you enter, you’re greeted by a welcoming foyer that opens into a bright and airy living room. Large windows flood the space with natural light, highlighting the elegant hardwood floors and cozy fireplace that create a warm and inviting atmosphere.
                                     The heart of the home is the open-concept kitchen and dining area, featuring modern appliances, granite countertops, and plenty of cabinet space for all your culinary needs. The adjacent dining area is perfect for family meals and special gatherings, with easy access to the backyard for indoor-outdoor living.
                                     Upstairs, the master suite is a true retreat, complete with a spacious walk-in closet and a luxurious en-suite bathroom. Additional bedrooms are generously sized, each with large closets and plenty of natural light, offering comfortable accommodations for family members or guests.',
-                'address' => 'Piazza del Colosseo, Roma',
+                'address' => 'Piazza del Colosseo, 00184 Roma, Italia.',
                 'latitude' => 41.891034,
                 'longitude' => 12.492660,
                 'rooms' => 5,
