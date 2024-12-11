@@ -218,10 +218,10 @@
             //verify description
             const description = document.getElementById("property-description");
             const descriptionRule = document.getElementById("description-rule");
-            const descriptionValue = title.value.trim();
+            const descriptionValue = description.value.trim();
             const descriptionError = document.getElementById("description-error");
             let descriptionErrorMessage = "";
-            if (titleValue.length < 20 || titleValue.length > 250) {
+            if (descriptionValue.length < 20 || descriptionValue.length > 250) {
                 descriptionRule.hidden = true;
                 success = false;
                 descriptionErrorMessage = "la descrizione deve essere compresa tra 20 e 250 caratteri";
