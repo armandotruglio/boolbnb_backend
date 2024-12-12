@@ -14,7 +14,7 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $properties = Property::with('services')->get();
+        $properties = Property::with('services', 'sponsorships')->get();
         return response()->json(
             [
                 'success' => true,
@@ -38,7 +38,7 @@ class PropertyController extends Controller
      */
     public function show(Property $property)
     {
-        $property = Property::with("user", "services")->findOrFail($property->id);
+        $property = Property::with("user", "services", "sponsorships")->findOrFail($property->id);
 
         return response()->json([
             "success" => true,
@@ -98,23 +98,23 @@ class PropertyController extends Controller
             sin( radians(?) ) *
             sin( radians(properties.latitude) ) ) )
             AS distance", [$latitude, $longitude, $latitude])
-        ->having("distance", "<", $radius)
-        ->orderBy("distance");
+            ->having("distance", "<", $radius)
+            ->orderBy("distance");
 
 
         //Filter on number of rooms
-        if ($request->has('rooms')){
-            $query->where('rooms','>=', $request->rooms);
+        if ($request->has('rooms')) {
+            $query->where('rooms', '>=', $request->rooms);
         }
 
         //Filter on number of beds
-        if ($request->has('beds')){
+        if ($request->has('beds')) {
             $query->where('beds', '>=', $request->beds);
         }
 
         //Filter on property services
-        if($request->has('services')){
-            $services = explode('-',$request->services);
+        if ($request->has('services')) {
+            $services = explode('-', $request->services);
 
             $query->whereHas('services', function ($query) use ($services) {
                 $query->whereIn('id', $services);

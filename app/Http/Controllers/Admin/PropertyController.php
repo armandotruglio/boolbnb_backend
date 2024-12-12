@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Functions\Address;
 use App\Models\Property;
 use App\Models\Service;
+use App\Models\Sponsorship;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -32,7 +33,8 @@ class PropertyController extends Controller
     {
         $property = new Property();
         $services = Service::all();
-        return view("admin.properties.create", compact("property", "services"));
+        $sponsorships = Sponsorship::all();
+        return view("admin.properties.create", compact("property", "services", "sponsorships"));
     }
 
     /**
@@ -58,9 +60,15 @@ class PropertyController extends Controller
         $property = Property::create($formData);
 
         if (isset($formData["services"])) {
-            $property->tags()->sync($formData["services"]);
+            $property->services()->sync($formData["services"]);
         } else {
-            $property->tags()->detach();
+            $property->services()->detach();
+        }
+
+        if (isset($formData["sponsorships"])) {
+            $property->sponsorships()->sync($formData["sponsorships"]);
+        } else {
+            $property->sponsorships()->detach();
         }
 
 
@@ -87,7 +95,8 @@ class PropertyController extends Controller
     {
         if (Auth::user()->id == $property->user_id) {
             $services = Service::all();
-            return view("admin.properties.edit", compact("property", "services"));
+            $sponsorships = Sponsorship::all();
+            return view("admin.properties.edit", compact("property", "services", "sponsorships"));
         }
         return abort('401');
     }
@@ -133,6 +142,13 @@ class PropertyController extends Controller
             $property->services()->sync($data["services"]);
         } else {
             $property->services()->detach();
+        }
+
+
+        if (isset($data["sponsorships"])) {
+            $property->sponsorships()->sync($data["sponsorships"]);
+        } else {
+            $property->sponsorships()->detach();
         }
 
 

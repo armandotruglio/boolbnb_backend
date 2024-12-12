@@ -13,7 +13,13 @@ class SponsorshipController extends Controller
      */
     public function index()
     {
-        //
+        $sponsorships = Sponsorship::with('properties')->get();
+        return response()->json(
+            [
+                'success' => true,
+                'result' => $sponsorships
+            ]
+        );
     }
 
     /**
@@ -29,7 +35,12 @@ class SponsorshipController extends Controller
      */
     public function show(Sponsorship $sponsorship)
     {
-        //
+        $sponsorship = Sponsorship::with("properties", "properties.user")->findOrFail($sponsorship->id);
+
+        return response()->json([
+            "success" => true,
+            "results" => $sponsorship,
+        ]);
     }
 
     /**
