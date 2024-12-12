@@ -28,3 +28,4 @@ Route::apiResource('admin/messages', App\Http\Controllers\Api\Admin\MessageContr
 
 //API Route to filter properties
 Route::post("/filter", [PropertyController::class, "filter"])->name("api.filter");
+Route::apiResource('admin/sponsorships', App\Http\Controllers\Api\Admin\SponsorshipController::class);
