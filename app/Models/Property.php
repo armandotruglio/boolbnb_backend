@@ -20,4 +20,9 @@ class Property extends Model
     {
         return $this->belongsToMany(Service::class, 'property_service');
     }
+
+    public function sponsorships()
+    {
+        return $this->belongsToMany(Sponsorship::class, 'property_sponsorship');
+    }
 }

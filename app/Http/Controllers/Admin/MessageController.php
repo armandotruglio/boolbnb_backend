@@ -14,19 +14,10 @@ class MessageController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $messages = [];
-        $user_id = Auth::user()->id;
-
-        foreach(Message::all() as $message){
-            if($message->property->user_id === $user_id){
-                $messages[] = $message;
-            }
-        }
-
-        return view('admin.messages.index', compact('messages'));
-    }
-
+{
+    $messages = Message::with('property')->orderBy('created_at', 'desc')->get();
+    return view('admin.messages.index', compact('messages'));
+}
     /**
      * Show the form for creating a new resource.
      */

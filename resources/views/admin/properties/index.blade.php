@@ -30,6 +30,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Title</th>
                                 <th scope="col">Address</th>
+                                <th scope="col">Sponsorship</th>
                                 <th scope="col">Visible</th>
                                 <th scope="col">Services</th>
                                 <th scope="col"></th>
@@ -41,11 +42,20 @@
                                     <th scope="row"> {{ $property->id }} </td>
                                     <td id="apartment {{ $property->id }}"> {{ $property->title }} </td>
                                     <td> {{ $property->address }} </td>
+                                    <td>
+                                        @forelse ($property->sponsorships as $sponsorship)
+                                            <span>
+                                                {{ $sponsorship->name }}
+                                            </span>
+                                        @empty
+                                            <span>No sponsorships available</span>
+                                        @endforelse
+                                    </td>
                                     <td> {{ $property->is_visible ? 'yes' : 'no' }} </td>
                                     <td>
                                         @forelse ($property->services as $service)
                                             <span>
-                                                {{ strtolower($service->name) }}-
+                                                {{ $service->name }}-
                                             </span>
                                         @empty
                                             <span>No services available</span>

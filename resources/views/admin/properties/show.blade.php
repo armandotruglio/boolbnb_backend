@@ -41,10 +41,22 @@
                         <li class="list-group-item">
                             @forelse ($property->services as $service)
                                 <span>
-                                    {{ strtolower($service->name) }}
+                                    {{ $service->name }}
                                 </span>
                             @empty
                                 <span>No Services available</span>
+                            @endforelse
+                        </li>
+                        <li class="list-group-item">
+                            @forelse ($property->sponsorships as $sponsorship)
+                                <div>
+                                    <span class="fw-bold">Sponsorship</span> {{ $sponsorship->name }} available for <span
+                                        class="fw-bold">{{ $sponsorship->duration }}</span>
+                                    hours for
+                                    <span class="fw-bold">{{ $sponsorship->duration }}€</span>
+                                </div>
+                            @empty
+                                <span>No sponsorships available</span>
                             @endforelse
                         </li>
                     </ul>
