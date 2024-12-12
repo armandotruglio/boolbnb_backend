@@ -15,10 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    if(Auth::check()){
+    if (Auth::check()) {
         return view("home");
-    }
-    else{
+    } else {
         return view("auth.login");
     }
 });
@@ -32,3 +31,6 @@ Route::resource('admin/properties', App\Http\Controllers\Admin\PropertyControlle
 
 //Routes for messages
 Route::resource('admin/messages', App\Http\Controllers\Admin\MessageController::class, ['as' => 'admin']);
+
+//Routes for sponsorships
+Route::resource('admin/sponsorships', App\Http\Controllers\Admin\SponsorshipController::class, ['as' => 'admin']);
