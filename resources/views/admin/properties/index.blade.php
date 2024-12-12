@@ -48,7 +48,7 @@
                                                 {{ $sponsorship->name }}
                                             </span>
                                         @empty
-                                            <span>No sponsorships available</span>
+                                            <span>No sponsorship available</span>
                                         @endforelse
                                     </td>
                                     <td> {{ $property->is_visible ? 'yes' : 'no' }} </td>

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Property;
 use App\Models\Sponsorship;
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
@@ -18,8 +19,9 @@ class PropertySponsorshipSeeder extends Seeder
         $properties = Property::all();
         $sponsorships = Sponsorship::all()->pluck("id");
 
-        foreach ($properties as $property) {
-            $property->sponsorships()->attach($faker->randomElements($sponsorships, 1));
+        for ($i = 0; $i < 5; $i++) {
+            $properties[$i]->sponsorships()->attach($faker->randomElements($sponsorships, 1));
         }
     }
 }
+
