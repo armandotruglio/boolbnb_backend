@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Api\Admin\PropertyController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\Admin\PropertyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,10 @@ Route::apiResource('admin/messages', App\Http\Controllers\Api\Admin\MessageContr
 //API Route to filter properties
 Route::post("/filter", [PropertyController::class, "filter"])->name("api.filter");
 Route::apiResource('admin/sponsorships', App\Http\Controllers\Api\Admin\SponsorshipController::class);
+
+Route::middleware("web")->get('/auth-check', function () {
+    return response()->json([
+        'loggedIn' => Auth::check(),
+        'result' => Auth::user()
+    ]);
+});
