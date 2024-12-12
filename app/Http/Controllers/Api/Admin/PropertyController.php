@@ -23,6 +23,7 @@ class PropertyController extends Controller
         );
     }
 
+
     //http://127.0.0.1:8000/api/admin/properties File json
 
     /**
