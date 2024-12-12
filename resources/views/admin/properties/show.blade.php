@@ -50,7 +50,7 @@
                         <li class="list-group-item">
                             @forelse ($property->sponsorships as $sponsorship)
                                 <div>
-                                    <span class="fw-bold">Sponsorship:</span> {{ $sponsorship->name }} available for <span
+                                    <span class="fw-bold">Sponsorship</span> {{ $sponsorship->name }} available for <span
                                         class="fw-bold">{{ $sponsorship->duration }}</span>
                                     hours for
                                     <span class="fw-bold">{{ $sponsorship->duration }}€</span>
