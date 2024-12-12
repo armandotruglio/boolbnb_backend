@@ -14,6 +14,7 @@ return new class extends Migration {
 
             $table->foreignId('property_id')->constrained();
             $table->foreignId('sponsorship_id')->constrained();
+            $table->date('end_date');
 
             $table->primary(['property_id', 'sponsorship_id']);
         });
