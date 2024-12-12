@@ -25,4 +25,9 @@ class Property extends Model
     {
         return $this->belongsToMany(Sponsorship::class, 'property_sponsorship');
     }
+
+    public function views()
+    {
+        return $this->hasMany(View::class);
+    }
 }
