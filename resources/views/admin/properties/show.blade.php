@@ -1,66 +1,108 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h1 class="fw-bold text-center fst-italic">
-                    Property Show
-                </h1>
-            </div>
-            <div class="col-8 m-auto">
 
-                <div class="card text-center">
-                    <img src="{{ asset('/storage/' . $property->thumb_url) }}" class="card-img-top img-fluid"
-                        alt=" {{ $property->title }} ">
-                    <div class="card-body">
-                        <h2 class="card-title fw-bold">
-                            #{{ $property->id }} Title: {{ $property->title }}
-                        </h2>
-                        <p class="card-text">
-                            {{ $property->description }}
-                        </p>
+<div class="property-container">
+    <img src="{{ asset('/storage/' . $property->thumb_url) }}" class="property-image" alt="{{ $property->title }}">
+
+    <h1 class="property-title">
+        #{{ $property->id }} - {{ $property->title }}
+    </h1>
+
+    <div class="property-details">
+        <p>
+            <strong>Description:</strong> {{ $property->description }}
+        </p>
+        <ul class="list-unstyled">
+            <li class="list-item">
+                <strong>Latitude:</strong> {{ $property->latitude }} | <strong>Longitude:</strong> {{ $property->longitude }}
+            </li>
+            <li class="list-item">
+                <strong>Address:</strong> {{ $property->address }}
+            </li>
+            <li class="list-item">
+                <strong>Rooms:</strong> {{ $property->rooms }} | <strong>Beds:</strong> {{ $property->beds }} | <strong>Bathrooms:</strong> {{ $property->bathrooms }}
+            </li>
+            <li class="list-item">
+                <strong>Square Meters:</strong> {{ $property->square_meters }}
+            </li>
+            <li class="list-item">
+                <strong>Is Visible:</strong> {{ $property->is_visible ? 'Yes' : 'No' }}
+            </li>
+            <li class="list-item">
+                <strong>Services:</strong>
+                @forelse ($property->services as $service)
+                    <span class="badge">{{ $service->name }}</span>
+                @empty
+                    <span>No services available</span>
+                @endforelse
+            </li>
+            <li class="list-item">
+                <strong>Sponsorships:</strong>
+                @forelse ($property->sponsorships as $sponsorship)
+                    <div>
+                        {{ $sponsorship->name }} for <strong>{{ $sponsorship->duration }}</strong> hours at <strong>{{ $sponsorship->price }}€</strong>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            Latitude: {{ $property->latitude }} | Longitude: {{ $property->longitude }}
-                        </li>
-                        <li class="list-group-item">
-                            Address: {{ $property->address }}
-                        </li>
-                        <li class="list-group-item">
-                            Rooms: {{ $property->rooms }} | Beds: {{ $property->beds }} | Bathrooms:
-                            {{ $property->bathrooms }}
-                        </li>
-                        <li class="list-group-item">
-                            Square Meters: {{ $property->square_meters }}
-                        </li>
-                        <li class="list-group-item">
-                            Is Visible: {{ $property->is_visible ? 'yes' : 'no' }}
-                        </li>
-                        <li class="list-group-item">
-                            @forelse ($property->services as $service)
-                                <span>
-                                    {{ $service->name }}
-                                </span>
-                            @empty
-                                <span>No Services available</span>
-                            @endforelse
-                        </li>
-                        <li class="list-group-item">
-                            @forelse ($property->sponsorships as $sponsorship)
-                                <div>
-                                    <span class="fw-bold">Sponsorship</span> {{ $sponsorship->name }} available for <span
-                                        class="fw-bold">{{ $sponsorship->duration }}</span>
-                                    hours for
-                                    <span class="fw-bold">{{ $sponsorship->duration }}€</span>
-                                </div>
-                            @empty
-                                <span>No sponsorships available</span>
-                            @endforelse
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    @endsection
+                @empty
+                    <span>No sponsorships available</span>
+                @endforelse
+            </li>
+        </ul>
+    </div>
+</div>
+@endsection
+
+<style>
+    body {
+        background-color: #f4f4f4;
+        font-family: Arial, sans-serif;
+    }
+
+    .property-container {
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        max-width: 900px;
+    }
+
+    .property-image {
+        width: 100%;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        object-fit: cover;
+        max-height: 400px;
+    }
+
+    .property-title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .property-details {
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    .badge {
+        font-size: 0.9rem;
+        margin-right: 5px;
+        background-color: #007bff;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    .list-item {
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .list-item:last-child {
+        border-bottom: none;
+    }
+</style>
