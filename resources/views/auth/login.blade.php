@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="loading-overlay d-none" id="loadingOverlay">
+    <div class="spinner-container">
+        <div class="spinner1"></div>
+        <div class="spinner"></div>
+    </div>
+</div>
 <div class="container">
     <div class="row justify-content-center py-4">
         <div class="col-md-6">
@@ -8,7 +14,7 @@
                 <div class="card-header text-center bg-primary text-white fs-4">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('login') }}" onsubmit="showLoadingOverlay()">
                         @csrf
 
                         <div class="mb-4">
@@ -61,7 +67,7 @@
 </div>
 @endsection
 
-<!-- Aggiunta degli stili personalizzati -->
+
 <style>
     .card {
         border: none;
@@ -112,4 +118,66 @@
     .form-check-label {
         font-size: 1rem;
     }
+
+    .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.952);
+    z-index: 1050;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-overlay.d-none {
+    display: none;
+}
+
+.spinner-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    background-image: linear-gradient(rgb(186, 66, 255) 35%, rgb(0, 225, 255));
+    width: 70px;
+    height: 70px;
+    animation: spinning82341 1s linear infinite;
+    text-align: center;
+    border-radius: 50%;
+    filter: blur(1px);
+    box-shadow: 0px -5px 20px 0px rgb(186, 66, 255), 0px 5px 20px 0px rgb(0, 225, 255);
+    position: absolute;
+}
+
+.spinner1 {
+    background-color: rgb(36, 36, 36);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    filter: blur(10px);
+    position: absolute;
+    z-index: -1;
+}
+
+@keyframes spinning82341 {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 </style>
+
+<script>
+    function showLoadingOverlay() {
+        const overlay = document.getElementById('loadingOverlay');
+        overlay.classList.remove('d-none');
+    }
+</script>
