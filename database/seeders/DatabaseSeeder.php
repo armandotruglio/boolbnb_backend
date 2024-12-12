@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
             ServiceSeeder::class,
             PropertySeeder::class,
             PropertyServiceSeeder::class,
+            SponsorshipSeeder::class,
+            PropertySponsorshipSeeder::class,
             MessageSeeder::class,
         ]);
     }
