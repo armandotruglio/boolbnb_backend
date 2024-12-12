@@ -73,7 +73,7 @@ class PropertyController extends Controller
             "radius" => "required|numeric|integer",
             "rooms" => "numeric|integer",
             "beds" => "numeric|integer",
-            "services" => "string",
+            "services" => "",
         ]);
 
         // If the validation fails return failure
@@ -113,8 +113,8 @@ class PropertyController extends Controller
         }
 
         //Filter on property services
-        if ($request->has('services')) {
-            $services = explode('-', $request->services);
+        if ($request->has('services') && !empty($request["services"])) {
+            $services = array_filter(explode('-', $request->services));
 
             $query->whereHas('services', function ($query) use ($services) {
                 $query->whereIn('id', $services);
