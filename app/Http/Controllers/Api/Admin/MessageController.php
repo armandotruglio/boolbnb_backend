@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Models\Message;
+use App\Mail\ContactOwner;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Lead;
+use App\Models\Property;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class MessageController extends Controller
@@ -45,6 +49,19 @@ class MessageController extends Controller
         $message->message = $request->input('message');
         $message->property_id = $request->input('property_id');
         $message->save();
+
+        $property = Property::find($message["property_id"]);
+        $user_email = $property->user->email;
+
+        $data = [
+            "email" => $message["sender_email"],
+            "message" => $message["message"],
+            "property" => $property["title"]
+        ];
+
+        $lead = Lead::create($data);
+
+        Mail::to($user_email)->send(new ContactOwner($lead));
 
         return response()->json([
             'success' => true,
