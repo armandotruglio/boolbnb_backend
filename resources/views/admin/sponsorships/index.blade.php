@@ -2,13 +2,35 @@
 
 @section('content')
     <div class="container">
-        @foreach ($properties as $property)
-            <h5>{{ $property->title }}</h5>
-        @endforeach
-        <section id="payment">
-            <div id="dropin-container"></div>
-            <button id="submit-button" class="button button--small button--green">Purchase</button>
-        </section>
+        <form action="{{ route('admin.sponsorships.store') }}" id="payment" method="POST" class="mt-5">
+            @csrf
+
+            <!--Sponsorships-->
+            <div class="row">
+                @foreach ($sponsorships as $sponsorship)
+                    <div class="col-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sponsorship"
+                                id="radio-sponsorship-{{ $sponsorship->id }}" value="{{ $sponsorship->duration }}">
+                            <label class="form-check-label" for="radio-sponsorship-{{ $sponsorship->id }}">
+                                <b> {{ $sponsorship->name }}</b>
+                            </label>
+                        </div>
+                    </div>
+                @endforeach
+
+                <select class="form-select" aria-label="Default select example" name="property">
+                    @foreach ($properties as $property)
+                        <option value="{{ $property->id }}">{{ $property->title }}</option>
+                    @endforeach
+                </select>
+
+            </div>
+            <section id="payment">
+                <div id="dropin-container"></div>
+                <button id="submit-button" class="button button--small button--green" type="submit">Purchase</button>
+            </section>
+        </form>
     </div>
 
     <!--script-->
