@@ -4,7 +4,7 @@
     <div class="container py-5">
         <div class="row">
             <div class="col-12 text-center mb-4">
-                <h1 class="fw-bold fst-italic">
+                <h1 class="fw-bold">
                     Properties
                 </h1>
             </div>
