@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+                    <div class="card-header bg-primary text-white">{{ __('Register') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
@@ -128,16 +128,13 @@
     <script>
         const registration = document.querySelector("form");
 
-        //  const button = document.getElementById("button");
-        // button.disabled = true;
-
         registration.addEventListener("submit", function(e) {
 
             let success = true;
 
             const mex = document.querySelectorAll("mex");
             mex.forEach(element => {
-                mex.innerHTML = "";
+                element.innerHTML = "";
             });
 
             //verify name
@@ -147,11 +144,11 @@
             const nameValue = name.value.trim();
             if (nameValue.length < 3 || nameValue.length > 255) {
                 success = false;
-                nameError = "il nome deve essere compreso tra 3 e 255 caratteri";
+                nameError = "Il nome deve essere compreso tra 3 e 255 caratteri";
                 name.classList.add("is-invalid");
             } else if (!/^[a-zA-Z]+$/.test(nameValue)) {
                 success = false;
-                nameError = "il nome non può contenere caratteri speciali";
+                nameError = "Il nome non può contenere caratteri speciali";
                 name.classList.add("is-invalid");
             } else {
                 name.classList.remove("is-invalid");
@@ -166,11 +163,11 @@
             const lastNameValue = lastName.value.trim();
             if (lastNameValue.length < 3 || lastNameValue.length > 255) {
                 success = false;
-                lastNameError = "il cognome deve essere compreso tra 3 e 255 caratteri";
+                lastNameError = "Il cognome deve essere compreso tra 3 e 255 caratteri";
                 lastName.classList.add("is-invalid");
             } else if (!/^[a-zA-Z]+$/.test(lastNameValue)) {
                 success = false;
-                lastNameError = "il cognome non può contenere caratteri speciali";
+                lastNameError = "Il cognome non può contenere caratteri speciali";
                 lastName.classList.add("is-invalid");
             } else {
                 lastName.classList.remove("is-invalid");
@@ -190,11 +187,11 @@
                 const m = today.getMonth() - birthDate.getMonth();
                 if (age < 18 || age === 18 && m < 0) {
                     success = false;
-                    dateErrrorMessage = "devi avere alemeno 18 anni";
+                    dateErrrorMessage = "Devi avere almeno 18 anni";
                     date.classList.add("is-invalid");
                 } else if (age > 110 || age === 110 && m > 0) {
                     success = false;
-                    dateErrrorMessage = "devi avere meno di 110 anni";
+                    dateErrrorMessage = "Devi avere meno di 110 anni";
                     date.classList.add("is-invalid");
                 } else {
                     date.classList.remove("is-invalid");
@@ -210,11 +207,11 @@
             const emailValue = email.value.trim();
             if (emailValue.length < 5 || emailValue.length > 255) {
                 success = false;
-                emailErrorMessage = "l'email deve essere compresa tra 5 e 255 caratteri";
+                emailErrorMessage = "L'email deve essere compresa tra 5 e 255 caratteri";
                 email.classList.add("is-invalid");
             } else if (!/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(emailValue)) {
                 success = false;
-                emailErrorMessage = "l'email non ha un formato valido";
+                emailErrorMessage = "L'email non ha un formato valido";
                 email.classList.add("is-invalid");
             } else {
                 email.classList.remove("is-invalid");
@@ -231,12 +228,12 @@
             let confirmPasswordErrorMessage = "";
             if (password.value.length < 8) {
                 success = false;
-                passwordErrorMessage = "la password deve essere almeno di 8 caratteri";
+                passwordErrorMessage = "La password deve essere almeno di 8 caratteri";
                 password.classList.add("is-invalid");
                 confirmPassowrd.classList.add("is-invalid");
             } else if (password.value !== confirmPassowrd.value) {
                 success = false;
-                confirmPasswordErrorMessage = "la password di conferma non corrisponde";
+                confirmPasswordErrorMessage = "La password di conferma non corrisponde";
                 password.classList.remove("is-invalid");
                 password.classList.add("is-valid");
                 confirmPassowrd.classList.add("is-invalid");
