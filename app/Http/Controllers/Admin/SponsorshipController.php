@@ -16,7 +16,7 @@ class SponsorshipController extends Controller
     public function index()
     {
         $sponsorships = Sponsorship::all();
-        $properties = Property::where('user_id', Auth::user()->id)->get();
+        $properties = Property::where('user_id', Auth::user()->id)->where('is_visible', true)->doesntHave('sponsorships')->get();
         return view('admin.sponsorships.index', compact('sponsorships', 'properties'));
     }
 
