@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Api\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\View;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ViewController extends Controller
 {
@@ -28,7 +29,21 @@ class ViewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $exist = View::where('user_ip',$request["user_ip"])->where('property_id',$request["property_id"])->exists();
+
+        if($exist){
+            return response()->json([
+                "succes" => true,
+                "result" => 'already exists'
+            ]);
+        }
+        else{
+            View::create($request->all());
+            return response()->json([
+                "succes" => true,
+                "result" => 'registered'
+            ]);
+        }
     }
 
     /**

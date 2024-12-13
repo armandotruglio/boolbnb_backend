@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Admin\PropertyController;
+use App\Http\Controllers\Api\Admin\ViewController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,3 +34,6 @@ Route::apiResource('admin/sponsorships', App\Http\Controllers\Api\Admin\Sponsors
 
 //API Route to filter sponsorship's properties
 Route::get('/sponsored', [PropertyController::class, 'getSponsoredProperties'])->name('api.sponsored');
+
+//API Route to get the view from the front-end
+Route::post('/views', [ViewController::class, 'store'])->name('api.view');
