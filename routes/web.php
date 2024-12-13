@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\MessageController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,7 @@ Route::resource('admin/properties', App\Http\Controllers\Admin\PropertyControlle
 
 //Routes for messages
 Route::resource('admin/messages', App\Http\Controllers\Admin\MessageController::class, ['as' => 'admin']);
+Route::get('admin/property{id}/messages', [MessageController::class, 'propertyMessages'])->name('admin.property.messages');
 
 //Routes for sponsorships
 Route::resource('admin/sponsorships', App\Http\Controllers\Admin\SponsorshipController::class, ['as' => 'admin']);
