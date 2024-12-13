@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Admin;
 
+use Carbon\Carbon;
 use App\Models\Property;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -130,5 +131,22 @@ class PropertyController extends Controller
             "success" => true,
             "result" => $properties
         ]);
+    }
+
+    public function getSponsoredProperties(Request $request)
+    {   //Creare funzione in PropertyController API che ritorna solo gli appartamenti sponsorizzati 
+
+        $currentDate = Carbon::now();
+
+        $sponsoredProperties = Property::whereHas('sponsorships', function ($query) use ($currentDate) {
+            $query->where('end_date', '>=', $currentDate);
+        })->get();
+
+        return response()->json([
+            'success' => true,
+            'result' => $sponsoredProperties
+        ]);
+
+        //http://127.0.0.1:8000/api/sponsored
     }
 }
