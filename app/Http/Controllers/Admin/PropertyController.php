@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StorePropertyRequest;
 use App\Http\Requests\UpdatePropertyRequest;
+use App\Models\Message;
+use App\Models\View;
 
 use function Laravel\Prompts\error;
 
@@ -169,5 +171,12 @@ class PropertyController extends Controller
             ->with('success', 'Property deleted succesfully')
             ->with('alert-class', "danger");
         ;
+    }
+
+    public function propertyStatistics($id)
+    {
+        $views = View::where('property_id',$id)->get();
+        $messages = Message::where('property_id',$id)->get();
+        return view('admin.statistics.index', compact('views','messages'));
     }
 }

@@ -8,10 +8,6 @@
                 <h1 class="property-title fw-bold">{{ $property->title }} ({{ $property->id }})</h1>
             </div>
             <img src="{{ asset('/storage/' . $property->thumb_url) }}" class="property-image img  rounded shadow-sm" alt="{{ $property->title }}">
-            <a class="btn btn-sm btn-info me-2 shadow-sm"
-                href="{{ route('admin.property.messages', $property->id) }}">
-                Messages
-            </a>
         </div>
         <div class="col-12 mt-4">
             <div class="property-details">
@@ -56,6 +52,15 @@
                 </ul>
             </div>
         </div>
+        <a class="btn btn-lg btn-info me-2 shadow-sm"
+                href="{{ route('admin.property.messages', $property->id) }}">
+                Property messages
+        </a>
+        <a class="btn btn-lg btn-info me-2 shadow-sm"
+                href="{{ route('admin.property.statistics', $property->id) }}">
+                Property stats
+        </a>
+
     </div>
 </div>
 @endsection
