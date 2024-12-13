@@ -141,7 +141,7 @@ class PropertyController extends Controller
 
         $currentDate = Carbon::now();
 
-        $sponsoredProperties = Property::whereHas('sponsorships', function ($query) use ($currentDate) {
+        $sponsoredProperties = Property::with('sponsorships')->whereHas('sponsorships', function ($query) use ($currentDate) {
             $query->where('end_date', '>=', $currentDate);
         })->get();
 
