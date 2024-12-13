@@ -26,6 +26,10 @@ Route::apiResource('admin/services', App\Http\Controllers\Api\Admin\ServiceContr
 //API Routes for messages
 Route::apiResource('admin/messages', App\Http\Controllers\Api\Admin\MessageController::class);
 
+
 //API Route to filter properties
 Route::post("/filter", [PropertyController::class, "filter"])->name("api.filter");
 Route::apiResource('admin/sponsorships', App\Http\Controllers\Api\Admin\SponsorshipController::class);
+
+//API Route to filter sponsorship's properties
+Route::get('/sponsored', [PropertyController::class, 'getSponsoredProperties'])->name('api.sponsored');
