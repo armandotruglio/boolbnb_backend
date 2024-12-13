@@ -33,7 +33,23 @@ class SponsorshipController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'property' => 'required|exists:properties,id',
+            'sponsorship' => 'required|in:24,72,144' // 'in' => 'The :attribute must be one of the following types: :values',
+        ]);
+
+        $property = Property::where('user_id', Auth::user()->id)->where('is_visible', true)->doesntHave('sponsorships')->get();
+        $propertyIds = [];
+        for ($i = 0; $i < count($property); $i++) {
+            array_push($propertyIds, $property[$i]->id);
+        }
+
+        if (!in_array(intval($request->property), $propertyIds)) {
+            return redirect()->back();
+        }
+
+        @dd($request->property, $request->sponsorship);
     }
 
     /**
