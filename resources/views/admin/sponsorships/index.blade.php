@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="container">
+        <!--<form action="{{ route('admin.sponsorships.store') }}" id="payment" method="POST" class="mt-5">-->
         <form action="{{ route('admin.sponsorships.store') }}" id="payment" method="POST" class="mt-5">
             @csrf
-
             <!--Sponsorships-->
             <div class="row">
                 @foreach ($sponsorships as $sponsorship)
@@ -19,7 +19,7 @@
                     </div>
                 @endforeach
 
-                <select class="form-select" aria-label="Default select example" name="property">
+                <select class="form-select" aria-label="Default select example" name="property" required>
                     @foreach ($properties as $property)
                         <option value="{{ $property->id }}">{{ $property->title }}</option>
                     @endforeach
@@ -36,18 +36,25 @@
     <!--script-->
     <script src="https://js.braintreegateway.com/web/dropin/1.43.0/js/dropin.js"></script>
     <script>
+        const form = document.getElementById('payment');
         var button = document.querySelector('#submit-button');
 
         braintree.dropin.create({
             authorization: 'sandbox_g42y39zw_348pk9cgf3bgyw2b',
             selector: '#dropin-container'
-        }, function(err, instance) {
-            button.addEventListener('click', function() {
+        }, function(errOne, instance) {
+            form.addEventListener('submit', function(e) {
+                //prevent send form
+                e.preventDefault();
+
                 instance.requestPaymentMethod(function(err, payload) {
-                    console.log("payload", payload);
-                    console.log("err", err);
-                    console.log("instance", instance);
+                    if (err) {
+                        return
+                    }
+
+                    form.submit()
                 });
+
             })
         });
     </script>
