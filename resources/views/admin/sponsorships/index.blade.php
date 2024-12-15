@@ -7,8 +7,8 @@
             @csrf
             <!--Sponsorships-->
             <div class="row">
-                @foreach ($sponsorships as $sponsorship)
-                    <div class="col-4">
+                <div class="col-12 chechbox-sponsor">
+                    @foreach ($sponsorships as $sponsorship)
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="sponsorship"
                                 id="radio-sponsorship-{{ $sponsorship->id }}" value="{{ $sponsorship->duration }}">
@@ -16,17 +16,20 @@
                                 <b> {{ $sponsorship->name }}</b>
                             </label>
                         </div>
-                    </div>
-                @endforeach
-                <div id="error-check" class="mex d-none">select a sponsorship</div>
-
-                <select class="form-select mt-4" id="property-select" aria-label="Default select example" name="property"
-                    required>
-                    @foreach ($properties as $property)
-                        <option value="{{ $property->id }}">{{ $property->title }}</option>
                     @endforeach
-                </select>
-                <div id="error-select" class="mex d-none">select a property to sponsor</div>
+                </div>
+                <div class="col-12">
+                    <div id="error-check" class="mex d-none">select a sponsorship</div>
+                </div>
+                <div class="col-12">
+                    <select class="form-select mt-4" id="property-select" aria-label="Default select example"
+                        name="property" required>
+                        @foreach ($properties as $property)
+                            <option value="{{ $property->id }}">{{ $property->title }}</option>
+                        @endforeach
+                    </select>
+                    <div id="error-select" class="mex d-none">select a property to sponsor</div>
+                </div>
 
             </div>
             <section id="payment">
@@ -68,6 +71,7 @@
 
                 if (countChecked !== {{ count($sponsorships) }}) {
                     document.getElementById('error-check').classList.remove("d-none");
+                    instance.requestPaymentMethod(function() {});
                     if (!property.value) {
                         document.getElementById('error-select').classList.remove("d-none");
                     } else {
@@ -103,6 +107,24 @@
             background-color: #ea192e;
             color: white;
             width: 30%;
+        }
+
+        #payment {
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .row {
+            padding: 0 10px;
+            flex-wrap: wrap;
+        }
+
+        .chechbox-sponsor {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
         }
 
         .button {
