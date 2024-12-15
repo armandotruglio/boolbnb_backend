@@ -68,7 +68,7 @@ class SponsorshipController extends Controller
         ]);
 
 
-
+        return redirect()->route("admin.properties.index");
         //@dd($duration, "propertuid", $propertyId, "sponsid", $sponsorshipId, $endDate);
     }
 
