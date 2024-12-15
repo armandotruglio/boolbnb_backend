@@ -20,10 +20,17 @@
                 </div>
             @else
                 <div class="col-12">
-                    <div class="d-flex justify-content-end mb-3">
-                        <a href="{{ route('admin.properties.create') }}" class="btn btn-primary btn-lg shadow-sm">
-                            Insert a New Property!
-                        </a>
+                    <div class="button-group d-flex justify-content-end">
+                        <div class="d-flex mb-3 me-5">
+                            <a href="{{ route('admin.sponsorships.index') }}" class="btn btn-success btn-lg shadow-sm">
+                                Sponsor one of your Property!
+                            </a>
+                        </div>
+                        <div class="d-flex justify-content-end mb-3">
+                            <a href="{{ route('admin.properties.create') }}" class="btn btn-primary btn-lg shadow-sm">
+                                Insert a New Property!
+                            </a>
+                        </div>
                     </div>
                     <div class="table-responsive shadow-sm rounded">
                         <table class="table table-hover table-striped align-middle">
@@ -105,85 +112,86 @@
 @endsection
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const deleteModal = document.getElementById('deleteModal');
-    const deleteForm = document.getElementById('deleteForm');
-    const modalMessage = document.getElementById('modal-message');
+    document.addEventListener('DOMContentLoaded', function() {
+        const deleteModal = document.getElementById('deleteModal');
+        const deleteForm = document.getElementById('deleteForm');
+        const modalMessage = document.getElementById('modal-message');
 
-    // Animazione per mostrare il modal
-    deleteModal.addEventListener('show.bs.modal', function (event) {
-        const button = event.relatedTarget;
-        const propertyId = button.getAttribute('data-id');
-        const propertyName = document.getElementById('apartment' + propertyId).innerText;
+        // Animazione per mostrare il modal
+        deleteModal.addEventListener('show.bs.modal', function(event) {
+            const button = event.relatedTarget;
+            const propertyId = button.getAttribute('data-id');
+            const propertyName = document.getElementById('apartment' + propertyId).innerText;
 
-        modalMessage.innerHTML = `<span>Are you sure you want to delete the <b>${propertyName}</b>?</span>`;
-        deleteForm.action = `/admin/properties/${propertyId}`;
+            modalMessage.innerHTML =
+                `<span>Are you sure you want to delete the <b>${propertyName}</b>?</span>`;
+            deleteForm.action = `/admin/properties/${propertyId}`;
+        });
+
+        // Aggiungi un effetto di fade-in alla pagina
+        document.body.style.opacity = 0;
+        document.body.style.transition = "opacity 0.5s ease-in-out";
+        setTimeout(() => {
+            document.body.style.opacity = 1;
+        }, 100);
     });
-
-    // Aggiungi un effetto di fade-in alla pagina
-    document.body.style.opacity = 0;
-    document.body.style.transition = "opacity 0.5s ease-in-out";
-    setTimeout(() => {
-        document.body.style.opacity = 1;
-    }, 100);
-});
 </script>
 
 <style>
-/* Generale per rendere il layout responsive */
-.table-responsive {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-}
+    /* Generale per rendere il layout responsive */
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
 
-/* Pulsanti */
-.btn {
-    transition: all 0.3s ease-in-out;
-}
-
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-/* Modale */
-.modal-content {
-    transform: scale(0.8);
-    transition: transform 0.3s ease-in-out;
-}
-
-.modal.show .modal-content {
-    transform: scale(1);
-}
-
-/* Media query per schermi piccoli */
-@media (max-width: 768px) {
+    /* Pulsanti */
     .btn {
-        font-size: 0.9rem;
-        padding: 0.5rem 1rem;
+        transition: all 0.3s ease-in-out;
     }
 
-    .table thead {
-        display: none;
+    .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 
-    .table tr {
-        display: block;
-        margin-bottom: 1rem;
+    /* Modale */
+    .modal-content {
+        transform: scale(0.8);
+        transition: transform 0.3s ease-in-out;
     }
 
-    .table td {
-        display: flex;
-        justify-content: space-between;
-        padding: 0.5rem 1rem;
-        border: none;
-        border-bottom: 1px solid #ddd;
+    .modal.show .modal-content {
+        transform: scale(1);
     }
 
-    .table td::before {
-        content: attr(data-label);
-        font-weight: bold;
-        text-transform: uppercase;
+    /* Media query per schermi piccoli */
+    @media (max-width: 768px) {
+        .btn {
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+        }
+
+        .table thead {
+            display: none;
+        }
+
+        .table tr {
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .table td {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table td::before {
+            content: attr(data-label);
+            font-weight: bold;
+            text-transform: uppercase;
+        }
     }
-}
 </style>
