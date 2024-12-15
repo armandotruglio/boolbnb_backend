@@ -18,7 +18,7 @@
                         </div>
                     </div>
                 @endforeach
-                <div id="error-check" class="mex">select a sponsorship</div>
+                <div id="error-check" class="mex d-none">select a sponsorship</div>
 
                 <select class="form-select mt-4" id="property-select" aria-label="Default select example" name="property"
                     required>
@@ -26,7 +26,7 @@
                         <option value="{{ $property->id }}">{{ $property->title }}</option>
                     @endforeach
                 </select>
-                <div id="error-select" class="mex invalid-feedback"></div>
+                <div id="error-select" class="mex d-none">select a property to sponsor</div>
 
             </div>
             <section id="payment">
@@ -50,12 +50,16 @@
                 //prevent send form
                 e.preventDefault();
 
+                //take select of property
+                const property = document.getElementById("property-select");
+
                 // validate if a checkbox is checked
                 let countChecked;
                 let checkboxNumb;
                 for (let i = 1; i <= {{ count($sponsorships) }}; i++) {
                     let check = document.getElementById(`radio-sponsorship-${i}`);
                     if (check.checked) {
+                        document.getElementById('error-check').classList.add("d-none");
                         checkboxNumb = i;
                         countChecked = {{ count($sponsorships) }};
                         break
@@ -64,13 +68,20 @@
 
                 if (countChecked !== {{ count($sponsorships) }}) {
                     document.getElementById('error-check').classList.remove("d-none");
+                    if (!property.value) {
+                        document.getElementById('error-select').classList.remove("d-none");
+                    } else {
+                        document.getElementById('error-select').classList.add("d-none");
+                    }
                     return
                 }
 
                 //validate if was selected a property
-                const property = document.getElementById("property-select");
                 if (!property.value) {
+                    document.getElementById('error-select').classList.remove("d-none");
                     return
+                } else {
+                    document.getElementById('error-select').classList.add("d-none");
                 }
 
                 instance.requestPaymentMethod(function(err, payload) {
