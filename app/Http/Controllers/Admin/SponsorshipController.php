@@ -6,6 +6,7 @@ use App\Models\Property;
 use App\Models\Sponsorship;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class SponsorshipController extends Controller
@@ -48,8 +49,27 @@ class SponsorshipController extends Controller
         if (!in_array(intval($request->property), $propertyIds)) {
             return redirect()->back();
         }
+        //property ID
+        $propertyId = Property::findOrFail($request->property);
 
-        @dd($request->property, $request->sponsorship);
+        //duration of sponsorship
+        $duration = $request->sponsorship;
+
+        //find the sposorship with the duration
+        $sponsorshipId = Sponsorship::where('duration', $duration)->first()->id;
+
+        //take this time moment
+        $now = now();
+        //caloclate the end date
+        $endDate = $now->copy()->addHours($duration);
+
+        $propertyId->sponsorships()->attach($sponsorshipId, [
+            'end_date' => $endDate
+        ]);
+
+
+
+        //@dd($duration, "propertuid", $propertyId, "sponsid", $sponsorshipId, $endDate);
     }
 
     /**
