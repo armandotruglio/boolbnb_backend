@@ -19,7 +19,7 @@ class PropertySponsorshipSeeder extends Seeder
         $properties = Property::all();
         $sponsorships = Sponsorship::all()->pluck("id");
 
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 9; $i++) {
             $properties[$i]->sponsorships()->attach($faker->randomElements($sponsorships, 1));
         }
     }
