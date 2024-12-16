@@ -18,9 +18,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.properties.create') }}">Add Properties</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.messages.index') }}">Messages</a>
-                    </li>
                 @endauth
             </ul>
             <ul class="navbar-nav ms-auto">
