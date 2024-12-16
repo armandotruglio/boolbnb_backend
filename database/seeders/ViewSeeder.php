@@ -21,14 +21,14 @@ class ViewSeeder extends Seeder
         $views = [];
 
         foreach ($properties as $propertyId) {
-            $viewsCount = rand(20, 30); // Genera un numero casuale di visualizzazioni tra 20 e 30
+            $viewsCount = rand(20, 1000); // Genera un numero casuale di visualizzazioni tra 20 e 1000
 
             for ($i = 0; $i < $viewsCount; $i++) {
                 $views[] = [
                     'property_id' => $propertyId,
                     'user_ip' => $this->generateRandomIp(),
-                    'created_at' => Carbon::now()->subDays(rand(0, 60)), // Data casuale negli ultimi 60 giorni
-                    'updated_at' => Carbon::now()->subDays(rand(0, 60)),
+                    'created_at' => Carbon::now()->subDays(rand(0, 1000)), // Data casuale negli ultimi 60 giorni
+                    'updated_at' => Carbon::now()->subDays(rand(0, 1000)),
                 ];
             }
         }
