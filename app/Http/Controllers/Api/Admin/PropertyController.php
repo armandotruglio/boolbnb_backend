@@ -67,8 +67,7 @@ class PropertyController extends Controller
 
     public function filter(Request $request)
     {
-
-        // Validate de received data
+        // Validate the received data
         $validator = Validator::make($request->all(), [
             "latitude" => "required|numeric",
             "longitude" => "required|numeric",
@@ -90,41 +89,45 @@ class PropertyController extends Controller
         $longitude = $request["longitude"];
         $radius = $request["radius"];
 
-        /*$query = Property::with('services')->newQuery();*/
-
         // Filter the properties that are in the radius distance with haversine formula
-        $query = Property::with('services')->selectRaw("*,
+        $query = Property::with('services', 'sponsorships')
+            ->selectRaw(
+                "properties.*,
             ( 6371 * acos( cos( radians(?) ) *
             cos( radians(properties.latitude) ) *
             cos( radians(properties.longitude) - radians(?) ) +
             sin( radians(?) ) *
             sin( radians(properties.latitude) ) ) )
-            AS distance", [$latitude, $longitude, $latitude])
-            ->having("distance", "<", $radius)
-            ->orderBy("distance");
+            AS distance,
+            (CASE WHEN property_sponsorship.sponsorship_id IS NOT NULL THEN 1 ELSE 0 END) AS is_sponsored",
+                [$latitude, $longitude, $latitude]
+            )
+            ->leftJoin('property_sponsorship', 'properties.id', '=', 'property_sponsorship.property_id')
+            ->having("distance", "<", $radius);
 
-
-        //Filter on number of rooms
+        // Filter on number of rooms
         if ($request->has('rooms')) {
             $query->where('rooms', '>=', $request->rooms);
         }
 
-        //Filter on number of beds
+        // Filter on number of beds
         if ($request->has('beds')) {
             $query->where('beds', '>=', $request->beds);
         }
 
-        //Filter on property services
+        // Filter on property services
         if ($request->has('services') && !empty($request["services"])) {
             $services = array_filter(explode('-', $request->services));
 
             $query->whereHas('services', function ($query) use ($services) {
                 $query->whereIn('id', $services);
             }, '=', count($services));
-
         }
 
-        $properties = $query->get();
+        // Order by sponsorship first, then by distance
+        $properties = $query->orderBy('is_sponsored', 'desc')
+            ->orderBy('distance')
+            ->get();
 
         // Return filtered properties
         return response()->json([
@@ -133,12 +136,13 @@ class PropertyController extends Controller
         ]);
     }
 
+
     public function getSponsoredProperties(Request $request)
-    {   //Creare funzione in PropertyController API che ritorna solo gli appartamenti sponsorizzati 
+    {   //Creare funzione in PropertyController API che ritorna solo gli appartamenti sponsorizzati
 
         $currentDate = Carbon::now();
 
-        $sponsoredProperties = Property::whereHas('sponsorships', function ($query) use ($currentDate) {
+        $sponsoredProperties = Property::with('sponsorships')->whereHas('sponsorships', function ($query) use ($currentDate) {
             $query->where('end_date', '>=', $currentDate);
         })->get();
 

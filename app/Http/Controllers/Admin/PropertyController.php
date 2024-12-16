@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StorePropertyRequest;
 use App\Http\Requests\UpdatePropertyRequest;
+use App\Models\Message;
+use App\Models\View;
 
 use function Laravel\Prompts\error;
 
@@ -170,4 +172,41 @@ class PropertyController extends Controller
             ->with('alert-class', "danger");
         ;
     }
+
+    /*public function propertyStatistics($id)
+    {
+        $views = View::where('property_id',$id)->get();
+        $messages = Message::where('property_id',$id)->get();
+
+
+        return view('admin.statistics.index', compact('views','messages'));
+    }*/
+
+    public function propertyStatistics($id)
+{
+    // Query messages grouped by month
+    $messagesByMonth = Message::where('property_id',$id)
+        ->selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, COUNT(*) as total')
+        ->groupBy('month')
+        ->orderBy('month', 'asc')
+        ->get();
+
+    // Format the data for the chart
+    $messagesLabels = $messagesByMonth->pluck('month'); // Extract months
+    $messagesData = $messagesByMonth->pluck('total'); // Extract counts
+
+    // Query views grouped by month
+    $viewsByMonth = View::where('property_id',$id)
+        ->selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, COUNT(*) as total')
+        ->groupBy('month')
+        ->orderBy('month', 'asc')
+        ->get();
+
+    // Format the data for the chart
+    $viewsLabels = $viewsByMonth->pluck('month'); // Extract months
+    $viewsData = $viewsByMonth->pluck('total'); // Extract counts
+
+
+    return view('admin.statistics.index', compact('messagesLabels', 'messagesData', 'viewsLabels', 'viewsData'));
+}
 }

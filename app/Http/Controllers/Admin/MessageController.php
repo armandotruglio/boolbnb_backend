@@ -39,7 +39,14 @@ class MessageController extends Controller
      */
     public function show(Message $message)
     {
-        //
+        $message = Message::with('property')->find($message->id);
+        return view('admin.messages.show', compact('message'));
+    }
+
+    public function propertyMessages($id)
+    {
+        $messages = Message::where('property_id',$id)->get();
+        return view('admin.messages.index', compact('messages'));
     }
 
     /**

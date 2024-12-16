@@ -28,7 +28,7 @@
                         <td>{{ $message->property->title ?? 'N/A' }}</td>
                         <td>{{ $message->created_at->format('d/m/Y H:i') }}</td>
                         <td>
-                            <a href="{{ route('messages.show', $message->id) }}" class="btn btn-outline-primary btn-sm view-btn">View</a>
+                            <a href="{{ route('admin.messages.show', $message) }}" class="btn btn-outline-primary btn-sm view-btn">View</a>
                         </td>
                     </tr>
                     @empty

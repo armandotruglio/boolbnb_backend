@@ -52,6 +52,15 @@
                 </ul>
             </div>
         </div>
+        <a class="btn btn-lg btn-info me-2 shadow-sm"
+                href="{{ route('admin.property.messages', $property->id) }}">
+                Property messages
+        </a>
+        <a class="btn btn-lg btn-info me-2 shadow-sm"
+                href="{{ route('admin.property.statistics', $property->id) }}">
+                Property stats
+        </a>
+
     </div>
 </div>
 @endsection
