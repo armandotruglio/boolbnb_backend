@@ -206,7 +206,33 @@ class PropertyController extends Controller
     $viewsLabels = $viewsByMonth->pluck('month'); // Extract months
     $viewsData = $viewsByMonth->pluck('total'); // Extract counts
 
+     // Query messages grouped by year
+     $messagesByYear = Message::where('property_id', $id)
+     ->selectRaw('YEAR(created_at) as year, COUNT(*) as total')
+     ->groupBy('year')
+     ->orderBy('year', 'asc')
+     ->get();
 
-    return view('admin.statistics.index', compact('messagesLabels', 'messagesData', 'viewsLabels', 'viewsData'));
-}
+    // Format the data for the chart (yearly data)
+    $messagesYearLabels = $messagesByYear->pluck('year'); // Extract years
+    $messagesYearData = $messagesByYear->pluck('total'); // Extract counts
+
+    // Query views grouped by year
+    $viewsByYear = View::where('property_id', $id)
+        ->selectRaw('YEAR(created_at) as year, COUNT(*) as total')
+        ->groupBy('year')
+        ->orderBy('year', 'asc')
+        ->get();
+
+    // Format the data for the chart (yearly data)
+    $viewsYearLabels = $viewsByYear->pluck('year'); // Extract years
+    $viewsYearData = $viewsByYear->pluck('total'); // Extract counts
+
+    return view('admin.statistics.index', compact(
+        'messagesLabels', 'messagesData',
+        'viewsLabels', 'viewsData',
+        'messagesYearLabels', 'messagesYearData',
+        'viewsYearLabels', 'viewsYearData'
+    ));
+    }
 }
