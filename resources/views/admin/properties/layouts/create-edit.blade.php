@@ -76,7 +76,7 @@
                             @enderror
                         </div>
                         <div class="mb-3 col-3">
-                            <label for="property-square_meters" class="form-label">Property square_meters*:</label>
+                            <label for="property-square_meters" class="form-label">Property square meters*:</label>
                             <input type="number" name="square_meters" id="property-square_meters" class="form-control"
                                 value="{{ old('square_meters', $property->square_meters) }}" min="16" max="400"
                                 required>
@@ -93,8 +93,8 @@
                                 @include('partials.single-name-error-message')
                             @enderror
                         </div>
-                        <div class="mb-3">
-                            <label for="property-servicves" class="form-label">Services:</label>
+                        <div class="mb-3 ">
+                            <label for="property-servicves" class="form-label">Services*:</label>
                             @foreach ($services as $service)
                                 <div class="form-check">
                                     <input type="checkbox" name="services[]" id="property-services-{{ $service->id }}"

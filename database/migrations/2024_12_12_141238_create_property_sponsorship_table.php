@@ -12,8 +12,8 @@ return new class extends Migration {
     {
         Schema::create('property_sponsorship', function (Blueprint $table) {
 
-            $table->foreignId('property_id')->constrained();
-            $table->foreignId('sponsorship_id')->constrained();
+            $table->foreignId('property_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('sponsorship_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->dateTime('end_date')->default('2025-12-12 00:00:00');
 
             $table->primary(['property_id', 'sponsorship_id']);
