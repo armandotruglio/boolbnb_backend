@@ -50,11 +50,14 @@
                                         <td id="apartment{{ $property->id }}">{{ $property->title }}</td>
                                         <td>{{ $property->address }}</td>
                                         <td>
-                                            @forelse ($property->sponsorships as $sponsorship)
-                                                <span class="badge bg-success">{{ $sponsorship->name }}</span>
+                                        @forelse ($property->sponsorships as $sponsorship)
+                                            <span class="badge bg-success">{{ $sponsorship->name }}</span>
+                                            <small class="text-muted d-block" style="font-size: 0.73rem; color: #000000;">
+                                                Expires on: {{ \Carbon\Carbon::parse($sponsorship->pivot->end_date)->format('d/m/Y H:i') }}
+                                            </small>
                                             @empty
-                                                <span class="text-muted">No sponsorship available</span>
-                                            @endforelse
+                                            <span class="text-muted">No sponsorship available</span>
+                                        @endforelse
                                         </td>
                                         <td>{{ $property->is_visible ? 'Yes' : 'No' }}</td>
                                         <td>
