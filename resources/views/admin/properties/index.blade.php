@@ -36,7 +36,6 @@
                         <table class="table table-hover table-striped align-middle">
                             <thead class="table-dark">
                                 <tr>
-                                    <th>#</th>
                                     <th>Title</th>
                                     <th>Address</th>
                                     <th>Sponsorship</th>
@@ -48,7 +47,6 @@
                             <tbody>
                                 @foreach ($properties as $property)
                                     <tr>
-                                        <td>{{ $property->id }}</td>
                                         <td id="apartment{{ $property->id }}">{{ $property->title }}</td>
                                         <td>{{ $property->address }}</td>
                                         <td>
