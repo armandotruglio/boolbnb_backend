@@ -90,14 +90,15 @@ class PropertyController extends Controller
         $radius = $request["radius"];
 
         // Filter the properties that are in the radius distance with haversine formula
-        $query = Property::with('services')
-            ->selectRaw("properties.*, 
+        $query = Property::with('services', 'sponsorships')
+            ->selectRaw(
+                "properties.*,
             ( 6371 * acos( cos( radians(?) ) *
             cos( radians(properties.latitude) ) *
             cos( radians(properties.longitude) - radians(?) ) +
             sin( radians(?) ) *
             sin( radians(properties.latitude) ) ) )
-            AS distance, 
+            AS distance,
             (CASE WHEN property_sponsorship.sponsorship_id IS NOT NULL THEN 1 ELSE 0 END) AS is_sponsored",
                 [$latitude, $longitude, $latitude]
             )
@@ -137,7 +138,7 @@ class PropertyController extends Controller
 
 
     public function getSponsoredProperties(Request $request)
-    {   //Creare funzione in PropertyController API che ritorna solo gli appartamenti sponsorizzati 
+    {   //Creare funzione in PropertyController API che ritorna solo gli appartamenti sponsorizzati
 
         $currentDate = Carbon::now();
 
