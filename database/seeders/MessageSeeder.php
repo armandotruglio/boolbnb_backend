@@ -44,7 +44,7 @@ class MessageSeeder extends Seeder
                 'sender_name' => 'Jack',
                 'sender_last_name' => 'Thomas',
                 'message' => 'Can you confirm the square footage of this property?',
-                'created_at' => '2024-07-21 16:47',
+                'created_at' => '2022-07-21 16:47',
             ],
             [
                 'property_id' => 9,
@@ -92,7 +92,7 @@ class MessageSeeder extends Seeder
                 'sender_name' => 'Henry',
                 'sender_last_name' => 'Brown',
                 'message' => 'I would like to make an offer for this property.',
-                'created_at' => '2023-07-18 14:04',
+                'created_at' => '2022-07-18 14:04',
             ],
             [
                 'property_id' => 15,
@@ -148,7 +148,7 @@ class MessageSeeder extends Seeder
                 'sender_name' => 'Grace',
                 'sender_last_name' => 'Taylor',
                 'message' => 'I would like more information about the amenities included.',
-                'created_at' => '2023-11-03 08:24',
+                'created_at' => '2022-11-03 08:24',
             ],
             [
                 'property_id' => 2,
@@ -204,7 +204,7 @@ class MessageSeeder extends Seeder
                 'sender_name' => 'Sebastian',
                 'sender_last_name' => 'King',
                 'message' => 'I am very interested in this property. Can we discuss further?',
-                'created_at' => '2024-10-14 12:19',
+                'created_at' => '2022-10-14 12:19',
             ],
             [
                 'property_id' => 9,
@@ -244,7 +244,7 @@ class MessageSeeder extends Seeder
                 'sender_name' => 'Zachary',
                 'sender_last_name' => 'Turner',
                 'message' => 'Can I negotiate the rent price?',
-                'created_at' => '2024-06-28 10:44',
+                'created_at' => '2022-06-28 10:44',
             ],
             [
                 'property_id' => 2,
