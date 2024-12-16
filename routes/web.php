@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     if (Auth::check()) {
-        return view("home");
+        return redirect(route('home'));
     } else {
         return view("auth.login");
     }
@@ -26,7 +26,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [PropertyController::class, 'index'])->name('home');
 
 //Routes for properties
 Route::resource('admin/properties', App\Http\Controllers\Admin\PropertyController::class, ['as' => 'admin']);
