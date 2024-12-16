@@ -24,7 +24,7 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $properties = Property::where('user_id', Auth::user()->id)->get();
+        $properties = Property::where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
         return view('admin.properties.index', compact('properties'));
     }
 
@@ -157,8 +157,7 @@ class PropertyController extends Controller
 
         return redirect()->route("admin.properties.index")
             ->with('message', "Project $property->title has been updated successfully!")
-            ->with('alert-class', "primary");
-        ;
+            ->with('alert-class', "primary");;
     }
 
     /**
@@ -169,8 +168,7 @@ class PropertyController extends Controller
         $property->delete();
         return redirect()->route('admin.properties.index')
             ->with('success', 'Property deleted succesfully')
-            ->with('alert-class', "danger");
-        ;
+            ->with('alert-class', "danger");;
     }
 
     /*public function propertyStatistics($id)
@@ -183,28 +181,28 @@ class PropertyController extends Controller
     }*/
 
     public function propertyStatistics($id)
-{
-    // Query messages grouped by month
-    $messagesByMonth = Message::where('property_id',$id)
-        ->selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, COUNT(*) as total')
-        ->groupBy('month')
-        ->orderBy('month', 'asc')
-        ->get();
+    {
+        // Query messages grouped by month
+        $messagesByMonth = Message::where('property_id', $id)
+            ->selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, COUNT(*) as total')
+            ->groupBy('month')
+            ->orderBy('month', 'asc')
+            ->get();
 
-    // Format the data for the chart
-    $messagesLabels = $messagesByMonth->pluck('month'); // Extract months
-    $messagesData = $messagesByMonth->pluck('total'); // Extract counts
+        // Format the data for the chart
+        $messagesLabels = $messagesByMonth->pluck('month'); // Extract months
+        $messagesData = $messagesByMonth->pluck('total'); // Extract counts
 
-    // Query views grouped by month
-    $viewsByMonth = View::where('property_id',$id)
-        ->selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, COUNT(*) as total')
-        ->groupBy('month')
-        ->orderBy('month', 'asc')
-        ->get();
+        // Query views grouped by month
+        $viewsByMonth = View::where('property_id', $id)
+            ->selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, COUNT(*) as total')
+            ->groupBy('month')
+            ->orderBy('month', 'asc')
+            ->get();
 
-    // Format the data for the chart
-    $viewsLabels = $viewsByMonth->pluck('month'); // Extract months
-    $viewsData = $viewsByMonth->pluck('total'); // Extract counts
+        // Format the data for the chart
+        $viewsLabels = $viewsByMonth->pluck('month'); // Extract months
+        $viewsData = $viewsByMonth->pluck('total'); // Extract counts
 
      // Query messages grouped by year
      $messagesByYear = Message::where('property_id', $id)
