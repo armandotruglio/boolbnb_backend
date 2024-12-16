@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Admin\PropertyController;
+use App\Http\Controllers\Api\Admin\UserController;
 use App\Http\Controllers\Api\Admin\ViewController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -37,3 +38,6 @@ Route::get('/sponsored', [PropertyController::class, 'getSponsoredProperties'])-
 
 //API Route to get the view from the front-end
 Route::post('/views', [ViewController::class, 'store'])->name('api.view');
+
+//Route to Get User
+Route::get('/user/{id}',[UserController::class, 'getUserData']);

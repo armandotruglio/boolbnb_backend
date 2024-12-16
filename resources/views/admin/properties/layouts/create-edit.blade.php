@@ -151,12 +151,12 @@
     <script>
         var options = {
             searchOptions: {
-                key: "{{ env('TOMTOM_KEY') }}",
+                key: "TAXonGelVNcgxyFkw4CEG6fTBwGzcdoa",
                 language: "it-IT",
                 limit: 5
             },
             autocompleteOptions: {
-                key: "{{ env('TOMTOM_KEY') }}",
+                key: "TAXonGelVNcgxyFkw4CEG6fTBwGzcdoa",
                 language: "it-IT",
             },
         }
