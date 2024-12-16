@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-12 text-center mb-4">
                 <h1 class="fw-bold">
-                    Properties
+                    Properties found: {{ count($properties) }}
                 </h1>
             </div>
 
