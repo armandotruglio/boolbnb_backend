@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('views', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("property_id")->references("id")->on("properties");
+            $table->foreignId("property_id")->references("id")->on("properties")->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('user_ip');
             $table->timestamps();
         });
