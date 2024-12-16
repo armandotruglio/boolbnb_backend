@@ -37,7 +37,7 @@ class StorePropertyRequest extends FormRequest
             "is_visible" => ["boolean"],
             "thumb_url" => ["required", "image"],
             "services" => ["array"],
-            "services.*" => ["string", "exists:services,id", "min:3", "max:255"],
+            "services.*" => ["string", "exists:services,id", "max:255"],
             "icon_url" => ["nullable", "string", "min:2", "max:255"],
         ];
     }
