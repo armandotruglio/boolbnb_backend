@@ -36,8 +36,8 @@ class StorePropertyRequest extends FormRequest
             "square_meters" => ["required", "numeric", "integer", "min:16", "max:400"],
             "is_visible" => ["boolean"],
             "thumb_url" => ["required", "image"],
-            "services" => ["array"],
-            "services.*" => ["string", "exists:services,id", "max:255"],
+            "services" => ["required", "array", "min:1"],
+            "services.*" => ["required", "string", "exists:services,id", "max:255"],
             "icon_url" => ["nullable", "string", "min:2", "max:255"],
         ];
     }
