@@ -205,7 +205,7 @@
                 success = false;
                 titleErrorMessage = "il titolo deve essere compreso tra 3 e 255 caratteri";
                 title.classList.add("is-invalid");
-            } else if (!/^[a-zA-Z0-9$_]+$/.test(titleValue)) {
+            } else if (!/^[a-zA-Z\s]+$/.test(titleValue)) {
                 success = false;
                 titleErrorMessage = "il titolo non può contenere caratteri speciali";
                 title.classList.add("is-invalid");
