@@ -94,7 +94,7 @@
                             @enderror
                         </div>
                         <div class="mb-3 ">
-                            <label for="property-servicves" class="form-label">Services:</label>
+                            <label for="property-servicves" class="form-label">Services*:</label>
                             @foreach ($services as $service)
                                 <div class="form-check">
                                     <input type="checkbox" name="services[]" id="property-servicves"
