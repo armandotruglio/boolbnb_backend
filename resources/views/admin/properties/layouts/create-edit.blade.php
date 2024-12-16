@@ -9,7 +9,7 @@
                     @csrf
                     <div class="row">
 
-                        <div class="mb-3 col-12">
+                        <div class="my-3 col-12">
                             <h1 class="text-center fw-bold">
                                 @yield('form-title')
                             </h1>
@@ -97,14 +97,16 @@
                             <label for="property-servicves" class="form-label">Services*:</label>
                             @foreach ($services as $service)
                                 <div class="form-check">
-                                    <input type="checkbox" name="services[]" id="property-servicves"
-                                        class="form-check-input" value="{{ $service->id }}" @checked(in_array($service->id, old('services', $property->services->pluck('id')->toArray())))>
+                                    <input type="checkbox" name="services[]" id="property-services-{{ $service->id }}"
+                                        class="form-check-input service-check" value="{{ $service->id }}"
+                                        @checked(in_array($service->id, old('services', $property->services->pluck('id')->toArray())))>
                                     <label type="checkbox" name="services[]" id="property-servicves"
                                         class="form-check-label">
                                         {{ $service->name }}
                                     </label>
                                 </div>
                             @endforeach
+                            <div id="service-error" class="mex text-danger"></div>
                             @error('services')
                                 @include('partials.single-name-error-message')
                             @enderror
@@ -196,6 +198,35 @@
                 mex.innerHTML = "";
             });
 
+            //verify services
+            /*let services = document.querySelectorAll('.service-check');
+            const serviceError = document.getElementById("service-error");
+            let serviceErrorMessage = "";
+            console.log(services.length);
+            let serviceNumb = 0;
+            for (let i = 0; i < services.length; i++) {
+                if (!services[i].checked) {
+                    serviceNumb++;
+                    console.log(serviceNumb);
+                    services[i].classList.add("is-invalid");
+                    serviceErrorMessage = "you have to choose at least one service"
+                } else {
+                    let serviceErrorMessage = "";
+                    serviceError.forEach(s => {
+                        s.classList.remove("is-invalid");
+                        s.classList.add("is-invalid");
+                    });
+
+                    break
+                }
+
+            };
+
+            if (serviceNumb === services.length) {
+                success = false;
+            }
+            serviceError.innerHTML = serviceErrorMessage;*/
+
             //verify title
             const title = document.getElementById("property-title");
             const titleValue = title.value.trim();
@@ -205,7 +236,7 @@
                 success = false;
                 titleErrorMessage = "il titolo deve essere compreso tra 3 e 255 caratteri";
                 title.classList.add("is-invalid");
-            } else if (!/^[a-zA-Z0-9$_]+$/.test(titleValue)) {
+            } else if (!/^[a-zA-Z\s]+$/.test(titleValue)) {
                 success = false;
                 titleErrorMessage = "il titolo non può contenere caratteri speciali";
                 title.classList.add("is-invalid");
@@ -257,7 +288,7 @@
             let roomsErrorMessage = "";
             if (roomsValue < 1 || roomsValue > 15) {
                 success = false;
-                roomsErrorMessage = "non ci possono essere meno di 1 stanza o più di 15 stanze";
+                roomsErrorMessage = "there cannot be less than 1 room or more than 15 rooms";
                 rooms.classList.add("is-invalid");
             } else {
                 rooms.classList.remove("is-invalid");
@@ -272,7 +303,7 @@
             let bedsErrorMessage = "";
             if (bedsValue < 1 || bedsValue > 15) {
                 success = false;
-                bedsErrorMessage = "non ci possono essere meno di 1 letto o più di 15 letti";
+                bedsErrorMessage = "there cannot be less than 1 bed or more than 15 beds";
                 beds.classList.add("is-invalid");
             } else {
                 beds.classList.remove("is-invalid");
@@ -287,7 +318,7 @@
             let bathroomsErrorMessage = "";
             if (bathroomsValue < 1 || bathroomsValue > 15) {
                 success = false;
-                bathroomsErrorMessage = "non ci possono essere meno di 1 bagno o più di 15 bagni";
+                bathroomsErrorMessage = "there cannot be less than 1 bathroom or more than 15 bathrooms";
                 bathrooms.classList.add("is-invalid");
             } else {
                 bathrooms.classList.remove("is-invalid");
@@ -302,7 +333,7 @@
             let squareMetersErrorMessage = "";
             if (squareMetersValue < 16 || squareMetersValue > 400) {
                 success = false;
-                squareMetersErrorMessage = "non ci possono essere meno di 1 stanza o più di 15 stanze";
+                squareMetersErrorMessage = "there cannot be less than 1 room or more than 15 rooms";
                 squareMeters.classList.add("is-invalid");
             } else {
                 squareMeters.classList.remove("is-invalid");
@@ -317,14 +348,13 @@
             let thumbErrorMessage = "";
             if (!/\.(jpg|jpeg|gif|png)$/.test(thumbValue)) {
                 success = false;
-                thumbErrorMessage = "immagine è di un tipo di file non supportato";
+                thumbErrorMessage = "image is of an unsupported file type";
                 thumb.classList.add("is-invalid");
             } else {
                 thumb.classList.remove("is-invalid");
                 thumb.classList.add("is-valid");
             }
             thumbError.innerHTML = thumbErrorMessage;
-
 
 
 
