@@ -40,7 +40,7 @@
                                     <th>Address</th>
                                     <th>Sponsorship</th>
                                     <th>Visible</th>
-                                    <th>Services</th>
+                                    <th class="d-none">Services</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -62,7 +62,7 @@
                                             @endforelse
                                         </td>
                                         <td>{{ $property->is_visible ? 'Yes' : 'No' }}</td>
-                                        <td>
+                                        <td class="d-none">
                                             @forelse ($property->services as $service)
                                                 <span class="badge bg-info mb-1 me-1">{{ $service->name }}</span>
                                             @empty
@@ -70,15 +70,15 @@
                                             @endforelse
                                         </td>
                                         <td>
-                                            <a class="btn btn-sm btn-info mb-1 me-2 shadow-sm col-xxl-4 col-xl-5 col-lg-6"
+                                            <a class="btn btn-sm btn-info mb-1 me-2 shadow-sm col-xxl-3 col-xl-4 col-lg-6"
                                                 href="{{ route('admin.properties.show', $property->id) }}">
                                                 Details
                                             </a>
                                             <a href="{{ route('admin.properties.edit', $property) }}"
-                                                class="btn btn-warning btn-sm mb-1 me-2 shadow-sm col-xxl-3 col-xl-4 col-lg-5">
+                                                class="btn btn-warning btn-sm mb-1 me-2 shadow-sm col-xxl-3 col-xl-4 col-lg-6">
                                                 Edit
                                             </a>
-                                            <button class="btn btn-danger btn-sm mb-1 shadow-sm col-xxl-4 col-xl-5 col-lg-6" data-bs-toggle="modal"
+                                            <button class="btn btn-danger btn-sm mb-1 shadow-sm col-xxl-3 col-xl-4 col-lg-6" data-bs-toggle="modal"
                                                 data-bs-target="#deleteModal" data-id="{{ $property->id }}">
                                                 Delete
                                             </button>
