@@ -51,7 +51,7 @@
                                         <td>{{ $property->address }}</td>
                                         <td>
                                             @forelse ($property->sponsorships as $sponsorship)
-                                                <span class="badge bg-success">{{ $sponsorship->name }}</span>
+                                                <span class="badge bg-success me-3">{{ $sponsorship->name }}</span>
                                                 <small class="text-muted d-block"
                                                     style="font-size: 0.73rem; color: #000000;">
                                                     Expires on:
