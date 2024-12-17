@@ -70,15 +70,15 @@
                                             @endforelse
                                         </td>
                                         <td>
-                                            <a class="btn btn-sm btn-info me-2 shadow-sm"
+                                            <a class="btn btn-sm btn-info me-2 shadow-sm col-xxl-4 col-xl-5 col-lg-6"
                                                 href="{{ route('admin.properties.show', $property->id) }}">
-                                                Show
+                                                Details
                                             </a>
                                             <a href="{{ route('admin.properties.edit', $property) }}"
-                                                class="btn btn-warning btn-sm me-2 shadow-sm">
+                                                class="btn btn-warning btn-sm me-2 shadow-sm col-xxl-3 col-xl-4 col-lg-5">
                                                 Edit
                                             </a>
-                                            <button class="btn btn-danger btn-sm shadow-sm" data-bs-toggle="modal"
+                                            <button class="btn btn-danger btn-sm shadow-sm col-xxl-4 col-xl-5 col-lg-6" data-bs-toggle="modal"
                                                 data-bs-target="#deleteModal" data-id="{{ $property->id }}">
                                                 Delete
                                             </button>
@@ -185,7 +185,7 @@
 
         .table td {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             padding: 0.5rem 1rem;
             border: none;
             border-bottom: 1px solid #ddd;
