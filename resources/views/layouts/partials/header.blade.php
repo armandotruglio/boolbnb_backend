@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center"
             href="@auth {{ url('http://localhost:5174/') . '?login=true&auth=' . Auth::user()->id }} @else {{ url('http://localhost:5174/?login=false') }} @endauth">
@@ -55,6 +55,11 @@
 <style>
     .navbar {
         transition: background-color 0.3s ease;
+        background: linear-gradient(90deg, #0056b1, #012a7c);
+    }
+
+    .navbar:hover {
+        background: linear-gradient(90deg, #003b7a, #00205a);
     }
 
     .navbar-dark .navbar-nav .nav-link {
