@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\Admin\UserController;
+use App\Http\Controllers\Api\Admin\ViewController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,13 +29,16 @@ Route::apiResource('admin/services', App\Http\Controllers\Api\Admin\ServiceContr
 //API Routes for messages
 Route::apiResource('admin/messages', App\Http\Controllers\Api\Admin\MessageController::class);
 
+
 //API Route to filter properties
 Route::post("/filter", [PropertyController::class, "filter"])->name("api.filter");
 Route::apiResource('admin/sponsorships', App\Http\Controllers\Api\Admin\SponsorshipController::class);
 
-Route::middleware("web")->get('/auth-check', function () {
-    return response()->json([
-        'loggedIn' => Auth::check(),
-        'result' => Auth::user()
-    ]);
-});
+//API Route to filter sponsorship's properties
+Route::get('/sponsored', [PropertyController::class, 'getSponsoredProperties'])->name('api.sponsored');
+
+//API Route to get the view from the front-end
+Route::post('/views', [ViewController::class, 'store'])->name('api.view');
+
+//Route to Get User
+Route::get('/user/{id}',[UserController::class, 'getUserData']);

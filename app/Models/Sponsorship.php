@@ -13,6 +13,6 @@ class Sponsorship extends Model
 
     public function properties()
     {
-        return $this->belongsToMany(Property::class, 'property_sponsorship');
+        return $this->belongsToMany(Property::class, 'property_sponsorship')->withPivot('end_date');
     }
 }

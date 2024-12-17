@@ -59,6 +59,17 @@
                                 {{ __('Login') }}
                             </button>
                         </div>
+
+                        <div class="d-grid gap-2 mb-4">
+                            <span class="text-center">
+                                You don't have an account?
+                            </span>
+                            <a href="http://127.0.0.1:8000/register" class="btn btn-primary btn-md">
+                                {{ __('Register') }}
+                            </a>
+                        </div>
+
+
                     </form>
                 </div>
             </div>

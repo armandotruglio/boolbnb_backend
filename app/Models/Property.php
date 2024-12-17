@@ -23,6 +23,17 @@ class Property extends Model
 
     public function sponsorships()
     {
-        return $this->belongsToMany(Sponsorship::class, 'property_sponsorship');
+        return $this->belongsToMany(Sponsorship::class, 'property_sponsorship')->withPivot('end_date');
+
+    }
+
+    public function views()
+    {
+        return $this->hasMany(View::class);
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
     }
 }
