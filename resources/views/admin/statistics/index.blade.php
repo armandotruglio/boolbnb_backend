@@ -3,23 +3,24 @@
 @section('content')
 <div class="container-fluid">
 
-        <div class="row">
+        <div class="row text-center pb-5 pt-3">
             <div class="col-12">
-                <h1 class="text-center font-bold p-5">PROPERTY STATS</h1>
+                <h3 class="text-primary">Stats for:</h1>
+                <h2 class="fw-bold">{{$property->title}}</span>
             </div>
         </div>
 
-        <div class="row justify-content-center mb-5">
+        <div class="row justify-content-center text-center">
 
-            <div class="col-4">
-                <div class="mb-8">
-                    <h2 class="text-xl font-semibold mb-4">Messages Received by month</h2>
+            <div class="col-lg-4 mb-4">
+                <div class="card p-4 border border-primary border-3">
+                    <h2 class="text-xl font-semibold mb-4">Messages by month</h2>
                     <canvas id="messagesChart" width="400" height="200"></canvas>
                 </div>
             </div>
 
-            <div class="col-4">
-                <div>
+            <div class="col-lg-4 mb-4">
+                <div class="card p-4 border border-primary border-3">
                     <h2 class="text-xl font-semibold mb-4">Views by month</h2>
                     <canvas id="viewsChart" width="400" height="200"></canvas>
                 </div>
@@ -27,17 +28,17 @@
 
         </div>
 
-        <div class="row justify-content-center">
+        <div class="row justify-content-center text-center pb-5">
 
-            <div class="col-4">
-                <div class="mb-8">
-                    <h2 class="text-xl font-semibold mb-4">Messages Received by year</h2>
+            <div class="col-lg-4 mb-4">
+                <div class="card p-4 border border-primary border-3">
+                    <h2 class="text-xl font-semibold mb-4">Messages by year</h2>
                     <canvas id="messagesYearChart" width="400" height="200"></canvas>
                 </div>
             </div>
 
-            <div class="col-4">
-                <div>
+            <div class="col-lg-4">
+                <div class="card p-4 mb-4 border border-primary border-3">
                     <h2 class="text-xl font-semibold mb-4">Views by year</h2>
                     <canvas id="viewsYearChart" width="400" height="200"></canvas>
                 </div>

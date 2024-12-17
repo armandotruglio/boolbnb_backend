@@ -226,11 +226,14 @@ class PropertyController extends Controller
     $viewsYearLabels = $viewsByYear->pluck('year'); // Extract years
     $viewsYearData = $viewsByYear->pluck('total'); // Extract counts
 
+    $property = Property::find($id);
+
     return view('admin.statistics.index', compact(
         'messagesLabels', 'messagesData',
         'viewsLabels', 'viewsData',
         'messagesYearLabels', 'messagesYearData',
-        'viewsYearLabels', 'viewsYearData'
+        'viewsYearLabels', 'viewsYearData',
+        'property'
     ));
     }
 }
