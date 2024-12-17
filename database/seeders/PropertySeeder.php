@@ -57,9 +57,9 @@ class PropertySeeder extends Seeder
                                     The kitchen is a chef’s dream, equipped with modern appliances, ample counter space, and a layout perfect for both casual meals and entertaining. The dining area opens onto a spacious patio, ideal for savoring meals while enjoying the sea breeze.
                                     The bedrooms provide peaceful retreats, each designed with relaxation in mind. Wake up to the sound of waves and ocean views from the master suite, which features a private balcony. The bathrooms are equally luxurious, with spa-like finishes and a calming ambiance.
                                     Outside, the property boasts direct access to the beach or a lush garden that blends harmoniously with its surroundings. Whether you’re soaking up the sun, enjoying water sports, or simply unwinding with a book, this home offers the ultimate seaside lifestyle.',
-                'address' => 'Via Pietro Micca, 22, 10122 Torino, Italia.',
-                'latitude' => 45.070496,
-                'longitude' => 7.678457,
+                'address' => 'Via Andrea Doria, 63',
+                'latitude' => 38.158563,
+                'longitude' => 14.740379,
                 'rooms' => 3,
                 'beds' => 2,
                 'bathrooms' => 1,
@@ -130,9 +130,9 @@ class PropertySeeder extends Seeder
                                     Retreat to the master suite, a sanctuary of tranquility, featuring a private balcony, a lavish en-suite bathroom with a soaking tub, and a walk-in closet. Each additional bedroom boasts its own unique charm, with large windows offering stunning sea views.
                                     The building itself offers exclusive amenities including a rooftop infinity pool, a state-of-the-art fitness center, and 24-hour concierge service, ensuring every need is met with the utmost care.
                                     This seaside penthouse is not just a residence, but a lifestyle of unparalleled luxury and comfort, where every detail is designed to enhance your coastal living experience.',
-                'address' => 'Via Moncenisio, 7, 35020 Padova, Italia.',
-                'latitude' => 45.341568,
-                'longitude' => 11.904222,
+                'address' => 'Corso Italia, 36, 16145 Genova, Italia.',
+                'latitude' => 44.392347,
+                'longitude' => 8.959793,
                 'rooms' => 4,
                 'beds' => 3,
                 'bathrooms' => 3,
@@ -341,7 +341,7 @@ class PropertySeeder extends Seeder
             ],
             [
                 'user_id' => 1,
-                'title' => 'Seaside cottage in Sicily',
+                'title' => 'Isola delle Rose',
                 'description' => 'Set along the sun-drenched shores of Sicily, this charming seaside cottage offers a perfect escape for those seeking tranquility and natural beauty. The property is surrounded by fragrant Mediterranean flora and boasts direct access to a pristine sandy beach.
                                  The cottage features a cozy living area with whitewashed walls, exposed wooden beams, and large windows that frame stunning views of the sea. The open-plan kitchen and dining area are designed for comfort and convenience, equipped with modern appliances and rustic touches that enhance the coastal vibe.
                                  The master bedroom offers a peaceful retreat with its minimalist decor, ocean views, and direct access to a private terrace. A second bedroom and a stylish bathroom provide additional comfort for family or guests.
