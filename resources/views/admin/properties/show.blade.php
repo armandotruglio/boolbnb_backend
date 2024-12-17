@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="property-container py-4 m-5">
+<div class="property-container py-0 mt-3 mx-5 mb-5">
     <div class="row">
         <div class="col-12 text-center">
             <div class="col-12 mt-3 text-center">
-                <h1 class="property-title fw-bold">{{ $property->title }} ({{ $property->id }})</h1>
+                <h1 class="property-title fw-bold mb-4">{{ $property->title }}</h1>
             </div>
-            <img src="{{ asset('/storage/' . $property->thumb_url) }}" class="property-image img  rounded shadow-sm" alt="{{ $property->title }}">
+            <img src="{{ asset('/storage/' . $property->thumb_url) }}" class="property-image img  rounded shadow-sm col-xxl-6 col-xl-7 col-lg-7 col-md-8 col-sm-12 col-12" alt="{{ $property->title }}">
         </div>
         <div class="col-12 mt-4">
             <div class="property-details">
@@ -52,14 +52,17 @@
                 </ul>
             </div>
         </div>
-        <a class="btn btn-lg btn-info me-2 shadow-sm"
+        <div class="d-flex colmn justify-content-center">
+            <a class="btn btn-lg btn-info me-2 shadow-sm col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-5 col-9"
                 href="{{ route('admin.property.messages', $property->id) }}">
                 Property messages
-        </a>
-        <a class="btn btn-lg btn-info me-2 shadow-sm"
-                href="{{ route('admin.property.statistics', $property->id) }}">
-                Property stats
-        </a>
+            </a>
+            <a class="btn btn-lg btn-info me-2 shadow-sm col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-5 col-9"
+                    href="{{ route('admin.property.statistics', $property->id) }}">
+                    Property stats
+            </a>
+        </div>
+
 
     </div>
 </div>
@@ -73,21 +76,16 @@ body {
 }
 
 .property-container {
-    padding: 100px;
+    /* padding: 100px; */
     overflow: hidden;
 }
 
 .property-image {
-    max-width: 80%;
+    max-width: 100%;
     height: auto;
     object-fit: cover;
     border-radius: 8px;
     transition: transform 0.5s ease;
-}
-
-.img {
-    max-width: 40%;
-    height: auto;
 }
 
 .property-title {
@@ -141,11 +139,16 @@ body {
     }
 
     .property-image {
-        max-width: 90%;
+        /* max-width: 90%; */
     }
 
     .list-item {
         font-size: 0.85rem;
+    }
+    .colmn{
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
     }
 }
 </style>

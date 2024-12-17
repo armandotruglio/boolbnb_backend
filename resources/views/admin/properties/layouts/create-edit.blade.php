@@ -48,7 +48,7 @@
                             @include('partials.single-name-error-message')
                         @enderror
 
-                        <div class="mb-3 col-3">
+                        <div class="mb-3 col-6 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
                             <label for="property-rooms" class="form-label">Property rooms*:</label>
                             <input type="number" name="rooms" id="property-rooms" class="form-control"
                                 value="{{ old('rooms', $property->rooms) }}" min="1" max="15" required>
@@ -57,7 +57,7 @@
                                 @include('partials.single-name-error-message')
                             @enderror
                         </div>
-                        <div class="mb-3 col-3">
+                        <div class="mb-3 col-6 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
                             <label for="property-beds" class="form-label">Property beds*:</label>
                             <input type="number" name="beds" id="property-beds" class="form-control"
                                 value="{{ old('beds', $property->beds) }}" min="1" max="15" required>
@@ -66,7 +66,7 @@
                                 @include('partials.single-name-error-message')
                             @enderror
                         </div>
-                        <div class="mb-3 col-3">
+                        <div class="mb-3 col-6 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
                             <label for="property-bathrooms" class="form-label">Property bathrooms*:</label>
                             <input type="number" name="bathrooms" id="property-bathrooms" class="form-control"
                                 value="{{ old('bathrooms', $property->bathrooms) }}" min="1" max="15" required>
@@ -75,7 +75,7 @@
                                 @include('partials.single-name-error-message')
                             @enderror
                         </div>
-                        <div class="mb-3 col-3">
+                        <div class="mb-3 col-6 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
                             <label for="property-square_meters" class="form-label">Property square meters*:</label>
                             <input type="number" name="square_meters" id="property-square_meters" class="form-control"
                                 value="{{ old('square_meters', $property->square_meters) }}" min="16" max="400"
@@ -85,7 +85,7 @@
                                 @include('partials.single-name-error-message')
                             @enderror
                         </div>
-                        <div class="mb-3 col-3">
+                        <div class="mb-3 col-12">
                             <label for="property-is_visible" class="form-label">Property visiblility:</label>
                             <input type="checkbox" name="is_visible" id="property-is_visible" class="form-check-input"
                                 value="1" @checked(old('is_visible', $property->is_visible))>
@@ -136,8 +136,8 @@
                             @enderror
                         </div>
                         <div class="col-12 d-flex justify-content-center gap-5 mb-5">
-                            <button type="submit" class="btn btn-lg btn-primary col-3">@yield('form-title')</button>
-                            <button type="reset" class="btn btn-lg btn-warning col-3">Reset fields</button>
+                            <button type="submit" class="btn btn-lg btn-primary col-5 col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-5">@yield('form-title')</button>
+                            <button type="reset" class="btn btn-lg btn-warning col-5 col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-5">Reset fields</button>
                         </div>
                     </div>
                     <div class="required text-center">
