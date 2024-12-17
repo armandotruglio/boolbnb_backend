@@ -1,9 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center"
-        href="@auth {{ url('http://localhost:5174/') . '?login=true&auth=' . Auth::user()->id }} @else {{ url('http://localhost:5174/?login=false') }} @endauth">
+            href="@auth {{ url('http://localhost:5174/') . '?login=true&auth=' . Auth::user()->id }} @else {{ url('http://localhost:5174/?login=false') }} @endauth">
             <img src="{{ asset('storage/BoolBnb.png') }}" alt="BoolBNB Logo" style="height: 50px; margin-right: 15px;">
-            <span class="fw-bold">BoolBNB</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
