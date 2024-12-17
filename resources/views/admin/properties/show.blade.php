@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-12 text-center">
             <div class="col-12 mt-3 text-center">
-                <h1 class="property-title fw-bold">{{ $property->title }} ({{ $property->id }})</h1>
+                <h1 class="property-title fw-bold">{{ $property->title }}</h1>
             </div>
             <img src="{{ asset('/storage/' . $property->thumb_url) }}" class="property-image img  rounded shadow-sm" alt="{{ $property->title }}">
         </div>
