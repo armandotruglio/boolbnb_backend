@@ -4,7 +4,7 @@
 <div class="container py-5">
     <div class="row">
         <div class="col-12 text-center pb-4">
-            <h1 class="display-5 text-primary font-weight-bold">Message Details</h1>
+            <h1 class="fw-bold">Message Details</h1>
         </div>
     </div>
 
@@ -12,21 +12,23 @@
         <div class="col-lg-8 col-md-10">
             <div class="card shadow-lg border-0 rounded-lg">
                 <div class="card-header bg-primary text-white rounded-top">
-                    <h5>Message from: {{ $message->sender_name }} {{ $message->sender_last_name }}</h5>
+                    <h5 class="animate__animated animate__fadeInDown">Message from: {{ $message->sender_name }} {{ $message->sender_last_name }}</h5>
                 </div>
                 <div class="card-body">
-                    <p><strong>Email:</strong> <a href="mailto:{{ $message->sender_email }}" class="text-decoration-none text-primary">{{ $message->sender_email }}</a></p>
-                    <p><strong>Property:</strong> {{ $message->property->title }}</p>
-                    <p><strong>Address:</strong> {{ $message->property->address }}</p>
+                    <p><strong>Email:</strong>
+                        <a href="mailto:{{ $message->sender_email }}" class="text-decoration-none text-primary">{{ $message->sender_email }}</a>
+                    </p>
+                    <p><strong>Property:</strong> {{ $message->property->title ?? 'N/A' }}</p>
+                    <p><strong>Address:</strong> {{ $message->property->address ?? 'N/A' }}</p>
                     <p><strong>Received on:</strong> {{ $message->created_at->format('d/m/Y H:i') }}</p>
                     <hr>
                     <p class="fs-5">{{ $message->message }}</p>
                 </div>
                 <div class="card-footer d-flex justify-content-between">
-                    <a href="{{ route('messages.index') }}" class="btn btn-outline-primary rounded-pill px-4 py-2">
+                    <a href="{{ route('messages.index') }}" class="btn btn-outline-primary rounded-pill px-4 py-2 back-btn">
                         <i class="fa-solid fa-arrow-left"></i> Back to Messages
                     </a>
-                    <a href="mailto:{{ $message->sender_email }}" class="btn btn-success rounded-pill px-4 py-2">
+                    <a href="mailto:{{ $message->sender_email }}" class="btn btn-success rounded-pill px-4 py-2 reply-btn">
                         <i class="fa-solid fa-reply"></i> Reply
                     </a>
                 </div>
@@ -34,22 +36,49 @@
         </div>
     </div>
 </div>
-@endsection
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const backButton = document.querySelector('.back-btn');
+        const replyButton = document.querySelector('.reply-btn');
+
+        backButton.addEventListener('mouseover', function() {
+            this.classList.add('animate__animated', 'animate__heartBeat');
+        });
+        backButton.addEventListener('mouseout', function() {
+            this.classList.remove('animate__animated', 'animate__heartBeat');
+        });
+
+        replyButton.addEventListener('mouseover', function() {
+            this.classList.add('btn-hover');
+        });
+        replyButton.addEventListener('mouseout', function() {
+            this.classList.remove('btn-hover');
+        });
+    });
+</script>
 
 <style>
-    /* Container */
+
     .container {
         max-width: 900px;
     }
 
-    /* Header title */
+
     h1 {
         font-size: 2.5rem;
         font-weight: 600;
-        color: #004085;
+        opacity: 0;
+        animation: fadeIn 1s forwards;
     }
 
-    /* Card styling */
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
+    }
+
+
     .card {
         border-radius: 15px;
         border: none;
@@ -63,7 +92,7 @@
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
 
-    /* Card header */
+
     .card-header {
         font-size: 1.25rem;
         background-color: #007bff;
@@ -72,7 +101,7 @@
         padding: 1rem;
     }
 
-    /* Card body text */
+
     .card-body {
         font-size: 1.1rem;
         line-height: 1.6;
@@ -83,13 +112,13 @@
         font-size: 1.2rem;
     }
 
-    /* Card footer */
+
     .card-footer {
         background-color: #f8f9fa;
         border-top: 1px solid #ddd;
     }
 
-    /* Button styles */
+
     .btn {
         font-size: 1rem;
         font-weight: 500;
@@ -118,7 +147,11 @@
         color: #fff;
     }
 
-    /* Link styling */
+    .btn-hover {
+        transform: scale(1.1);
+    }
+
+
     a {
         color: inherit;
         text-decoration: none;
@@ -135,5 +168,16 @@
         .card {
             margin-top: 15px;
         }
+
+        h1 {
+            font-size: 2rem;
+        }
+    }
+
+    @media (max-width: 576px) {
+        h1 {
+            font-size: 1.75rem;
+        }
     }
 </style>
+@endsection

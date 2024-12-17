@@ -10,34 +10,36 @@
 
     <div class="row">
         <div class="col-12">
-            <table class="table table-bordered table-striped table-hover">
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col">Sender Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Property</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($messages as $message)
-                    <tr class="message-row">
-                        <td>{{ $message->sender_name }} {{ $message->sender_last_name }}</td>
-                        <td>{{ $message->sender_email }}</td>
-                        <td>{{ $message->property->title ?? 'N/A' }}</td>
-                        <td>{{ $message->created_at->format('d/m/Y H:i') }}</td>
-                        <td>
-                            <a href="{{ route('admin.messages.show', $message) }}" class="btn btn-outline-primary btn-sm view-btn">View</a>
-                        </td>
-                    </tr>
-                    @empty
-                    <tr>
-                        <td colspan="5" class="text-center">No messages found.</td>
-                    </tr>
-                    @endforelse
-                </tbody>
-            </table>
+            <div class="table">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Sender Name</th>
+                            <th scope="col" class="d-none d-md-table-cell">Email</th>
+                            <th scope="col" class="d-none d-md-table-cell">Property</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($messages as $message)
+                        <tr class="message-row">
+                            <td>{{ $message->sender_name }} {{ $message->sender_last_name }}</td>
+                            <td class="d-none d-md-table-cell">{{ $message->sender_email }}</td>
+                            <td class="d-none d-md-table-cell">{{ $message->property->title ?? 'N/A' }}</td>
+                            <td>{{ $message->created_at->format('d/m/Y H:i') }}</td>
+                            <td>
+                                <a href="{{ route('admin.messages.show', $message) }}" class="btn btn-outline-primary btn-sm view-btn">View</a>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="5" class="text-center">No messages found.</td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -67,7 +69,6 @@
 </script>
 
 <style>
-
     .message-row {
         transition: transform 0.3s ease, background-color 0.3s ease;
     }
@@ -78,7 +79,6 @@
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
-    /* Bottone 'View' effetto hover */
     .view-btn {
         transition: background-color 0.3s ease, transform 0.3s ease;
         padding: 5px 15px;
@@ -95,7 +95,6 @@
         transform: scale(1.1);
     }
 
-
     h1 {
         opacity: 0;
         animation: fadeIn 1s forwards;
@@ -106,7 +105,6 @@
             opacity: 1;
         }
     }
-
 
     @media (max-width: 768px) {
         .view-btn {
@@ -120,15 +118,18 @@
     }
 
     @media (max-width: 576px) {
+        .table {
+            font-size: 1.1rem;
+        }
+
         .view-btn {
-            font-size: 0.8rem;
-            padding: 4px 10px;
+            font-size: 1rem;
+            padding: 4px 8px;
         }
 
         h1 {
-            font-size: 1.5rem;
+            font-size: 1.9rem;
         }
     }
 </style>
-
 @endsection
