@@ -14,7 +14,7 @@
                 <div class="col-12 chechbox-sponsor">
                     <h2 class="mb-3">Select one sponsorship:</h2>
                     @foreach ($sponsorships as $sponsorship)
-                        <div class="form-check mb-4" id="form-check-{{ $sponsorship->id }}"
+                        <div class="form-check mb-4 mx-auto" id="form-check-{{ $sponsorship->id }}"
                             data-sponsorname="{{ $sponsorship->name }}" data-id="radio-sponsorship-{{ $sponsorship->id }}">
                             <input class="form-check-input" type="radio" name="sponsorship"
                                 id="radio-sponsorship-{{ $sponsorship->id }}" value="{{ $sponsorship->duration }}">
