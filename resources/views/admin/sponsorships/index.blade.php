@@ -2,17 +2,17 @@
 
 @section('content')
     <div class="container text-center">
-        <h1 class="mt-5">Sponsor your property</h1>
-        <div class="p mt-5">A sponsored apartment has the following characteristics: It appears on the Homepage in the
+        <h1 class="mt-3">Sponsor your property</h1>
+        <div class="p mt-3">A sponsored apartment has the following characteristics: It appears on the Homepage in the
             "Featured Apartments" section. On the search page, it is always positioned before a non-sponsored apartment that
             meets the same search characteristics. Once the sponsorship period has ended, the apartment will return to being
             viewed normally, without any particularity.</div>
-        <form action="{{ route('admin.sponsorships.store') }}" id="payment" method="POST" class="mt-5">
+        <form action="{{ route('admin.sponsorships.store') }}" id="payment" method="POST" class="mt-4">
             @csrf
             <!--Sponsorships-->
             <div class="row">
                 <div class="col-12 chechbox-sponsor">
-                    <h2>Select one sponsorship:</h2>
+                    <h2 class="mb-3">Select one sponsorship:</h2>
                     @foreach ($sponsorships as $sponsorship)
                         <div class="form-check mb-4" id="form-check-{{ $sponsorship->id }}"
                             data-sponsorname="{{ $sponsorship->name }}" data-id="radio-sponsorship-{{ $sponsorship->id }}">
@@ -22,27 +22,24 @@
                                 id="label-sponsorship-{{ $sponsorship->id }}">
                                 <h4>{{ $sponsorship->name }}</h4>
                             </label>
-                            <ul>
+                            <ul class="row">
                                 @if ($sponsorship->duration === 24)
-                                    <li>
-                                        <b>Price:</b>2,99€
-                                    </li>
-                                    <li>
-                                        <b>Duration:</b>24:00 h
+                                    <li class="col-12 s-li">
+                                        <div><b>Price:</b><span>€ 2,99</span></div>
+
+                                        <div> <b>Duration:</b><span>24:00 h</span></div>
                                     </li>
                                 @elseif ($sponsorship->duration === 72)
-                                    <li>
-                                        <b>Price:</b>5,99€
-                                    </li>
-                                    <li>
-                                        <b>Duration:</b>72:00 h
+                                    <li class="col-12 s-li">
+                                        <div> <b>Price:</b><span>€ 5,99</span></div>
+
+                                        <div> <b>Duration:</b><span>72:00 h</span></div>
                                     </li>
                                 @else
-                                    <li>
-                                        <b>Price:</b>9,99€
-                                    </li>
-                                    <li>
-                                        <b>Duration:</b>144:00 h
+                                    <li class="col-12 s-li">
+                                        <div> <b>Price:</b><span>€ 9,99</span></div>
+
+                                        <div> <b>Duration:</b><span>144:00 h</span></div>
                                     </li>
                                 @endif
                             </ul>
@@ -64,16 +61,20 @@
                 </div>
             </div>
             <section id="payment">
-                <h2 class="mt-3 ps-4">Payment</h2>
-                <ul class="cart-payment">
-                    <li class="justify-content-center">
-                        <h5><b>Cart</b></h5>:
-                    </li>
-                    <li><b>sponsorship:</b><span id="sponsor-buy" class="ps-2"></span></li>
-                    <li><b>property:</b><span id="property-buy" class="ps-2"></span></li>
-                </ul>
+                <h2 class="my-3 ps-2">Payment</h2>
+                <div class="cart-payment row py-2">
+                    <div class="justify-content-center col-12">
+                        <h5><b>Cart</b>:</h5>
+                    </div>
+                    <div class="col-4"><b class="fs-5">sponsorship:</b>
+                    </div>
+                    <span id="sponsor-buy" class="ps-2 col-8"></span>
+                    <div class="col-4"><b class="fs-5">property:</b>
+                    </div>
+                    <span id="property-buy" class="ps-2 col-8"></span>
+                </div>
                 <div id="dropin-container"></div>
-                <button class="button button--small button--green" type="submit" id="submit-button">Purchase</button>
+                <button class="button button--small button--green mb-4" type="submit" id="submit-button">Purchase</button>
             </section>
         </form>
     </div>
@@ -178,6 +179,15 @@
             display: none;
         }
 
+        .row>.s-li {
+            flex-direction: column;
+        }
+
+        .row>.s-li b {
+            display: inline-block;
+            width: 50%;
+        }
+
         .cart-payment {
             padding: 0;
             padding: 20px;
@@ -215,7 +225,7 @@
         .form-check {
             border: 1px solid #DEE2E6;
             min-width: 30%;
-            width: 350px;
+            max-width: 350px;
             display: flex;
             justify-content: start;
             align-items: center;
