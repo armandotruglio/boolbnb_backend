@@ -4,7 +4,7 @@
 <div class="container py-5">
     <div class="row">
         <div class="col-12 text-center pb-5">
-            <h1 class="fw-bold">Messages</h1>
+            <h1 class="fw-bold">Messages for {{ $property->title }}</h1>
         </div>
     </div>
 

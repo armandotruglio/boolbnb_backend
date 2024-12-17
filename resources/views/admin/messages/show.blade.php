@@ -25,9 +25,6 @@
                     <p class="fs-5">{{ $message->message }}</p>
                 </div>
                 <div class="card-footer d-flex justify-content-between">
-                    <a href="{{ route('messages.index') }}" class="btn btn-outline-primary rounded-pill px-4 py-2 back-btn">
-                        <i class="fa-solid fa-arrow-left"></i> Back to Messages
-                    </a>
                     <a href="mailto:{{ $message->sender_email }}" class="btn btn-success rounded-pill px-4 py-2 reply-btn">
                         <i class="fa-solid fa-reply"></i> Reply
                     </a>
