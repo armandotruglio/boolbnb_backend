@@ -6,7 +6,7 @@
         <div class="row text-center pb-5 pt-3">
             <div class="col-12">
                 <h3 class="text-primary">Stats for:</h1>
-                <span class="fw-bold fs-2">{{$property->title}}</span>
+                <h2 class="fw-bold">{{$property->title}}</span>
             </div>
         </div>
 
